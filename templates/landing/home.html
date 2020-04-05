@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header class="header">
+    <div class="container-fluid p-0 m-0 d-flex justify-content-center" style="height: 600px">
+        <div class="row slider m-0">
+            <ul class="p-0">
+              <li>
+                <div class="leftButton"></div>
+                <img src="{% static 'img/IMG_1693.jpg'%}" class="image showImage" id="Slide1">
+              </li>
+              <li>
+                <div class="rightButton"></div>
+                <img src="{% static 'img/IMG_1726 (2).jpg'%}" class="image" id="Slide2">
+              </li>
+              <li>
+                <img src="{% static 'img/IMG_1745.jpg'%}" class="image" id="Slide3">
+              </li>
+              <li>
+                <img src="{% static 'img/IMG_1754.jpg'%}" class="image" id="Slide4">
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="sliderBlockList m-0 p-0">
+          <li class="mr-2"><div class="showBlock sliderBlock"></div></li><li class="mr-2"><div class="sliderBlock"></div></li><li class="mr-2"><div class="sliderBlock"></div></li><li ><div class="sliderBlock"></div></li>
+        </ul>
+    </div>
+</header>
+<div class="text-center"><h1>О нас</h1></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 text-center" style="font-size: 18pt">Текст Текст Текст Текст Текст Текст Текст Текст Текст ТекстТекст Текст Текст Текст Текст
+        Текст Текст Текст Текст Текст Текст Текст Текст Текст ТекстТекст Текст Текст Текст Текст
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Бестселлеры</h1>
+        </div>
+    </div>
+</div>
+<div class="containter-fluid m-0 p-0 d-flex justify-content-center" style="position: relative">
+        <div class="leftSlideCard"></div>
+        <div class="row rowCard">
+            <ul class="showCard SliderCard mt-1">
+                {% for productImage in productsImages %}
+                    {% if forloop.counter0|divisibleby:4 and forloop.counter0 > 0 %}
+                        </ul>
+                        <ul class="SliderCard mt-1">
+                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
+                        {% else %}
+                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
+
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="rightSlideCard"></div>
+</div>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" height="500" frameborder="0" style="border:0; width: 100vw" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+{% endblock %}

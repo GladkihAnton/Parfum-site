@@ -1,0 +1,214 @@
+/* navbar */
+.form-inline .shire {
+    text-align: left;
+    background-repeat: no-repeat;
+    width: calc(100vw - 550px);
+}
+h3{
+    font-size: 16pt;
+}
+h6{
+    font-size: 10pt;
+    font-weight: normal;
+}
+ul {
+    list-style: none;
+}
+/* конец navbar */
+/* слайдер */
+header{
+    height: 624px;
+}
+.slider {
+    position:relative;
+    overflow: hidden;
+    height: 600px;
+    width: 60vw;
+    border-radius: 5%;
+ 
+}
+.sliderBlock {
+    cursor: pointer;
+    opacity: .6;
+    width:100px;
+    height:3px;
+    background-color: gray;
+    display: inline-block;
+}
+.showBlock {
+    opacity: 1 !important;
+}
+.image {
+    left: 60vw;
+    position: absolute;
+    width: 60vw;
+    height: 600px;
+}
+.showImage{
+    left:0;
+    z-index: 3;
+}
+.sliderBlockList {
+    text-align: center;
+
+}
+.sliderBlockList li {
+    display: inline; /* Отображать как строчный элемент */
+}
+
+.leftButton, .rightButton{
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    transition: 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(0,0,0, 0.5);
+    top: 282.5px;
+    z-index: 500;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    opacity: .8;
+}
+.rightButton{
+    background: url(../img/rightbutton.png);
+    background-size: contain;
+    right:1vw;
+}
+.leftButton:hover, .rightButton:hover {
+    opacity: .4;
+}
+.leftButton:active, .rightButton:active {
+    opacity: .3;
+}
+.leftButton {
+    background: url(../img/leftbutton.png);
+    background-size: contain;
+    left: 1vw;
+}
+/*Конец Слайдера */
+/* секция карточек */
+.productCard{
+    display: contents;
+    width: 50px;
+}
+.cardforproduct:hover, .cardforproduct:focus {
+    box-shadow: 0 0 3px #5a6268;
+}
+.cardforproduct {
+    border: none;
+    width: 200px;
+}
+.cardforproduct h1{
+    font-size: 14pt;
+}
+.cardforproduct .card-text{
+    font-size: 10pt;
+}
+.cardforproduct h2{
+    font-size: 12pt;
+}
+.btn-for-product {
+    position: absolute;
+    bottom: 10px;
+    left:74px;
+}
+.img-card{
+    max-width: 200px;
+    border-radius: 5%;
+}
+/* конец секции карточек */
+
+/*Секция подвала*/
+
+.myFooter {
+    font-size: 10pt;
+}
+.myFooter ul li:first-child {
+    color:violet;
+}
+.myFooter ul li h4 {
+    font-size: 14pt;
+    display: inline;
+}
+.myFooter ul li h6 {
+    font-size: 10pt;
+    display: inline;
+    font-weight: normal;
+}
+/*Конец секции подвала*/
+.blaack{
+    background-color: black;
+}
+.rowCard{
+    height: 500px;
+    width: 900px;
+    overflow: hidden;
+    position: relative;
+}
+.SliderCard{
+    position: absolute;
+    display: flex;
+    left: 60vw;
+
+}
+.showCard{
+    position: absolute;
+    display: flex;
+    left: 0;
+}
+.leftSlideCard, .rightSlideCard{
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    transition: 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(0,0,0, 0.5);
+    top: 135px;
+    z-index: 500;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    opacity: .8;
+}
+.leftSlideCard{
+    background: url(../img/leftbutton.png);
+    background-size: contain;
+    left:22vw;
+}
+.rightSlideCard{
+    background: url(../img/rightbutton.png);
+    background-size: contain;
+    right:22vw;
+}
+.rightSlideCard:hover, .leftSlideCard:hover {
+    opacity: .4;
+}
+.leftSlideCard:active, .rightSlideCard:active {
+    opacity: .3;
+}
+.texxxt {
+    font-family: "Noteworthy-Light";
+    font-size: 16pt;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

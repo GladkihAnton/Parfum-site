@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Noteworthy-Light';
+  src: url('Noteworthy-Light.eot');
+  src: url('Noteworthy-Light.eot?#iefix') format('embedded-opentype'),
+       url('Noteworthy-Light.svg#Noteworthy-Light') format('svg'),
+       url('Noteworthy-Light.ttf') format('truetype'),
+       url('Noteworthy-Light.woff') format('woff'),
+       url('Noteworthy-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
