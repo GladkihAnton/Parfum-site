@@ -16,11 +16,12 @@
     {% include 'navbar.html' %}
     {% block content %}
     {% endblock content %}
+    {% include 'footer.html' %}
+
     <!-- JQUERY -->
     <script src="{% static 'js/jquery-3.4.1.js' %}"></script>
     <!-- my JS -->
     <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    {% include 'footer.html' %}
   </body>
 </html>

@@ -7,17 +7,17 @@
             <ul class="p-0">
               <li>
                 <div class="leftButton"></div>
-                <img src="{% static 'img/IMG_1693.jpg'%}" class="image showImage" id="Slide1">
+                <img src="{% static 'img/IMG_1661.jpg'%}" class="image showImage" id="Slide1">
               </li>
               <li>
                 <div class="rightButton"></div>
-                <img src="{% static 'img/IMG_1726 (2).jpg'%}" class="image" id="Slide2">
+                <img src="{% static 'img/IMG_1671.jpg'%}" class="image" id="Slide2">
               </li>
               <li>
                 <img src="{% static 'img/IMG_1745.jpg'%}" class="image" id="Slide3">
               </li>
               <li>
-                <img src="{% static 'img/IMG_1754.jpg'%}" class="image" id="Slide4">
+                <img src="{% static 'img/IMG_1699.jpg'%}" class="image" id="Slide4">
               </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
         <div class="row rowCard">
             <ul class="showCard SliderCard mt-1">
                 {% for productImage in productsImages %}
-                    {% if forloop.counter0|divisibleby:4 and forloop.counter0 > 0 %}
+                    {% if forloop.counter0|divisibleby:5 and forloop.counter0 > 0 %}
                         </ul>
                         <ul class="SliderCard mt-1">
                         <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
@@ -62,5 +62,32 @@
         </div>
         <div class="rightSlideCard"></div>
 </div>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" height="500" frameborder="0" style="border:0; width: 100vw" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+<h1 class="text-center mb-3">Наши преимущества</h1>
+<section>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"><img style="max-width: 60px" src="{% static 'img/sales.png' %}">Скидки
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+        <div class="col-md-4"><img style="max-width: 60px" src="{% static 'img/buyall.png' %}">Выбор продукции
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+        <div class="col-md-4"><img style="max-width: 60px" src="{% static 'img/goodwork.png' %}">Быстро доставим продукцию
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+        <div class="col-md-4 mt-5"><img style="max-width: 60px" src="{% static 'img/map.png' %}">Близко от метро
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+        <div class="col-md-4 mt-5"><img style="max-width: 60px" src="{% static 'img/paypall.png' %}">Доступный способ оплатны
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+        <div class="col-md-4 mt-5"><img style="max-width: 60px" src="{% static 'img/everyday.png' %}">Работаем каждый день
+            <div>Текст текст текст текст Текст текст текст текст Текст текст текст текст </div>
+        </div>
+    </div>
+</div>
+</section>
+<section>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" height="500" frameborder="0" style="border:0; width: 100%; display: inline" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</section>
 {% endblock %}

@@ -11,10 +11,10 @@ function slideNext(e) {
 		var nextImage = (e != undefined ? $('div.slider ul.p-0 li img').eq(e) : (image.parent().next().length ? image.parent().next().children('img') : $('div.slider ul.p-0 li:first img')));
 		var block = $('div.showBlock');
 		var nextBlock = (e != undefined ? $('div ul.sliderBlockList li div').eq(e) : (block.parent().next().length ? block.parent().next().children() : $('div ul.sliderBlockList li:first div')));
-		nextImage.css('left','60vw')
-		.animate({left: '-=60vw'}, 1500);
-		image.animate({left: '-=60vw'}, 1500)
-		.css('left','60vw')
+		nextImage.css('left','80vw')
+		.animate({left: '-=80vw'}, 1500);
+		image.animate({left: '-=80vw'}, 1500)
+		.css('left','80vw')
 		.removeClass("showImage");
 		nextImage.addClass("showImage");
 		nextBlock.addClass('showBlock');
@@ -30,10 +30,10 @@ function slidePrev(e) {
 		var block = $('div.showBlock');
 		var prevBlock = (e != undefined ? $('div ul.sliderBlockList li div').eq(e) : (block.parent().prev().length ? block.parent().prev().children() : $('div ul.sliderBlockList li:last div')));
 
-		prevImage.css('left','-60vw')
-		.animate({left: '+=60vw'}, 1500);
-		image.animate({left: '+=60vw'}, 1500)
-		.css('left','60vw')
+		prevImage.css('left','-80vw')
+		.animate({left: '+=80vw'}, 1500);
+		image.animate({left: '+=80vw'}, 1500)
+		.css('left','80vw')
 		.removeClass("showImage");
 		prevImage.addClass("showImage");
 		prevBlock.addClass('showBlock');
@@ -194,11 +194,11 @@ function slideCardPrev() {
 		var curent_card = $(".showCard");
 		var prev_card =  curent_card.prev().length ? curent_card.prev() : $(".rowCard ul:last");
 		curent_card
-			.animate({left: '+=60vw'}, 1000);
+			.animate({left: '+=73vw'}, 1000);
 		curent_card
 			.removeClass('showCard');
-		prev_card.css({'left': '-60vw'})
-			.animate({left: '+=60vw'}, 1000);
+		prev_card.css({'left': '-73vw'})
+			.animate({left: '+=73vw'}, 1000);
 		prev_card
 			.addClass('showCard');
 		setTimeout(function(){KEY_FOR_CARD_SLIDER = true}, 1000);
@@ -211,11 +211,11 @@ function slideCardNext() {
 		var prev_card = curent_card.prev();
 		var next_card = curent_card.next().length ? curent_card.next() : $(".rowCard ul:first");
 		curent_card
-			.animate({left: '-=61vw'}, 1000);
+			.animate({left: '-=75vw'}, 1000);
 		curent_card
 			.removeClass('showCard');
-		next_card.css({'left': '60vw'})
-			.animate({left: '-=60vw'}, 1000);
+		next_card.css({'left': '73vw'})
+			.animate({left: '-=73vw'}, 1000);
 		next_card
 			.addClass('showCard');
 		setTimeout(function(){KEY_FOR_CARD_SLIDER = true}, 1000);
