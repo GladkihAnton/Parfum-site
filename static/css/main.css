@@ -1,4 +1,19 @@
 /* navbar */
+.navbarli{
+    padding-left: 0;
+    border-radius: 7px;
+    background: lightblue;
+    width: 500px;
+}
+.navbarli li{
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.mynavbar {
+    margin-left: 8vw;
+    margin-right: 72px;
+}
 .form-inline .shire {
     text-align: left;
     background-repeat: no-repeat;
@@ -14,15 +29,19 @@ h6{
 ul {
     list-style: none;
 }
+
 /* конец navbar */
 /* слайдер */
 header{
     height: 624px;
 }
+ul li {
+    display: inline;
+}
 .slider {
     position:relative;
     overflow: hidden;
-    height: 600px;
+    /*height: 600px;*/
     width: 80vw;
 }
 .sliderBlock {
@@ -191,6 +210,25 @@ header{
 footer{
     background-color: #212121;
     height: 120px;
+}
+.lol {
+    font-size: 12pt;
+}
+.lol1 {
+    font-size: 14pt;
+}
+@media (max-width: 1102px) {
+    .lol{
+        font-size: 10pt;
+    }
+    .lol1{
+        font-size: 12pt;
+    }
+}
+@media (max-width: 868px) {
+    .lol{
+        font-size: 8pt;
+    }
 }
 .text-footer{
     color: rgb(180,180,180);
