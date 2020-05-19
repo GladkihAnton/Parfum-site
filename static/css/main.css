@@ -1,4 +1,15 @@
 /* navbar */
+.badge {
+    font-family:'Ritalin';
+    font-size: 22pt;
+    color: #70919f;
+}
+.rightNav {
+    font-size: 15pt;
+}
+.imgNav{
+    max-height: 24px;
+}
 .navbarli{
     padding-left: 0;
     border-radius: 7px;
@@ -210,6 +221,9 @@ ul li {
 footer{
     background-color: #212121;
     height: 120px;
+}
+.imgFot20{
+    max-height: 20px;
 }
 .lol {
     font-size: 12pt;
