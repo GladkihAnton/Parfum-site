@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {% for image in product.productimage_set.all %}
+                <img src="{{image.image.url}}" alt="" class="img-fluid w-50">
+                {% endfor %}
+            </div>
+            <div class="col-md-7">
+                <h3 class="mb-3">{{ product.name }}</h3>
+                <h5 class="mb-3">Стоимость: {{ product.cost }}</h5>
+                <p style="border-top: 1px solid">{{product.description}}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

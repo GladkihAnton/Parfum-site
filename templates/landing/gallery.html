@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid" id="gallery">
+    <div class="row">
+        <div class="col-md-3">
+            <form id="formSearch" action="{% url 'gallery_function' %}"> {% csrf_token %}
+                <input class="place_for_search1" type="text" id="text-to-find" value="" placeholder="Search" autofocus>
+                <input class="button_for_turn_back" type="button" value=" " title="Отменить поиск">
+                <input class="button_for_search" type="submit" value=" " title="Начать поиск"><br>
+            </form>
+            <form class="mt-2" id="checkbox" action="{% url 'gallery_checkbox' %}"> {% csrf_token %}
+                {% for type in typeOfProducts %}
+                <input class="checkbox" type="checkbox" name="{{type}}" id="{{type}}" data-change="false" value="{{type}}" checked>
+                <label for="{{type}}">{{type}}</label><br>
+                {% endfor %}
+            </form>
+        </div>
+        <div class="col-md-9">
+            <div class="container-fluid">
+                <div class="row cards">
+                    {% for product in ProductsInGallery|slice:":12" %}
+                        {% include 'landing/gallery_product.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -2,20 +2,33 @@
 <nav class="container-fluid pt-4 mb-4">
   <div class="row justify-content-xl-end justify-content-md-center">
     <div class="col-xl-3 col-md-8">
-      <h2 class="ml-3 badge">Магазин элитной парфюмерии</h2>
+      <h2 class="ml-3 badge1" href="/">Магазин элитной парфюмерии</h2>
     </div>
     <div class="col-xl-3 col-md-4 text-center justify-content-lg-end rightNav">
-      <p><img class="imgNav" src="{% static 'img/telephone.png' %}">+7(999)-900-90-99</p>
-      <p><img class="imgNav" src="{% static 'img/mail.png' %}">vasha.po4ta@mail.ru</p>
+      <p>
+        <img class="imgNav" src="{% static 'img/telephone.png' %}">+7(911)-947-64-94
+        <a href="http://www.instagram.com/parfum_leninskiy">
+          <img class="imgNav ml-2" src="{% static 'img/blackinst.png' %}">
+        </a>
+      </p>
+      <p>
+        <a class="mr-2" href="mailto:narva56@yandex.ru" id="mail"><img class="imgNav mr-1" src="{% static 'img/mail.png' %}">narva56@yandex.ru</a>
+        <img class="imgNav copy" onclick="myFunction()" src="{% static 'img/blackcopy.png' %}">
+        <div class="copyBlock">
+          Copy
+        </div>
+      </p>
     </div>
     <div class="col-xl-6 col-md-6 text-center mt-4 rightNav">
 <!--      <div class="mynavbar">-->
-        <ul class="navbarli ml-lg-5">
-          <li>Главная</li>
-          <li>О нас</li>
-          <li>Наши предложения</li>
-          <li>Контакты</li>
+        <ul class="navbarli ml-lg-5 mb-0">
+          <li><a href="/#main">Главная</a></li>
+          <li><a href="/gallery">Галерея</a></li>
+          <li><a href="/#about">О нас</a></li>
+          <li><a href="/#ourAdvantages">Наши преимущества</a></li>
+          <li><a href="/#foot">Контакты</a></li>
         </ul>
+      <div class="mt-2 sendMe"><a href="https://teleg.one/antoxi4">Написать в telegram</a></div>
 <!--      </div>-->
     </div>
   </div>

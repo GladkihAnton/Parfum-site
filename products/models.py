@@ -10,6 +10,7 @@ class TypeOfProduct(models.Model):
         verbose_name="Тип товара"
         verbose_name_plural="Типы товаров"
 
+
 class Product(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True, default=None)
     description = models.TextField(blank=True, null=True, default=None)
@@ -17,10 +18,17 @@ class Product(models.Model):
     cost = models.PositiveSmallIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
     #Кастомизация админки
+
+
     def __str__(self):
         return "%s" % self.name# ("Пользователь %s %s" % (self.email, seil.name)
+
+
     #Кастомизация множественного числа и единственного
+
+
     class Meta:
         verbose_name="Товар"
         verbose_name_plural="Товары"
