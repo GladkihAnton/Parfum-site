@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$++#wk@+!6uu)wutmh-y+t(tsg83t7s3)nyk_-7671d=2a50yw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["GladkikhAnton.pythonanywhere.com",]
 
 
 # Application definition
@@ -78,9 +78,15 @@ WSGI_APPLICATION = 'Magazin_site.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'GladkikhAnton$Shop',
+        'USER': 'GladkikhAnton',
+        'PASSWORD': 'newanlan2406',
+        'HOST': 'GladkikhAnton.mysql.pythonanywhere-services.com',
+    },
+    'OPTIONS': {
+        'sql_mode': 'STRICT_TRANS_TABLES',
+    },
 }
 
 
@@ -119,12 +125,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/Magazine_site/static/',
-    ]
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticRoot")
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = '/home/GladkikhAnton/shopSite/ShopSite/media'
+
