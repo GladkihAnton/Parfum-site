@@ -100,11 +100,11 @@ if ($('#main').length>0) {
 			var curent_card = $(".showCard");
 			var prev_card = curent_card.prev().length ? curent_card.prev() : $(".rowCard ul:last");
 			curent_card
-				.animate({left: '+=73vw'}, 1000);
+				.animate({left: '+=1041px'}, 1000);
 			curent_card
 				.removeClass('showCard');
-			prev_card.css({'left': '-73vw'})
-				.animate({left: '+=73vw'}, 1000);
+			prev_card.css({'left': '-1041px'})
+				.animate({left: '+=1041px'}, 1000);
 			prev_card
 				.addClass('showCard');
 			setTimeout(function () {
@@ -120,11 +120,11 @@ if ($('#main').length>0) {
 			var prev_card = curent_card.prev();
 			var next_card = curent_card.next().length ? curent_card.next() : $(".rowCard ul:first");
 			curent_card
-				.animate({left: '-=75vw'}, 1000);
+				.animate({left: '-=1047px'}, 1000);
 			curent_card
 				.removeClass('showCard');
-			next_card.css({'left': '73vw'})
-				.animate({left: '-=73vw'}, 1000);
+			next_card.css({'left': '1041px'})
+				.animate({left: '-=1041px'}, 1000);
 			next_card
 				.addClass('showCard');
 			setTimeout(function () {
@@ -171,9 +171,9 @@ if ($('#gallery').length>0) {
 					$.each(data, function (k, v) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -214,9 +214,9 @@ if ($('#gallery').length>0) {
 					$.each(data, function (k, v, e) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -257,9 +257,9 @@ if ($('#gallery').length>0) {
 					$.each(data, function (k, v) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -298,9 +298,9 @@ if ($('#gallery').length>0) {
 						var place_for_card = $('.cards');
 						$.each(data, function (k, v) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +

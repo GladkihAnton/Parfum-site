@@ -24,6 +24,17 @@
 }
 .rightNav {
     font-size: 15pt;
+    width: 550px;
+}
+@media(max-width: 800px){
+    .rightNav {
+        font-size: 12pt;
+    }
+}
+@media(max-width: 767px){
+    .rightNav {
+        font-size: 15pt;
+    }
 }
 .imgNav{
     max-height: 24px;
@@ -32,13 +43,30 @@
     border-radius: 7px;
     background: lightblue;
     width: 200px;
-    margin-left: 12rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 .navbarli{
     padding-left: 0;
     border-radius: 7px;
     background: lightblue;
     width: 550px;
+}
+@media (max-width: 600px) {
+    .navbarli {
+        width: 400px;
+    }
+    .rightNav {
+        width: 400px;
+    }
+}
+@media (max-width: 600px) {
+    .navbarli {
+        width: 240px;
+    }
+    .rightNav {
+        width: 240px;
+    }
 }
 .navbarli li{
     display: inline-block;
@@ -198,15 +226,40 @@ ul li {
 }
 .rowCard{
     height: 500px;
-    width: 1077px;
+    width: 1041px;
     overflow: hidden;
     position: relative;
 }
 .SliderCard{
     position: absolute;
     display: flex;
-    left: 73vw;
+    left: 1041px;
+    padding: 0;
 
+
+}
+@media(max-width: 1060px){
+    .rowCard {
+        width: 834px;
+    }
+}
+@media(max-width: 880px){
+    .rowCard {
+        width: 624px;
+    }
+}
+@media(max-width: 664px){
+    .rowCard {
+        width: 416px;
+    }
+}
+@media(max-width: 480px){
+    .rowCard {
+        width: 208px;
+    }
+    .sliderBlock{
+        width: 65px;
+    }
 }
 .showCard{
     position: absolute;
@@ -229,12 +282,12 @@ ul li {
 .leftSlideCard{
     background: url(../img/leftbutton.png);
     background-size: contain;
-    left:16vw;
+    left:16px;
 }
 .rightSlideCard{
     background: url(../img/rightbutton.png);
     background-size: contain;
-    right:13vw;
+    right:19px;
 }
 .rightSlideCard:hover, .leftSlideCard:hover {
     opacity: .4;
@@ -253,24 +306,49 @@ ul li {
 .imgFot20{
     max-height: 20px;
 }
-.lol {
+.foot-about {
     font-size: 12pt;
 }
-.lol1 {
+.address {
     font-size: 14pt;
 }
-@media (max-width: 1102px) {
-    .lol{
+@media (max-width: 1200px) {
+    .foot-about{
         font-size: 10pt;
     }
-    .lol1{
+    .address{
         font-size: 12pt;
     }
 }
 @media (max-width: 868px) {
-    .lol{
+    .foot-about{
         font-size: 8pt;
     }
+}
+@media (max-width: 768px){
+    #foot{
+        height: 260px;
+    }
+    .address{
+        font-size: 12pt;
+    }
+    .foot-about{
+        font-size: 8pt;
+    }
+}
+@media (max-width: 499px){
+    #foot{
+        height: 300px;
+    }
+    .address{
+        font-size: 10pt;
+    }
+    .foot-about{
+        font-size: 8pt;
+    }
+}
+@media(max-width: 299px){
+    #foot{height: 365px}
 }
 .text-footer{
     color: rgb(180,180,180);

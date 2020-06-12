@@ -1,6 +1,6 @@
-<div class="col-md-3 p-0 m-0 galleryCard">
+<div class="col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard">
     <a href="{% url 'product' product.product.id %}">
-        <div class="card text-center cardforproduct">
+        <div class="card text-center cardforproduct m-auto">
             {% for item in product.product.productimage_set.all%}
 
             <div class="card-img-top"><img class="img-card" src="/media/{{item}}"></div>
