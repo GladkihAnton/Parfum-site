@@ -1,27 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<!--<button class="dropdown-toggle" type="button" aria-haspopup="false" aria-expanded="false">kek</button>-->
+<!--&lt;!&ndash;<div class="">&ndash;&gt;-->
+<!--    <button class="butt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--        Dropdown button-->
+<!--    </button>-->
+<!--</div>-->
 <div class="container-fluid" id="gallery">
     <div class="row">
-        <div class="col-12 col-lg-3">
-            <form class="text-center text-lg-left" id="formSearch" action="{% url 'gallery_function' %}"> {% csrf_token %}
-                <input class="place_for_search1" type="text" id="text-to-find" value="" placeholder="Search" autofocus>
-                <input class="button_for_turn_back" type="button" value=" " title="Отменить поиск">
-                <input class="button_for_search" type="submit" value=" " title="Начать поиск"><br>
-            </form>
-            <form class="mt-2" id="checkbox" action="{% url 'gallery_checkbox' %}"> {% csrf_token %}
-                <div class="container-fluid">
-                    <div class="row">
-                        {% for type in typeOfProducts %}
-                        <div class="col-3 col-lg-12">
-                            <input class="checkbox" type="checkbox" name="{{type}}" id="{{type}}" data-change="false" value="{{type}}" checked>
-                            <label for="{{type}}">{{type}}</label>
-                        </div>
-                        {% endfor %}
+        <div class="col-2 col-lg-12"></div>
+        <div class="col-8 col-lg-3">
+            <div class="filters_form ml-auto mr-auto" style="max-width: 360px;">
+                <form class="text-center text-lg-left ml-2" id="formSearch" action="{% url 'gallery_function' %}"> {% csrf_token %}
+                    <input class="place_for_search mt-2" type="text" id="text-to-find" value="" placeholder="Search" autofocus>
+                    <div class="prev_for_turn_back_button">
+                        <span class="button_for_turn_back">&times;</span>
                     </div>
-                </div>
-            </form>
+<!--                    <input class="button_for_turn_back" type="button" value=" " title="Отменить поиск">-->
+<!--                    <input class="button_for_search" type="submit" value=" " title="Начать поиск"><br>-->
+                </form>
+                <form class="mt-2" id="checkbox" style="border-top: 1px solid black;"   action="{% url 'gallery_checkbox' %}"> {% csrf_token %}
+                    <div class="container">
+                        <div class="row">
+                            <input type="checkbox" id="filter_list" style="display: none">
+                            <label class="itemsMenu itemsMenu_up_down col-md-12 pt-2" for="filter_list">Концентрация духов</label>
+                            <div class="dropMenu" style="z-index: 999;">
+                                    {% for type in typeOfProducts %}
+                                    <div class="col-md-12 ml-3 mt-2">
+                                        <input class="checkbox" type="checkbox" name="{{type}}" id="{{type}}" data-change="false" value="{{type}}" checked>
+                                        <label for="{{type}}">{{type}}</label>
+                                    </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="col-12 col-lg-9">
             <div class="container-fluid">

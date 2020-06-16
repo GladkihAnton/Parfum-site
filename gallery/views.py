@@ -16,6 +16,8 @@ def gallery(request):
 
 
 def start_function(request):
+    if not request.session.exists(request.session.session_key):
+        request.session.create()
     session_key = request.session.session_key
     products = Product.objects.all()
     for product in products:

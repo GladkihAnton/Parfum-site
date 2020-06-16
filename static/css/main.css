@@ -353,15 +353,47 @@ ul li {
 .text-footer{
     color: rgb(180,180,180);
 }
+.filters_form{
+    background-color: rgba(227,227,227,0.53);
+    border-radius: 5px;
+}
+.prev_for_turn_back_button{
+    position: relative;
+    top:0px;
+    left: 0px;
+    display: inline;
+}
 .button_for_turn_back {
-    background: url(../img/crest.png) no-repeat;
-    background-size: contain;
-    background-position-y: 6px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 11px;
+    display: none;
 }
 .button_for_search {
     background: url(../img/ok.png) no-repeat;
     background-size: contain;
     background-position-y: 6px;
+}
+.place_for_search {
+    border-radius: 6px;
+    border-color: #f0f0f0;
+}
+.place_for_search:focus{
+    outline: none;
+}
+.place_for_search::after{
+    position: absolute;
+    left:10px;
+    content: 'hel';
+}
+/*.button_for_turn_back, .button_for_search {*/
+/*    border-radius: 5px;*/
+/*}*/
+.button_for_turn_back:hover, .button_for_search:hover, .button_for_turn_back:active, .button_for_search:active {
+    /*box-shadow: 0.2rem 0.2rem 0.2rem 0 rgb(225, 225, 225);*/
+    opacity: 0.5;
 }
 .checkbox {
     position: absolute;
@@ -413,38 +445,29 @@ ul li {
 .checkbox:disabled+label::before {
     background-color: #e9ecef;
 }
-/*input:focus {*/
-/*    border: 1px solid black;*/
-/*    border-color: black;*/
-/*    border-radius: 5px;*/
-/*    box-shadow: black;*/
-/*    blackground: black;*/
-/*}*/
-INPUT.text {
-    border: 1px solid yellow; /* Исходная рамка вокруг поля */
-    width: 80%; /* Ширина поля */
+/*Меню с фильтром */
+.dropMenu {
+    display: none;
 }
-INPUT.text:focus {
-    border: 1px solid red; /* Рамка при получении фокуса */
+.itemsMenu {
+    background: #f0f0f0;
+    width: 100%;
+    height: 31px;
 }
-.button_for_turn_back, .button_for_search {
-    border-radius: 5px;
+.itemsMenu:after, .itemsMenu:before {
+    position: absolute;
+    top: 17px;
+    right: 9px;
+    content: '';
+    height: 2px;
+    width: 23px;
+    opacity: 0.3;
+    background-color: rgba(148, 148, 148, 0.51);
+    transition: 0.3s;
 }
-.button_for_turn_back:hover, .button_for_search:hover, .button_for_turn_back:active, .button_for_search:active {
-    box-shadow: 0 0 0 0.2rem rgb(225, 225, 225);
+.itemsMenu_up_down:before {
+    transform: rotate(90deg);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.itemsMenu:hover::after, .itemsMenu:hover::before {
+    opacity: 1;
+}

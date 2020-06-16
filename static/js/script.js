@@ -147,11 +147,22 @@ if ($('#main').length>0) {
 //filter and checkboxs in gallery
 if ($('#gallery').length>0) {
 	$(function () {
+		//quantity cards on the page
 		var quantity = 12;
+		//var for ajax progress
 		var inProgress = false;
+		$('.place_for_search').on('keyup',function(){
+			var $this = $(this),
+				val = $this.val();
+			if(val.length >= 1){
+				$('.button_for_turn_back').show(50);
+			}else {
+				$('.button_for_turn_back').hide(50);
+			}
+		});		//function for search
 		var form_search = $("#formSearch");
 		form_search.on('submit', function (e) {
-			var text = $('.place_for_search1');
+			var text = $('.place_for_search');
 			e.preventDefault();
 			var data = {};
 			var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
@@ -192,8 +203,10 @@ if ($('#gallery').length>0) {
 				}
 			});
 		});
+		//functin for cancel button
 		var cancel_button = $('.button_for_turn_back');
 		cancel_button.on('click', function (e) {
+			$(this).hide(50);
 			e.preventDefault();
 			var data = {};
 			var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
@@ -235,9 +248,10 @@ if ($('#gallery').length>0) {
 				}
 			});
 		});
+		//function for checkbox
 		var checkbox = $('.checkbox');
 		checkbox.on('change', function (e) {
-			var text = $('.place_for_search1');
+			var text = $('.place_for_search');
 			var url = $('#checkbox').attr('action');
 			var data = {};
 			console.log(url);
@@ -278,13 +292,14 @@ if ($('#gallery').length>0) {
 				}
 			});
 		})
+		//update cards with scroll
 		$(window).scroll(function () {
 			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200 && !inProgress) {
 				var data = {};
 				data['lol'] = 'lol';
 				var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
 				data["csrfmiddlewaretoken"] = csrf_token;
-				data['search'] = $('.place_for_search1').val();
+				data['search'] = $('.place_for_search').val();
 				data['quantity'] = quantity;
 				$.ajax({
 					url: "/update_content",
@@ -321,4 +336,11 @@ if ($('#gallery').length>0) {
 		});
 	});
 }
-
+$(function() {
+	$('.itemsMenu').click(function () {
+		// $('.itemsMenu::after').css('transform', 'rotate(90deg)');
+		$(this).toggleClass('itemsMenu_up_down');
+		// $('.dropMenu').hide('normal');
+		$('.dropMenu').toggle('normal');
+	});
+});
