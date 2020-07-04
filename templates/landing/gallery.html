@@ -26,7 +26,7 @@
                             <input type="checkbox" id="filter_list" style="display: none">
                             <label class="itemsMenu itemsMenu_up_down col-md-12 pt-2" for="filter_list">Концентрация духов</label>
                             <div class="dropMenu" style="z-index: 999;">
-                                    {% for type in typeOfProducts %}
+                                    {% for type in type_of_products %}
                                     <div class="col-md-12 ml-3 mt-2">
                                         <input class="checkbox" type="checkbox" name="{{type}}" id="{{type}}" data-change="false" value="{{type}}" checked>
                                         <label for="{{type}}">{{type}}</label>
@@ -41,7 +41,7 @@
         <div class="col-12 col-lg-9">
             <div class="container-fluid">
                 <div class="row cards">
-                    {% for product in ProductsInGallery|slice:":12" %}
+                    {% for product in products_in_gallery|slice:":12" %}
                         {% include 'landing/gallery_product.html' %}
                     {% endfor %}
                 </div>
