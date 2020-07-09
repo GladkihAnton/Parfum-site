@@ -1,35 +1,38 @@
 {% load static %}
-<nav class="container-fluid pt-4 mb-4">
-  <div class="row justify-content-xl-end justify-content-md-center">
-    <div class="col-xl-3 col-md-8">
-      <h2 class="ml-3 text-center text-md-left badge1" href="/">Магазин элитной парфюмерии<img class=imgNav src="{% static 'img/Лого.png' %}"></h2>
-    </div>
-    <div class="col-xl-3 col-md-4 col-12 text-center justify-content-lg-end rightNav p-0">
-      <p>
-        <img class="imgNav" src="{% static 'img/telephone.png' %}">+7(911)-947-64-94
-        <a href="http://www.instagram.com/parfum_leninskiy">
-          <img class="imgNav ml-2" src="{% static 'img/blackinst.png' %}">
-        </a>
-      </p>
-      <p>
-        <a class="mr-2" href="mailto:narva56@yandex.ru" id="mail"><img class="imgNav mr-1" src="{% static 'img/mail.png' %}">narva56@yandex.ru</a>
-        <img class="imgNav copy" onclick="myFunction()" src="{% static 'img/blackcopy.png' %}">
-        <div class="copyBlock">
-          Copy
+<nav class="container-fluid pt-4 mb-2 mynavbar" style="border-bottom: 2px double #d3cece">
+    <div class="row">
+        <div class="col-md-4 col-xl-4">
+          <input class="main_search" type="search" placeholder="Поиск...">
         </div>
-      </p>
+        <div class="col-xl-4 col-md-8 text-center">
+              <img class=main_img src="{% static 'img/Лого.png' %}">
+              <h2 class="main_name_of_shop mb-0" href="/">
+                Элитная парфюмерия
+              </h2>
+              <small class="nav-text">
+                ароматный бутик
+              </small>
     </div>
-    <div class="col-xl-6 col-12 text-center mt-4 rightNav">
-<!--      <div class="mynavbar">-->
-        <ul class="navbarli ml-auto mr-auto mb-0">
-          <li><a href="/#main">Главная</a></li>
-          <li><a href="/gallery">Галерея</a></li>
-          <li><a href="/#about">О нас</a></li>
-          <li><a href="/#ourAdvantages">Наши преимущества</a></li>
-          <li><a href="/#foot">Контакты</a></li>
-        </ul>
-      <div class="mt-2 sendMe"><a href="https://teleg.one/antoxi4">Написать в telegram</a></div>
-<!--      </div>-->
+        <div class="col-xl-4 mt-4 text-center" style="padding-right: 2vw;">
+            <img class="img_phone" src="{% static 'img/phone-handset_icon-icons.com_48252.png' %}">
+            <div style="display: inline-grid; font-family: 'antiqua';">
+                <strong style="font-weight: 400; font-size: 15pt;">+7(911)947-64-94<br></strong>
+                <small class="every_day">Ежедневно с 11:00 до 20:00</small>
+            </div><br>
+            <div style="margin-top: 1.7rem;">
+                <img class="imgNav_icons_for_messenger" src="{% static 'img/kisspng-angle-brand-material-yellow-email-5ab08a4b3e3e15.579897621521519179255.png' %}">
+                <img class="imgNav_icons_for_messenger ml-5" src="{% static 'img/kisspng-telegram-logo-computer-icons-telegram-5abd165f637699.6665211615223414714074.png' %}">
+                <img class="imgNav_icons_for_inst" src="{% static 'img/kisspng-computer-icons-logo-image-sharing-flat-design-instagram-5abe0f2f495613.4955694015224051673004.png' %}">
+            </div>
+        </div>
     </div>
-  </div>
+</nav>
+<nav class="fixed_nav pt-2" id="fixed_nav">
+ <ul class="item_in_fixed_nav">
+     <li>ГЛАВНАЯ</li>
+     <li>О НАС</li>
+     <li>КАТАЛОГ</li>
+     <li>НАШИ ПРЕИМУЩЕСТВА</li>
+     <li>КОНТАКТЫ</li>
+ </ul>
 </nav>

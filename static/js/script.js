@@ -47,6 +47,17 @@ function myFunction() {
 		setTimeout(function(){KEY_FOR_COPY = true}, 1100);
 	}
 };
+	var navbar = document.getElementById("fixed_nav");
+	var height_of_nav = navbar.offsetTop;
+window.onscroll = function() {fixing_function()};
+function fixing_function() {
+	if (window.pageYOffset >= 215) {
+    	navbar.classList.add("fix");
+  	}
+	else {
+    	navbar.classList.remove("fix");
+  	}
+}
 //end_navbar
 if ($('#main').length>0) {
 //slider

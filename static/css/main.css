@@ -1,43 +1,77 @@
 /* navbar */
-.inst{
-    cursor: pointer;
+.mynavbar{
+    border-bottom: 2px double #d3cece;
+    padding-bottom: 5px;
 }
-.copy{
+.main_search {
+    position: relative;
+    top: 30%;
+    left: 25%;
+    width:16vw;
+    height: 53px;
+    border: 2px double #9a9494;
     opacity: 0.6;
-    cursor: pointer;
+    box-shadow: none;
 }
-.copy:hover, .copy:active{
-    opacity: 0.3;
+.main_search::placeholder {
+    padding-left: 10px;
+    font-size: 16pt;
+}
+.main_img {
+    max-height: 120px;
+}
+.main_name_of_shop {
     cursor: pointer !important;
+    font-family:'segoe';
+    font-size: 23pt;
+    color: #b053ed;
+
 }
-.copyBlock{
-    position: absolute;
-    bottom: 15px;
-    right: 0px;
-    opacity: 0;
+.nav-text{
+    font-size: 14pt;
+    font-family: 'antiqua';
 }
-.badge1 {
-    cursor: pointer !important;
-    font-family:'Ritalin';
-    font-size: 22pt;
-    color: #70919f;
+.imgNav_icons_for_messenger {
+    max-height: 50px;
 }
-.rightNav {
-    font-size: 15pt;
-    width: 550px;
+.imgNav_icons_for_inst{
+    max-height: 64px;
+    margin-left: 2.5rem;
 }
-@media(max-width: 800px){
-    .rightNav {
-        font-size: 12pt;
-    }
+
+.every_day{
+    opacity: 0.6;
+    margin-top: 0.4rem;
 }
-@media(max-width: 767px){
-    .rightNav {
-        font-size: 15pt;
-    }
+.img_phone{
+    max-height: 28px;
 }
-.imgNav{
-    max-height: 24px;
+.fixed_nav{
+    background-color: white;
+    border-bottom: 2px double #d3cece;
+}
+.fix {
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 9999999;
+    overflow: hidden;
+    padding-top: 1rem !important;
+}
+.fix + header {
+    padding-top: 54px;
+}
+.item_in_fixed_nav{
+    display:flex;
+    justify-content: space-between;
+    padding: 0 7rem 0 7rem;
+}
+.item_in_fixed_nav li{
+    font-family: 'antiqua';
+    font-size: 14pt;
+}
+.abc li {
+    justify-content: space-between;
 }
 .sendMe{
     border-radius: 7px;
@@ -72,10 +106,6 @@
     display: inline-block;
     margin-right: 5px;
     margin-left: 5px;
-}
-.mynavbar {
-    margin-left: 8vw;
-    margin-right: 72px;
 }
 .form-inline .shire {
     text-align: left;
