@@ -1,6 +1,30 @@
 var KEY_FOR_IMG_SLIDER = true;
 var KEY_FOR_CARD_SLIDER = true;
 var KEY_FOR_COPY = true;
+
+$('#upload_csv').on('submit', function (e) {
+	e.preventDefault();
+	var form = new FormData($(this).get(0));
+	$.ajax({
+		url: $(this).attr('action'),
+		type: 'POST',
+		data: form,
+		cache: false,
+		processData: false,
+		contentType: false,
+		success: function () {
+			console.log('ypa');
+		},
+		error: function () {
+			console.log('bad');
+		}
+	})
+});
+
+
+
+
+
 //navbar
 function myFunction() {
 	if (KEY_FOR_COPY) {
@@ -29,7 +53,6 @@ if ($('#main').length>0) {
 	function slider() {
 		setInterval(slideNext, 5000);
 	};
-
 	function slideNext(e) {
 		if (KEY_FOR_IMG_SLIDER) {
 			KEY_FOR_IMG_SLIDER = false;
@@ -51,7 +74,6 @@ if ($('#main').length>0) {
 		}
 		;
 	};
-
 	function slidePrev(e) {
 		if (KEY_FOR_IMG_SLIDER) {
 			KEY_FOR_IMG_SLIDER = false;
@@ -94,39 +116,24 @@ if ($('#main').length>0) {
 	});
 //Конец слайдера
 // Слайдер для фоток товара
-	function slideCardPrev() {
+	var quantity_of_cards = $('.SliderCard li').length;
+	var nmb_of_current_card = 1;
+	function slideCardPrev(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
-			KEY_FOR_CARD_SLIDER = false
-			var curent_card = $(".showCard");
-			var prev_card = curent_card.prev().length ? curent_card.prev() : $(".rowCard ul:last");
-			curent_card
-				.animate({left: '+=1041px'}, 1000);
-			curent_card
-				.removeClass('showCard');
-			prev_card.css({'left': '-1041px'})
-				.animate({left: '+=1041px'}, 1000);
-			prev_card
-				.addClass('showCard');
+			KEY_FOR_CARD_SLIDER = false;
+			$(".SliderCard").animate({left: '+='+width}, 1000);
+			nmb_of_current_card -= quantity;
 			setTimeout(function () {
-				KEY_FOR_CARD_SLIDER = true
+				KEY_FOR_CARD_SLIDER = true;
 			}, 1000);
 		}
 	}
 
-	function slideCardNext() {
+	function slideCardNext(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
 			KEY_FOR_CARD_SLIDER = false
-			var curent_card = $(".showCard");
-			var prev_card = curent_card.prev();
-			var next_card = curent_card.next().length ? curent_card.next() : $(".rowCard ul:first");
-			curent_card
-				.animate({left: '-=1047px'}, 1000);
-			curent_card
-				.removeClass('showCard');
-			next_card.css({'left': '1041px'})
-				.animate({left: '-=1041px'}, 1000);
-			next_card
-				.addClass('showCard');
+			$(".SliderCard").animate({left: '-='+width}, 1000);
+			nmb_of_current_card += quantity;
 			setTimeout(function () {
 				KEY_FOR_CARD_SLIDER = true
 			}, 1000);
@@ -138,10 +145,18 @@ if ($('#main').length>0) {
 		// slideCard();
 	});
 	$('.leftSlideCard').on('click', function (e) {
-		slideCardPrev();
+		const w = $('.rowCard').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w) / 200);
+		if(nmb_of_current_card > 1) {
+			slideCardPrev(w, quantity_of_cards_on_page);
+		}
 	});
 	$('.rightSlideCard').on('click', function (e) {
-		slideCardNext();
+		const w = $('.rowCard').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w)/200);
+		if(nmb_of_current_card <= quantity_of_cards - quantity_of_cards_on_page) {
+			slideCardNext(w, quantity_of_cards_on_page);
+		}
 	});
 }
 //filter and checkboxs in gallery
@@ -166,9 +181,17 @@ if ($('#gallery').length>0) {
 			e.preventDefault();
 			var data = {};
 			var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
+			var temp_checkbox_list = []
+			$.each($('#checkbox .checkbox'), function () {
+				if ($(this).prop('checked') == true){
+					temp_checkbox_list.push(this.value);
+				}
+			});
+			var checkbox_list = JSON.stringify(temp_checkbox_list);
 			data["csrfmiddlewaretoken"] = csrf_token;
 			data["search"] = text.val();
 			data["refresh"] = "False";
+			data["checkbox"] = checkbox_list;
 			var url = form_search.attr('action');
 			$.ajax({
 				url: url,
@@ -176,7 +199,6 @@ if ($('#gallery').length>0) {
 				data: data,
 				cache: true,
 				success: function (data) {
-					console.log(data);
 					$('.galleryCard').remove();
 					var place_for_card = $('.cards');
 					$.each(data, function (k, v) {
@@ -254,12 +276,17 @@ if ($('#gallery').length>0) {
 			var text = $('.place_for_search');
 			var url = $('#checkbox').attr('action');
 			var data = {};
-			console.log(url);
 			var csrf_token = $('#checkbox [name="csrfmiddlewaretoken"]').val();
+			var temp_checkbox_list = []
+			$.each($('#checkbox .checkbox'), function () {
+				if ($(this).prop('checked') == true){
+					temp_checkbox_list.push(this.value);
+				}
+			});
+			var checkbox_list = JSON.stringify(temp_checkbox_list);
 			data["csrfmiddlewaretoken"] = csrf_token;
 			data["search"] = text.val();
-			data["checkbox"] = this.value;
-			data["status"] = $(this).prop('checked')
+			data["checkbox"] = checkbox_list;
 			$.ajax({
 				url: url,
 				type: 'POST',
@@ -296,11 +323,18 @@ if ($('#gallery').length>0) {
 		$(window).scroll(function () {
 			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200 && !inProgress) {
 				var data = {};
-				data['lol'] = 'lol';
 				var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
+				var temp_checkbox_list = []
+				$.each($('#checkbox .checkbox'), function () {
+					if ($(this).prop('checked') == true){
+						temp_checkbox_list.push(this.value);
+					}
+				});
+				var checkbox_list = JSON.stringify(temp_checkbox_list);
 				data["csrfmiddlewaretoken"] = csrf_token;
 				data['search'] = $('.place_for_search').val();
 				data['quantity'] = quantity;
+				data['checkbox'] = checkbox_list;
 				$.ajax({
 					url: "/update_content",
 					type: 'POST',
@@ -338,9 +372,7 @@ if ($('#gallery').length>0) {
 }
 $(function() {
 	$('.itemsMenu').click(function () {
-		// $('.itemsMenu::after').css('transform', 'rotate(90deg)');
 		$(this).toggleClass('itemsMenu_up_down');
-		// $('.dropMenu').hide('normal');
 		$('.dropMenu').toggle('normal');
 	});
 });

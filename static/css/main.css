@@ -179,6 +179,7 @@ ul li {
 }
 .cardforproduct:hover, .cardforproduct:focus {
     box-shadow: 0 0 3px #5a6268;
+    transition: 0.5s;
 }
 .cardforproduct {
     border: none;
@@ -230,13 +231,12 @@ ul li {
     overflow: hidden;
     position: relative;
 }
+
 .SliderCard{
     position: absolute;
     display: flex;
-    left: 1041px;
+    left: 0px;
     padding: 0;
-
-
 }
 @media(max-width: 1060px){
     .rowCard {
@@ -261,11 +261,20 @@ ul li {
         width: 65px;
     }
 }
-.showCard{
-    position: absolute;
+ul.rowCards {
+    position: relative;
     display: flex;
-    left: 0;
+    padding: 0;
 }
+
+ul.rowCards li{
+    /*position: absolute;*/
+}
+/*.showCard{*/
+/*    position: absolute;*/
+/*    display: flex;*/
+/*    left: 0;*/
+/*}*/
 .leftSlideCard, .rightSlideCard{
     cursor: pointer !important;
     position: absolute;
@@ -277,17 +286,17 @@ ul li {
     border-radius: 10px;
     width: 35px;
     height: 35px;
-    opacity: .8;
+    opacity: 0.8;
 }
 .leftSlideCard{
-    background: url(../img/leftbutton.png);
+    background: url(../img/leftbutton_gray.png);
     background-size: contain;
-    left:16px;
+    left:0;
 }
 .rightSlideCard{
-    background: url(../img/rightbutton.png);
+    background: url(../img/rightbutton_gray.png);
     background-size: contain;
-    right:19px;
+    right:0;
 }
 .rightSlideCard:hover, .leftSlideCard:hover {
     opacity: .4;

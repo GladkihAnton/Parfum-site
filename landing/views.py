@@ -1,10 +1,11 @@
 from django.shortcuts import render
 
-from products.models import ProductImage, TypeOfProduct
-
+from gallery.models import ProductInGallery
+from products.forms import ImportCsv
 
 def home(request):
-    productsImages = ProductImage.objects.all()
+    form = ImportCsv
+    products_in_slider = ProductInGallery.objects.all()
     return render(request, 'landing/home.html', locals())
 
 

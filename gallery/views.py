@@ -1,101 +1,57 @@
 from django.shortcuts import render
-from products.models import ProductImage, TypeOfProduct, Product
-from django.db.models import Q
+from products.models import TypeOfProduct, Product
+from django.db.models import QuerySet
 from django.http import JsonResponse
-from gallery.models import ProductInGallery
+import json
 
 
 def gallery(request):
     type_of_products = TypeOfProduct.objects.all()
-    # start_function(request)
-    if not request.session.exists(request.session.session_key):
-        request.session.create()
-    session_key = request.session.session_key
     products = Product.objects.all()
-    for product in products:
-        new_product, created = ProductInGallery.objects.get_or_create(session_key=session_key,
-            product=product)
-    products_in_gallery = ProductInGallery.objects.filter(session_key=session_key)
-    for product in products_in_gallery:
-        product.is_active = True
-        product.save(force_update=True)
-    print(session_key)
     return render(request, 'landing/gallery.html', locals())
 
 
-# def start_function(request):
-#     if not request.session.exists(request.session.session_key):
-#         request.session.create()
-#     session_key = request.session.session_key
-#     products = Product.objects.all()
-#     for product in products:
-#         new_product, created = ProductInGallery.objects.get_or_create(session_key=session_key,
-#             product=product)
-#     pass
+def create_return_dict(products: QuerySet):
+    return_dict = {}
+    for item in products:
+        try:
+            return_dict[item.id] = [item.name, item.description, item.cost,
+                                '/media/' + str(item.productimage_set.all()[0]), item.id]
+        except IndexError:
+            return_dict[item.id] = [item.name, item.description, item.cost,
+                                    '/static/img/No_foto.png', item.id]
+    return return_dict
 
 
-def gallery_function(request):
-    return_dict = dict()
-    session_key = request.session.session_key
+def gallery_search_function(request):
     data = request.POST
     search = data.get("search")
     cancel = data.get("refresh")
-    if (cancel=='False'):
-        products = ProductInGallery.objects.filter(
-            Q(session_key=session_key, product__name__icontains=search, is_active=True) |
-                Q(session_key=session_key, product__description__icontains=search, is_active=True))[0:12]
+    checkbox_list = json.loads(data.get("checkbox"))
+    if cancel == 'False':
+        products = Product.objects.filter(name__icontains=search, type__name__in=checkbox_list)[0:12]
     else:
-        products = ProductInGallery.objects.all()[0:12]
+        products = Product.objects.all()[0:12]
+    return_dict = create_return_dict(products)
     return_dict['data'] = data.get("search")
-    for item in products:
-        item.is_active = True
-        item.save(force_update=True)
-        return_dict[item.id] = [item.product.name, item.product.description, item.product.cost,
-                                '/media/' + str(item.product.productimage_set.all()[0]), item.id]
+
     return JsonResponse(return_dict)
 
 
 def gallery_checkbox(request):
-    return_dict = dict()
-    session_key = request.session.session_key
     data = request.POST
     search = data.get("search")
-    checkbox = data.get("checkbox")
-    status = data.get("status")
-    if status == 'false':
-        filtering_product = ProductInGallery.objects.filter(
-            Q(session_key=session_key, product__name__icontains=search, product__type__name=checkbox) |
-                Q(session_key=session_key, product__description__icontains=search, product__type__name=checkbox))
-        for item in filtering_product:
-            item.is_active = False
-            item.save(force_update=True)
-    else:
-        filtering_product = ProductInGallery.objects.filter(
-            Q(session_key=session_key, product__name__icontains=search, product__type__name=checkbox) |
-            Q(session_key=session_key, product__description__icontains=search, product__type__name=checkbox))
-        for item in filtering_product:
-            item.is_active = True
-            item.save(force_update=True)
-
-    result_products = ProductInGallery.objects.filter(
-        Q(session_key=session_key, product__name__icontains=search, is_active=True) |
-        Q(session_key=session_key, product__description__icontains=search, is_active=True))[0:12]
-    for item in result_products:
-        return_dict[item.id] = [item.product.name, item.product.description, item.product.cost,
-                                '/media/' + str(item.product.productimage_set.all()[0]), item.id]
+    checkbox_list = json.loads(data.get("checkbox"))
+    result_products = Product.objects.filter(name__icontains=search, type__name__in=checkbox_list)[0:12]
+    return_dict = create_return_dict(result_products)
     return JsonResponse(return_dict)
 
 
 def update_content(request):
-    return_dict = dict()
-    session_key = request.session.session_key
     data = request.POST
     start = int(data.get("quantity"))
     search = data.get("search")
-    products_on_page = ProductInGallery.objects.filter(
-        Q(session_key=session_key, product__name__icontains=search, is_active=True) |
-           Q(session_key=session_key, product__description__icontains=search, is_active=True))[start-1:start+9]
-    for item in products_on_page:
-        return_dict[item.id] = [item.product.name, item.product.description, item.product.cost,
-                                '/media/' + str(item.product.productimage_set.all()[0]), item.id]
+    checkbox_list = json.loads(data.get('checkbox'))
+    products_on_page = Product.objects.filter(name__icontains=search, type__name__in=checkbox_list)[start-1:start+9]
+    return_dict = create_return_dict(products_on_page)
     return JsonResponse(return_dict)

@@ -12,7 +12,7 @@ class TypeOfProduct(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=32, blank=True, null=True, default=None)
+    name = models.CharField(max_length=64, blank=True, null=True, default=None)
     description = models.TextField(blank=True, null=True, default=None)
     type = models.ForeignKey(TypeOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
     cost = models.PositiveSmallIntegerField(default=0)
