@@ -51,13 +51,19 @@ function myFunction() {
 	var height_of_nav = navbar.offsetTop;
 window.onscroll = function() {fixing_function()};
 function fixing_function() {
-	if (window.pageYOffset >= 215) {
+	if (window.pageYOffset >= height_of_nav-7) {
     	navbar.classList.add("fix");
   	}
 	else {
     	navbar.classList.remove("fix");
   	}
 }
+$(function() {
+	$('.fixed_nav_low_width').click(function () {
+		$('.fixed_nav_low_width').toggleClass('fixed_nav_low_width_up_down');
+		$('.item_in_fixed_nav').toggle('normal');
+	});
+});
 //end_navbar
 if ($('#main').length>0) {
 //slider
@@ -127,24 +133,24 @@ if ($('#main').length>0) {
 	});
 //Конец слайдера
 // Слайдер для фоток товара
-	var quantity_of_cards = $('.SliderCard li').length;
-	var nmb_of_current_card = 1;
-	function slideCardPrev(width, quantity) {
+	var quantity_of_vintage_cards = $('.slider_vintage_card li').length;
+	var nmb_of_current_vintage_card = 1;
+	function slide_vintage_card_prev(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
 			KEY_FOR_CARD_SLIDER = false;
-			$(".SliderCard").animate({left: '+='+width}, 1000);
-			nmb_of_current_card -= quantity;
+			$(".slider_vintage_card").animate({left: '+='+width}, 1000);
+			nmb_of_current_vintage_card -= quantity;
 			setTimeout(function () {
 				KEY_FOR_CARD_SLIDER = true;
 			}, 1000);
 		}
 	}
 
-	function slideCardNext(width, quantity) {
+	function slide_vintage_card_next(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
 			KEY_FOR_CARD_SLIDER = false
-			$(".SliderCard").animate({left: '-='+width}, 1000);
-			nmb_of_current_card += quantity;
+			$(".slider_vintage_card").animate({left: '-='+width}, 1000);
+			nmb_of_current_vintage_card += quantity;
 			setTimeout(function () {
 				KEY_FOR_CARD_SLIDER = true
 			}, 1000);
@@ -155,18 +161,64 @@ if ($('#main').length>0) {
 		// setInterval(slideCard, 1500);
 		// slideCard();
 	});
-	$('.leftSlideCard').on('click', function (e) {
-		const w = $('.rowCard').css('width');
-		const quantity_of_cards_on_page = parseInt(parseInt(w) / 200);
-		if(nmb_of_current_card > 1) {
-			slideCardPrev(w, quantity_of_cards_on_page);
+	$('.left_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w) / 300);
+		console.log(quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card > 1) {
+			slide_vintage_card_prev(w, quantity_of_cards_on_page);
 		}
 	});
-	$('.rightSlideCard').on('click', function (e) {
-		const w = $('.rowCard').css('width');
-		const quantity_of_cards_on_page = parseInt(parseInt(w)/200);
-		if(nmb_of_current_card <= quantity_of_cards - quantity_of_cards_on_page) {
-			slideCardNext(w, quantity_of_cards_on_page);
+	$('.right_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w)/300);
+		console.log(nmb_of_current_vintage_card, quantity_of_vintage_cards, quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card <= quantity_of_vintage_cards - quantity_of_cards_on_page) {
+			slide_vintage_card_next(w, quantity_of_cards_on_page);
+		}
+	});
+	var quantity_of_catalog_cards = $('.slider_vintage_card li').length;
+	var nmb_of_current_vintage_card = 1;
+	function slide_vintage_card_prev(width, quantity) {
+		if (KEY_FOR_CARD_SLIDER) {
+			KEY_FOR_CARD_SLIDER = false;
+			$(".slider_vintage_card").animate({left: '+='+width}, 1000);
+			nmb_of_current_vintage_card -= quantity;
+			setTimeout(function () {
+				KEY_FOR_CARD_SLIDER = true;
+			}, 1000);
+		}
+	}
+
+	function slide_vintage_card_next(width, quantity) {
+		if (KEY_FOR_CARD_SLIDER) {
+			KEY_FOR_CARD_SLIDER = false
+			$(".slider_vintage_card").animate({left: '-='+width}, 1000);
+			nmb_of_current_vintage_card += quantity;
+			setTimeout(function () {
+				KEY_FOR_CARD_SLIDER = true
+			}, 1000);
+		}
+	}
+
+	$(function () {
+		// setInterval(slideCard, 1500);
+		// slideCard();
+	});
+	$('.left_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w) / 300);
+		console.log(quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card > 1) {
+			slide_vintage_card_prev(w, quantity_of_cards_on_page);
+		}
+	});
+	$('.right_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w)/300);
+		console.log(nmb_of_current_vintage_card, quantity_of_vintage_cards, quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card <= quantity_of_vintage_cards - quantity_of_cards_on_page) {
+			slide_vintage_card_next(w, quantity_of_cards_on_page);
 		}
 	});
 }

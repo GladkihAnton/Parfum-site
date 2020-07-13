@@ -1,27 +1,28 @@
 {% load static %}
-<div class="container-fluid mt-0 pt-0" id="foot">
+<footer class="container-fluid mt-4">
     <div class="row">
-        <div class="col-12 col-md-4 col-xl-3 text-footer text-md-left text-center mt-3">
-            <h2 class="ml-3 badge1">Магазин элитной парфюмерии</h2>
+       <div class="col-lg-3 text-center">
+              <img class=main_img src="{% static 'img/Лого.png' %}">
+              <h2 class="main_name_of_shop main_name_of_shop_in_footer mb-0" href="/">Элитная парфюмерия</h2>
+              <small class="footer-text">
+                ароматный бутик
+              </small>
         </div>
-        <div class="col-12 col-md-4 col-xl-5 text-xl-right text-center text-footer rightNav">
-            <p></p>
-            <p class="address">
-                <img class="imgFot20" src="{% static 'img/whitemap.png' %}">
-                г. Санкт-Петербург, пр. Ленинский, д. 90.
-            </p>
-            <ul class="pl-lg-4 pl-md-0 text-md-left text-xl-right foot-about mr-lg-0 mr-xl-0">
-                <li class="mr-3"><a href="#main">Главная</a></li>
-                <li class="mr-3"><a href="/gallery">Галерея</a></li>
-                <li class="mr-3"><a href="#about">О нас</a></li>
-                <li><a href="#ourAdvantages">Наши преимущества</a></li>
+        <div class="col-lg-6 text-center mt-3">
+            <p class="address_in_footer">г. Санкт-Петербург, пр. Ленинский, д. 90</p>
+            <ul class="item_in_footer mt-4">
+                <li>ГЛАВНАЯ</li>
+                <li>О НАС</li>
+                <li>КАТАЛОГ</li>
+                <li>НАШИ ПРЕИМУЩЕСТВА</li>
             </ul>
         </div>
-        <div class="col-12 col-md-4 text-center text-md-right text-footer">
-            <p style="color:whitesmoke"><img class="imgNav" src="{% static 'img/whitephone.png' %}">+7(911)-947-64-94</p>
-            <p><a style="color:whitesmoke" href="mailto:narva56@yandex.ru" id="mail"><img class="imgNav mr-1" src="{% static 'img/whitemail.png' %}">narva56@yandex.ru</a><img class="imgNav copy ml-2" onclick="myFunction()" src="{% static 'img/whitecopy.png' %}"></p>
-            <p style="color:whitesmoke"><img class="imgNav" src="{% static 'img/whitewhatsup.png' %}">+7(911)-947-64-94</p>
+        <div class="col-lg-3 text-center">
+            <p class="always_text_in_footer">Мы всегда на связи!</p>
+            <p class="can_write_us_in_footer"><i><a style="color:black;" href="">Вы можете написать нам письмо</a></i>
+                или
+                <i><a style="color:black;" href="">позвонить по телефону</a></i></p>
+            <p class="number_in_footer">+7(911)947-64-94</p>
         </div>
     </div>
-</div>
-<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+</footer>

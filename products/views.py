@@ -1,9 +1,11 @@
 from django.http import HttpRequest, HttpResponse
 import csv
 from django.shortcuts import render
+
 from .models import Product, TypeOfProduct, ProductImage
 from Magazin_site import settings
 import re
+
 
 def product(request, product_id):
     product = Product.objects.get(id=product_id)
@@ -15,7 +17,6 @@ def product(request, product_id):
 
 
 def upload_csv(request: HttpRequest):
-
     types = dict()
     types['edt'] = 'Туалетная вода'
     types['joy'] = 'Туалетная вода'

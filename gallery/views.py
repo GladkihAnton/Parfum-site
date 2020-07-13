@@ -2,6 +2,7 @@ from django.shortcuts import render
 from products.models import TypeOfProduct, Product
 from django.db.models import QuerySet
 from django.http import JsonResponse
+
 import json
 
 

@@ -1,22 +1,20 @@
 {% load static %}
-<nav class="container-fluid pt-4 mb-2 mynavbar" style="border-bottom: 2px double #d3cece">
+<nav class="container-fluid pt-4 mb-sm-2 top_navbar" style="border-bottom: 2px double #d3cece">
     <div class="row">
-        <div class="col-md-4 col-xl-4">
+        <div class="md-1 col-lg-4 order-3 order-lg-1">
           <input class="main_search" type="search" placeholder="Поиск...">
         </div>
-        <div class="col-xl-4 col-md-8 text-center">
+        <div class="col-12 col-lg-4 text-center order-1 order-lg-2">
               <img class=main_img src="{% static 'img/Лого.png' %}">
-              <h2 class="main_name_of_shop mb-0" href="/">
-                Элитная парфюмерия
-              </h2>
-              <small class="nav-text">
-                ароматный бутик
-              </small>
-    </div>
-        <div class="col-xl-4 mt-4 text-center" style="padding-right: 2vw;">
+              <h2 class="main_name_of_shop mb-0" href="/">Элитная парфюмерия</h2>
+{#              <small class="nav-text">#}
+{#                ароматный бутик#}
+{#              </small>#}
+        </div>
+        <div class="col-12 col-lg-4 mt-4 text-center order-2 order-lg-3" style="padding-right: 2vw;">
             <img class="img_phone" src="{% static 'img/phone-handset_icon-icons.com_48252.png' %}">
             <div style="display: inline-grid; font-family: 'antiqua';">
-                <strong style="font-weight: 400; font-size: 15pt;">+7(911)947-64-94<br></strong>
+                <strong style="font-weight: 400; font-size: 16pt;">+7(911)947-64-94<br></strong>
                 <small class="every_day">Ежедневно с 11:00 до 20:00</small>
             </div><br>
             <div style="margin-top: 1.7rem;">
@@ -28,11 +26,14 @@
     </div>
 </nav>
 <nav class="fixed_nav pt-2" id="fixed_nav">
- <ul class="item_in_fixed_nav">
-     <li>ГЛАВНАЯ</li>
-     <li>О НАС</li>
-     <li>КАТАЛОГ</li>
-     <li>НАШИ ПРЕИМУЩЕСТВА</li>
-     <li>КОНТАКТЫ</li>
- </ul>
+    <div class="fixed_nav_low_width text-center fixed_nav_low_width_up_down pb-1">
+        МЕНЮ
+    </div>
+    <ul class="item_in_fixed_nav">
+        <li>ГЛАВНАЯ</li>
+        <li>О НАС</li>
+        <li>КАТАЛОГ</li>
+        <li>НАШИ ПРЕИМУЩЕСТВА</li>
+        <li>КОНТАКТЫ</li>
+    </ul>
 </nav>
