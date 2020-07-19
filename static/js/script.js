@@ -1,6 +1,30 @@
 var KEY_FOR_IMG_SLIDER = true;
 var KEY_FOR_CARD_SLIDER = true;
 var KEY_FOR_COPY = true;
+
+$('#upload_csv').on('submit', function (e) {
+	e.preventDefault();
+	var form = new FormData($(this).get(0));
+	$.ajax({
+		url: $(this).attr('action'),
+		type: 'POST',
+		data: form,
+		cache: false,
+		processData: false,
+		contentType: false,
+		success: function () {
+			console.log('ypa');
+		},
+		error: function () {
+			console.log('bad');
+		}
+	})
+});
+
+
+
+
+
 //navbar
 function myFunction() {
 	if (KEY_FOR_COPY) {
@@ -23,13 +47,29 @@ function myFunction() {
 		setTimeout(function(){KEY_FOR_COPY = true}, 1100);
 	}
 };
+	var navbar = document.getElementById("fixed_nav");
+	var height_of_nav = navbar.offsetTop;
+window.onscroll = function() {fixing_function()};
+function fixing_function() {
+	if (window.pageYOffset >= height_of_nav-7) {
+    	navbar.classList.add("fix");
+  	}
+	else {
+    	navbar.classList.remove("fix");
+  	}
+}
+$(function() {
+	$('.fixed_nav_low_width').click(function () {
+		$('.fixed_nav_low_width').toggleClass('fixed_nav_low_width_up_down');
+		$('.item_in_fixed_nav').toggle('normal');
+	});
+});
 //end_navbar
 if ($('#main').length>0) {
 //slider
 	function slider() {
 		setInterval(slideNext, 5000);
 	};
-
 	function slideNext(e) {
 		if (KEY_FOR_IMG_SLIDER) {
 			KEY_FOR_IMG_SLIDER = false;
@@ -51,7 +91,6 @@ if ($('#main').length>0) {
 		}
 		;
 	};
-
 	function slidePrev(e) {
 		if (KEY_FOR_IMG_SLIDER) {
 			KEY_FOR_IMG_SLIDER = false;
@@ -94,39 +133,24 @@ if ($('#main').length>0) {
 	});
 //Конец слайдера
 // Слайдер для фоток товара
-	function slideCardPrev() {
+	var quantity_of_vintage_cards = $('.slider_vintage_card li').length;
+	var nmb_of_current_vintage_card = 1;
+	function slide_vintage_card_prev(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
-			KEY_FOR_CARD_SLIDER = false
-			var curent_card = $(".showCard");
-			var prev_card = curent_card.prev().length ? curent_card.prev() : $(".rowCard ul:last");
-			curent_card
-				.animate({left: '+=73vw'}, 1000);
-			curent_card
-				.removeClass('showCard');
-			prev_card.css({'left': '-73vw'})
-				.animate({left: '+=73vw'}, 1000);
-			prev_card
-				.addClass('showCard');
+			KEY_FOR_CARD_SLIDER = false;
+			$(".slider_vintage_card").animate({left: '+='+width}, 1000);
+			nmb_of_current_vintage_card -= quantity;
 			setTimeout(function () {
-				KEY_FOR_CARD_SLIDER = true
+				KEY_FOR_CARD_SLIDER = true;
 			}, 1000);
 		}
 	}
 
-	function slideCardNext() {
+	function slide_vintage_card_next(width, quantity) {
 		if (KEY_FOR_CARD_SLIDER) {
 			KEY_FOR_CARD_SLIDER = false
-			var curent_card = $(".showCard");
-			var prev_card = curent_card.prev();
-			var next_card = curent_card.next().length ? curent_card.next() : $(".rowCard ul:first");
-			curent_card
-				.animate({left: '-=75vw'}, 1000);
-			curent_card
-				.removeClass('showCard');
-			next_card.css({'left': '73vw'})
-				.animate({left: '-=73vw'}, 1000);
-			next_card
-				.addClass('showCard');
+			$(".slider_vintage_card").animate({left: '-='+width}, 1000);
+			nmb_of_current_vintage_card += quantity;
 			setTimeout(function () {
 				KEY_FOR_CARD_SLIDER = true
 			}, 1000);
@@ -137,27 +161,100 @@ if ($('#main').length>0) {
 		// setInterval(slideCard, 1500);
 		// slideCard();
 	});
-	$('.leftSlideCard').on('click', function (e) {
-		slideCardPrev();
+	$('.left_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w) / 300);
+		console.log(quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card > 1) {
+			slide_vintage_card_prev(w, quantity_of_cards_on_page);
+		}
 	});
-	$('.rightSlideCard').on('click', function (e) {
-		slideCardNext();
+	$('.right_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w)/300);
+		console.log(nmb_of_current_vintage_card, quantity_of_vintage_cards, quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card <= quantity_of_vintage_cards - quantity_of_cards_on_page) {
+			slide_vintage_card_next(w, quantity_of_cards_on_page);
+		}
+	});
+	var quantity_of_catalog_cards = $('.slider_vintage_card li').length;
+	var nmb_of_current_vintage_card = 1;
+	function slide_vintage_card_prev(width, quantity) {
+		if (KEY_FOR_CARD_SLIDER) {
+			KEY_FOR_CARD_SLIDER = false;
+			$(".slider_vintage_card").animate({left: '+='+width}, 1000);
+			nmb_of_current_vintage_card -= quantity;
+			setTimeout(function () {
+				KEY_FOR_CARD_SLIDER = true;
+			}, 1000);
+		}
+	}
+
+	function slide_vintage_card_next(width, quantity) {
+		if (KEY_FOR_CARD_SLIDER) {
+			KEY_FOR_CARD_SLIDER = false
+			$(".slider_vintage_card").animate({left: '-='+width}, 1000);
+			nmb_of_current_vintage_card += quantity;
+			setTimeout(function () {
+				KEY_FOR_CARD_SLIDER = true
+			}, 1000);
+		}
+	}
+
+	$(function () {
+		// setInterval(slideCard, 1500);
+		// slideCard();
+	});
+	$('.left_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w) / 300);
+		console.log(quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card > 1) {
+			slide_vintage_card_prev(w, quantity_of_cards_on_page);
+		}
+	});
+	$('.right_vintage_slide').on('click', function (e) {
+		const w = $('.row_vintage_card').css('width');
+		const quantity_of_cards_on_page = parseInt(parseInt(w)/300);
+		console.log(nmb_of_current_vintage_card, quantity_of_vintage_cards, quantity_of_cards_on_page);
+		if(nmb_of_current_vintage_card <= quantity_of_vintage_cards - quantity_of_cards_on_page) {
+			slide_vintage_card_next(w, quantity_of_cards_on_page);
+		}
 	});
 }
 //filter and checkboxs in gallery
 if ($('#gallery').length>0) {
 	$(function () {
+		//quantity cards on the page
 		var quantity = 12;
+		//var for ajax progress
 		var inProgress = false;
+		$('.place_for_search').on('keyup',function(){
+			var $this = $(this),
+				val = $this.val();
+			if(val.length >= 1){
+				$('.button_for_turn_back').show(50);
+			}else {
+				$('.button_for_turn_back').hide(50);
+			}
+		});		//function for search
 		var form_search = $("#formSearch");
 		form_search.on('submit', function (e) {
-			var text = $('.place_for_search1');
+			var text = $('.place_for_search');
 			e.preventDefault();
 			var data = {};
 			var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
+			var temp_checkbox_list = []
+			$.each($('#checkbox .checkbox'), function () {
+				if ($(this).prop('checked') == true){
+					temp_checkbox_list.push(this.value);
+				}
+			});
+			var checkbox_list = JSON.stringify(temp_checkbox_list);
 			data["csrfmiddlewaretoken"] = csrf_token;
 			data["search"] = text.val();
 			data["refresh"] = "False";
+			data["checkbox"] = checkbox_list;
 			var url = form_search.attr('action');
 			$.ajax({
 				url: url,
@@ -165,15 +262,14 @@ if ($('#gallery').length>0) {
 				data: data,
 				cache: true,
 				success: function (data) {
-					console.log(data);
 					$('.galleryCard').remove();
 					var place_for_card = $('.cards');
 					$.each(data, function (k, v) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -192,8 +288,10 @@ if ($('#gallery').length>0) {
 				}
 			});
 		});
+		//functin for cancel button
 		var cancel_button = $('.button_for_turn_back');
 		cancel_button.on('click', function (e) {
+			$(this).hide(50);
 			e.preventDefault();
 			var data = {};
 			var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
@@ -214,9 +312,9 @@ if ($('#gallery').length>0) {
 					$.each(data, function (k, v, e) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -235,17 +333,23 @@ if ($('#gallery').length>0) {
 				}
 			});
 		});
+		//function for checkbox
 		var checkbox = $('.checkbox');
 		checkbox.on('change', function (e) {
-			var text = $('.place_for_search1');
+			var text = $('.place_for_search');
 			var url = $('#checkbox').attr('action');
 			var data = {};
-			console.log(url);
 			var csrf_token = $('#checkbox [name="csrfmiddlewaretoken"]').val();
+			var temp_checkbox_list = []
+			$.each($('#checkbox .checkbox'), function () {
+				if ($(this).prop('checked') == true){
+					temp_checkbox_list.push(this.value);
+				}
+			});
+			var checkbox_list = JSON.stringify(temp_checkbox_list);
 			data["csrfmiddlewaretoken"] = csrf_token;
 			data["search"] = text.val();
-			data["checkbox"] = this.value;
-			data["status"] = $(this).prop('checked')
+			data["checkbox"] = checkbox_list;
 			$.ajax({
 				url: url,
 				type: 'POST',
@@ -257,9 +361,9 @@ if ($('#gallery').length>0) {
 					$.each(data, function (k, v) {
 						if (k > 0) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -278,14 +382,22 @@ if ($('#gallery').length>0) {
 				}
 			});
 		})
+		//update cards with scroll
 		$(window).scroll(function () {
 			if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200 && !inProgress) {
 				var data = {};
-				data['lol'] = 'lol';
 				var csrf_token = $('#formSearch [name="csrfmiddlewaretoken"]').val();
+				var temp_checkbox_list = []
+				$.each($('#checkbox .checkbox'), function () {
+					if ($(this).prop('checked') == true){
+						temp_checkbox_list.push(this.value);
+					}
+				});
+				var checkbox_list = JSON.stringify(temp_checkbox_list);
 				data["csrfmiddlewaretoken"] = csrf_token;
-				data['search'] = $('.place_for_search1').val();
+				data['search'] = $('.place_for_search').val();
 				data['quantity'] = quantity;
+				data['checkbox'] = checkbox_list;
 				$.ajax({
 					url: "/update_content",
 					type: 'POST',
@@ -298,9 +410,9 @@ if ($('#gallery').length>0) {
 						var place_for_card = $('.cards');
 						$.each(data, function (k, v) {
 							place_for_card.append("" +
-								"<div class=\"col-md-3 p-0 m-0 galleryCard\">" +
+								"<div class=\"col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard\">" +
 								"<a href=\"../product/" + v[4] + "\">" +
-								"<div class=\"card text-center cardforproduct\">" +
+								"<div class=\"card text-center cardforproduct m-auto\">" +
 								"<div class=\"card-img-top\"><img class=\"img-card\" src=" + v[3] + "></div>" +
 								"<div class=\"card-body\">" +
 								"<div class=\"card-title\"><h1>" + v[0] + "</h1></div>" +
@@ -321,4 +433,44 @@ if ($('#gallery').length>0) {
 		});
 	});
 }
+$(function() {
+	$('.itemsMenu').click(function () {
+		$(this).toggleClass('itemsMenu_up_down');
+		$('.dropMenu').toggle('normal');
+	});
+});
+if ($('#page_for_product').length >0 ){
+	var product_image_in_block = $('.product_image_in_block');
+	// product_image_in_block.addClass()
+	product_image_in_block.first().addClass('product_current_image').next().css('opacity', 0.8);
+	// product_image_in_block
+	// 	.on('click', function () {
+	// 	var current_image = $('.product_current_image');
+	// 	var next_image = current_image.next().next().length > 0 ?
+	// 		current_image.next().next() : $('.product_image_in_block').first();
+	// 	current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+	// 		.next().animate({opacity: 0.3}, 1000);
+	// 	next_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+	// 		.next().animate({opacity: 0.8}, 1000);
+	// })
 
+	$('.product_slide_image_right').on('click', function () {
+		var current_image = $('.product_current_image');
+		var next_image = current_image.next().next().next().length > 0 ?
+			current_image.next().next() : $('.product_image_in_block').first();
+		current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+			.next().animate({opacity: 0.3}, 1000);
+		next_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+			.next().animate({opacity: 0.8}, 1000);
+	});
+	$('.product_slide_image_left').on('click', function () {
+		var current_image = $('.product_current_image');
+		var prev_image = current_image.prev().prev().prev().length > 0 ?
+			current_image.prev().prev() : $('.product_image_in_block').last();
+		current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+			.next().animate({opacity: 0.3}, 1000);
+		prev_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+			.next().animate({opacity: 0.8}, 1000);
+	});
+
+}

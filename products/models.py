@@ -1,47 +1,81 @@
 from django.db import models
 
+
 class TypeOfProduct(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
     def __str__(self):
         return "%s" % self.name
+
     class Meta:
-        verbose_name="Тип товара"
-        verbose_name_plural="Типы товаров"
+        verbose_name = "Тип товара"
+        verbose_name_plural = "Типы товаров"
+
+
+class FragranceFamilyOfProduct(models.Model):
+    name = models.CharField(max_length=32, blank=True, null=True, default=None)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "%s" % self.name
+
+    class Meta:
+        verbose_name = "Семейство аромата"
+        verbose_name_plural = "Семейство Ароматов"
+
+
+class MakerOfProduct(models.Model):
+    name = models.CharField(max_length=32, blank=True, null=True, default=None)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "%s" % self.name
+
+    class Meta:
+        verbose_name = "Производитель"
+        verbose_name_plural = "Производители"
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=32, blank=True, null=True, default=None)
+    name = models.CharField(max_length=64, blank=True, null=True, default=None)
     description = models.TextField(blank=True, null=True, default=None)
-    type = models.ForeignKey(TypeOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
+    maker = models.ForeignKey(MakerOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
+    country = models.CharField(max_length=32, blank=True, null=True, default=None)
+    year_of_release = models.PositiveSmallIntegerField(blank=True, null=True, default=None)
+    fragrance_family = models.ForeignKey(FragranceFamilyOfProduct, blank=True, null=True, default=None,
+                                         on_delete=models.PROTECT)
+    sex = models.CharField(max_length=16, blank=True, null=True, default=None)
+    concentration = models.ForeignKey(TypeOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
     cost = models.PositiveSmallIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    #Кастомизация админки
-
+    # Кастомизация админки
 
     def __str__(self):
-        return "%s" % self.name# ("Пользователь %s %s" % (self.email, seil.name)
+        return "%s" % self.name  # ("Пользователь %s %s" % (self.email, seil.name)
 
-
-    #Кастомизация множественного числа и единственного
-
+    # Кастомизация множественного числа и единственного
 
     class Meta:
-        verbose_name="Товар"
-        verbose_name_plural="Товары"
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
 
 
 class ProductImage(models.Model):
-    product= models.ForeignKey(Product, blank=True, null=True, default=None, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, blank=True, null=True, default=None, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='product_images/')
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
     def __str__(self):
-        return "%s" % self.image # ("Пользователь %s %s" % (self.email, seil.name)
+        return "%s" % self.image  # ("Пользователь %s %s" % (self.email, seil.name)
+
     # Кастомизация множественного числа и единственного
     class Meta:
-        verbose_name="Фотография"
-        verbose_name_plural="Фотографии"
+        verbose_name = "Фотография"
+        verbose_name_plural = "Фотографии"

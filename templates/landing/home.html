@@ -1,88 +1,133 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<header class="header" id="main">
-    <div class="container-fluid p-0 m-0 d-flex justify-content-center" style="height: calc(80vw/1.9)">
-        <div class="row slider m-0">
-            <ul class="p-0">
-              <li>
-                <div class="leftButton"></div>
-                <img src="{% static 'img/IMG_1661.jpg'%}" class="image showImage" id="Slide1">
-              </li>
-              <li>
-                <div class="rightButton"></div>
-                <img src="{% static 'img/IMG_1671.jpg'%}" class="image" id="Slide2">
-              </li>
-              <li>
-                <img src="{% static 'img/IMG_1745.jpg'%}" class="image" id="Slide3">
-              </li>
-              <li>
-                <img src="{% static 'img/IMG_1699.jpg'%}" class="image" id="Slide4">
-              </li>
-            </ul>
-        </div>
-    </div><!-- img slider -->
-    <div class="container">
-        <ul class="sliderBlockList m-0 p-0">
-          <li class="mr-2"><div class="showBlock sliderBlock"></div></li><li class="mr-2"><div class="sliderBlock"></div></li><li class="mr-2"><div class="sliderBlock"></div></li><li ><div class="sliderBlock"></div></li>
-        </ul>
-    </div><!--blocks for slider -->
-</header> <!--slider -->
-
-<h1 class="text-center w-100" id="about">О нас</h1>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 text-justify" style="font-size: 18pt">
-            Мы на рынке уже более 10 лет. Главное преимуществ нашего магазина - винтажные ароматы, лимитированная, редкая парфюмерия. Маловероятно, что вы найдёте такой особенный ассортимент парфюмерии в других магазинах. Мы всегда в поисках редких, уникальных ароматов. Коллекция нашего магазина постоянно обновляется.Также, мы совершаем заказы на интересующий вас аромат. Вы можете заказать абсолютно любой парфюм, а затем забрать его в удобное для вас время. Оплата производится в магазине.
-        </div>
-    </div>
-</div> <!-- about text -->
-
-<h1 class="text-center mt-5" id="bestseller">Бестселлеры</h1>
-<div class="container-fluid m-0 p-0 d-flex justify-content-center" style="position: relative">
-        <div class="leftSlideCard"></div>
-        <div class="row rowCard">
-            <ul class="showCard SliderCard mt-1">
-                {% for productImage in productsImages %}
-                    {% if forloop.counter0|divisibleby:5 and forloop.counter0 > 0 %}
-                        </ul>
-                        <ul class="SliderCard mt-1">
+    <header class="pb-5" id="main">
+        <h2 class="text-center mt-5" id="bestseller">Винтажные коллекции</h2>
+        <div class="container-fluid m-auto p-0 d-flex justify-content-center row_vintage_card">
+            <div class="left_vintage_slide"></div>
+            <div class="row row_vintage_card">
+                <ul class="slider_vintage_card mt-1">
+                    {% for product in products_in_slider %}
                         <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
-                        {% else %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="right_vintage_slide"></div>
+        </div> <!--cards-->
+    </header> <!-- vintage -->
+    <section class="pt-3 pb-3" id="about">
+        <h2 class="text-center w-100">О нас</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 text-justify" style="font-size: 18pt; font-family:'gothic';">
+                    <p>
+                        Мы на рынке уже более 15 лет. Качественная парфюмерия, широкая клиентская база, ответственность за товар
+                    - приоритет для нас. Одно из самых главных преимуществ нашего магазина - винтажные ароматы,
+                        лимитированные, редкие парфюмы, которые достаточно трудно найти где-либо. </p>
+                    <p>
+                        Мы всегда в поисках эксклюзивных, уникальных ароматов. Коллекция нашего бутика постоянно обновляется.
+                    </p>
+                    <p>
+                        Также, мы совершаем заказы на интересующие вас духи. Вы можете заказать абсолютно любой парфюм, а затем
+                        забрать его в удобное для вас время. Оплата производится в магазине.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>  <!-- about text -->
+    <section class="mt-3" id="catalog">
+        <h2 class="text-center w-100">Каталог</h2>
+        <div class="container-fluid p-0 d-flex justify-content-center rowCard pb-1">
+            <div class="leftSlideCard"></div>
+            <div class="row rowCard">
+                <ul class="SliderCard mt-1">
+                    {% for product in products_in_slider %}
                         <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="rightSlideCard"></div>
+        </div> <!--cards-->
+        <div class="container-fluid p-0 d-flex justify-content-center rowCard mt-3">
+            <div class="leftSlideCard"></div>
+            <div class="row rowCard">
+                <ul class="SliderCard mt-1">
+                    {% for product in products_in_slider %}
+                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="rightSlideCard"></div>
+        </div> <!--cards-->
+    </section> <!-- catalog -->
+    <section class="pt-3 pb-3" id="advantages">
+        <h2 class="text-center mb-4">Наши преимущества</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mt-5 mt-md-0 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-computer-icons-euro-sign-icon-design-price-tag-5afd22634720a1.9676043415265388512913.png' %}">
+                    <h3>Скидки</h3>
+                    <p class="text-justify text_for_advantages">
+                        Для постоянных покупателей нашего магазина действует скидка 5%. на каждую покупку
+                    </p>
+                </div>
+                <div class="col-md-4 mt-5 mt-md-0 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-shopping-bags-trolleys-paper-bag-shopping-bag-icon-5b1288788515a7.0497953715279412405451.png' %}">
+                    <h3>Разнообразный выбор продукции</h3>
+                    <p class="text-justify text_for_advantages" style="word-spacing: -2px;">
+                        В нашем бутике имеется уникальный выбор арооматов на любой вкус.
+                        Также, магазин осуществляет заказы на интересующие вас духи.
+                        Вся парфюмерия является оригинальной
+                    </p>
+                </div>
+                <div class="col-md-4 mt-5 mt-md-0 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-computer-icons-interface-location-interfaccia-5ae490ed8a7bb1.9530357615249287495672.png' %}">
+                    <h3>Близко от метро</h3>
+                    <p class="text-justify text_for_advantages">
+                        Мы находимся в 5 минутах от метро Ленинский проспект
+                    </p>
+                </div>
+                <div class="col-md-4 mt-5 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-delivery-business-computer-icons-shopping-delivery-time-icon-5ab096c4045cb1.3744169715215223720179.png' %}">
+                    <h3>Быстрая доставка</h3>
+                    <p class="text-justify text_for_advantages">
+                        После оформления заказа, товар будет доставлен в магазин в течении 3-5 дней.
+                    </p>
+                </div>
+                <div class="col-md-4 mt-5 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-credit-card-bank-debit-card-credit-card-icon-5b207694727303.4166083415288541644688.png' %}">
+                    <h3>Доступный способ оплаты</h3>
+                    <div class="text-justify text_for_advantages" style="word-spacing: -3px;">
+                        Оплата в магазине производится с помощью безналичного и наличного расчетов.
+                    </div>
+                </div>
+                <div class="col-md-4 mt-5 text-center">
+                    <img class="img_for_advantages" src="{% static 'img/kisspng-solar-calendar-symbol-computer-icons-encapsulated-calendar-icon-5ac41db8b0bae7.2492870115228021047239.png' %}">
+                    <h3>Работаем каждый день</h3>
+                    <p class="text-justify text_for_advantages">
+                        Наш бутик работает каждый день без выходных с 11:00 до 20:00
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="rightSlideCard"></div>
-</div> <!--cards-->
-
-<section>
-    <h1 class="text-center mb-3" id="ourAdvantages">Наши преимущества</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 text-center"><img style="max-width: 60px" src="{% static 'img/sales.png' %}"><h3>Скидки</h3>
-                <div class="text-justify">Для постоянных покупателей нашего парфюмерного магазина действует скидка 5%.</div>
-            </div>
-            <div class="col-md-4 text-center"><img style="max-width: 60px" src="{% static 'img/buyall.png' %}"><h3>Выбор продукции</h3>
-                <div class="text-justify">У нас имеется большой выбор парфюмерии.<br>Также, в нашем магазине возможно осуществить заказ на интересующие вас ароматы. Нам важна репутация, поэтому мы несем ответственность за качество товара. Все ароматы являются оригинальными.</div>
-            </div>
-            <div class="col-md-4 text-center"><img style="max-width: 60px" src="{% static 'img/goodwork.png' %}"><h3>Быстро доставим продукцию</h3>
-                <div class="text-justify">Заказ приходит в магазин в течении 5-6 дней.</div>
-            </div>
-            <div class="col-md-4 mt-5 mb-5 text-center"><img style="max-width: 60px" src="{% static 'img/map.png' %}"><h3>Близко от метро</h3>
-                <div class="text-justify">Мы находимся в 5 минутах от метро "Ленинский проспект" в ТЦ "Нарва"</div>
-            </div>
-            <div class="col-md-4 mt-5 mb-5 text-center"><img style="max-width: 60px" src="{% static 'img/paypall.png' %}"><h3>Доступный способ оплатны</h3>
-                <div class="text-justify">Вы можете оплатить безналичнм или начильным расчетом.</div>
-            </div>
-            <div class="col-md-4 mt-5 mb-5 text-center"><img style="max-width: 60px" src="{% static 'img/everyday.png' %}"><h3>Работаем каждый день</h3>
-                <div class="text-justify">мы работаем каждый день с 11 утра до 20:00 без вызодных. </div>
+    </section> <!--ourAdvantages-->
+    <section class="mt-3" id="contacts">
+        <h2 class="text-center w-100 mb-4">Контакты</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="ml-3">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" style="height:400px; border:none; width: 65vw" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+                <div class="text_for_contacts ml-3">
+                    <p class="mt-5 mb-4">г. Санкт-Петербург, Трамвайный проспект</p>
+                    <p class="mb-4">Метро: Ленинский проспект</p>
+                    <p class="mb-4">Время работы: Пн-вс, 11:00-20:00</p>
+                    <p class="mb-4">Телефон: +7(911)947-64-94</p>
+                    <p class="mb-4">E-mail: narva56@yandex.ru</p>
+                </div>
             </div>
         </div>
-    </div>
-</section> <!--ourAdvantages-->
 
-<section><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" height="500" frameborder="0" style="border:0; width: 100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></section>
-{% endblock %}
+    </section>
+{% endblock content %}

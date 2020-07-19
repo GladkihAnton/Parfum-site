@@ -22,10 +22,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$++#wk@+!6uu)wutmh-y+t(tsg83t7s3)nyk_-7671d=2a50yw'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["GladkikhAnton.pythonanywhere.com",]
+ALLOWED_HOSTS = []
+# docker
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+#
+#
+# DEBUG = int(os.environ.get("DEBUG", default=0))
+#
+# ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -65,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'landing.context_processors.search_form_in_navbar',
             ],
         },
     },

@@ -1,11 +1,15 @@
 <div class="col-md-4 p-0 m-0 productCard">
-    <a href="{% url 'product' productImage.product.id %}">
+        <a href="{% url 'product' product.product.id %}">
         <div class="card text-center cardforproduct">
-            <div class="card-img-top"><img class="img-card" src="{{ MEDIA_URL }}{{ productImage.image.url }}"></div>
+            {% if product.product.productimage_set.all %}
+                <div class="card-img-top"><img class="img-card" src="{{MEDIA_URL}}{{product.product.productimage_set.first}}"></div>
+            {% else %}
+                <div class="card-img-top"><img class="img-card" src="/static/img/No_foto.png"></div>
+            {% endif %}
             <div class="card-body">
-                <div class="card-title"><h1>{{ productImage.product.name }}</h1></div>
-                <div class="card-text">{{ productImage.product.description }}</div>
-                <div class="card-text"><h2>{{ productImage.product.cost }} р.</h2></div>
+                <div class="card-title"><h1>{{ product.product.name }}</h1></div>
+                <div class="card-text">{{ product.product.description }}</div>
+                <div class="card-text"><h2>{{ product.product.cost }} р.</h2></div>
             </div>
         </div>
     </a>

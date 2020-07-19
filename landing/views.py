@@ -1,10 +1,14 @@
 from django.shortcuts import render
 
-from products.models import ProductImage, TypeOfProduct
+from gallery.models import ProductInGallery
+from products.forms import ImportCsv
+from .forms import SearchForm
 
 
 def home(request):
-    productsImages = ProductImage.objects.all()
+    form = ImportCsv
+    # search_form = SearchForm
+    products_in_slider = ProductInGallery.objects.all()
     return render(request, 'landing/home.html', locals())
 
-
+# def home_search(request, name):
