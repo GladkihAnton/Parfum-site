@@ -1,17 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="container">
+    <div class="container mt-5" id="page_for_product">
         <div class="row">
             <div class="col-md-5">
-                {% for image in product.productimage_set.all %}
-                <img src="{{image.image.url}}" alt="" class="img-fluid w-50">
-                {% endfor %}
+            {% if product.productimage_set.all.count == 0 %}
+                                <img src="{% static 'img/No_foto.png'%}" alt="" class="img-fluid w-50">
+            {% elif product.productimage_set.all.count == 1 %}
+                <img src="{% get_media_prefix %}{{product.productimage_set.first}}" alt="" class="temp_img">
+            {% else %}
+                <div class="product_block_for_images">
+                    <div class="product_slide_image_left"><img src=""></div>
+                    {% for image in product.productimage_set.all %}
+                        <img src="{% get_media_prefix %}{{image}}" alt="" class="temp_img product_image_in_block">
+                        <div class="product_circle_block"></div>
+                    {% endfor %}
+                <div class="product_slide_image_right"></div>
+                </div>
+            {% endif %}
+
             </div>
-            <div class="col-md-7">
-                <h3 class="mb-3">{{ product.name }}</h3>
-                <h5 class="mb-3">Стоимость: {{ product.cost }}</h5>
-                <p style="border-top: 1px solid">{{product.description}}</p>
+            <div class="col-md-7" style="font-family: 'gothic';">
+                <p class="mb-3 text-right" style="font-size: 17pt;">{{ product.name }}</p>
+                <h5 class="mb-3 text-right" style="font-size: 20pt;">{{ product.cost }}<img style="max-height: 16pt;margin-left: 4px;" alt="" src="{% static 'img/kisspng-currency-symbol-ruble-sign-clip-art-rubles-5b14da375e98b1.2067183115280932393875.png' %}"> </h5>
+                <ul class="leaders" style=" color: #615e63">
+                    <li><span>Производитель</span><span>{{ product.maker }}</span></li>
+                    <li><span>Страна</span><span>{{ product.country }}</span></li>
+                    <li><span>Год создания</span><span>{{ product.year_of_release }}</span></li>
+                    <li><span>Пол</span><span>{{ product.sex }}</span></li>
+                    <li><span>Семейство аромата</span><span>{{ product.fragrance_family }}</span></li>
+                    <li><span>Концентрация</span><span>{{product.concentration}}</span></li>
+                </ul>
             </div>
         </div>
     </div>

@@ -439,3 +439,38 @@ $(function() {
 		$('.dropMenu').toggle('normal');
 	});
 });
+if ($('#page_for_product').length >0 ){
+	var product_image_in_block = $('.product_image_in_block');
+	// product_image_in_block.addClass()
+	product_image_in_block.first().addClass('product_current_image').next().css('opacity', 0.8);
+	// product_image_in_block
+	// 	.on('click', function () {
+	// 	var current_image = $('.product_current_image');
+	// 	var next_image = current_image.next().next().length > 0 ?
+	// 		current_image.next().next() : $('.product_image_in_block').first();
+	// 	current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+	// 		.next().animate({opacity: 0.3}, 1000);
+	// 	next_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+	// 		.next().animate({opacity: 0.8}, 1000);
+	// })
+
+	$('.product_slide_image_right').on('click', function () {
+		var current_image = $('.product_current_image');
+		var next_image = current_image.next().next().next().length > 0 ?
+			current_image.next().next() : $('.product_image_in_block').first();
+		current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+			.next().animate({opacity: 0.3}, 1000);
+		next_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+			.next().animate({opacity: 0.8}, 1000);
+	});
+	$('.product_slide_image_left').on('click', function () {
+		var current_image = $('.product_current_image');
+		var prev_image = current_image.prev().prev().prev().length > 0 ?
+			current_image.prev().prev() : $('.product_image_in_block').last();
+		current_image.animate({opacity: 0}, 1000).removeClass('product_current_image')
+			.next().animate({opacity: 0.3}, 1000);
+		prev_image.animate({opacity: 1}, 1000).addClass('product_current_image')
+			.next().animate({opacity: 0.8}, 1000);
+	});
+
+}

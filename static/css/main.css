@@ -493,7 +493,7 @@ ul {
 }
 /* конец секции карточек */
 
-/*Секция подвала*/
+/*gallery.html*/
 .filters_form{
     background-color: rgba(227,227,227,0.53);
     border-radius: 5px;
@@ -529,11 +529,7 @@ ul {
     left:10px;
     content: 'hel';
 }
-/*.button_for_turn_back, .button_for_search {*/
-/*    border-radius: 5px;*/
-/*}*/
 .button_for_turn_back:hover, .button_for_search:hover, .button_for_turn_back:active, .button_for_search:active {
-    /*box-shadow: 0.2rem 0.2rem 0.2rem 0 rgb(225, 225, 225);*/
     opacity: 0.5;
 }
 .checkbox {
@@ -612,3 +608,92 @@ ul {
 .itemsMenu:hover::after, .itemsMenu:hover::before {
     opacity: 1;
 }
+/*end of gallery.html*/
+/* product.html */
+.product_block_for_images{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    justify-items: end;
+    overflow: hidden;
+    max-width: 350px;
+    height:350px;
+    margin-left: 50px;
+}
+.product_image_in_block{
+    position:absolute;
+    z-index: 1;
+    top:0px;
+    left:0px;
+    max-width: 350px;
+    opacity: 0;
+}
+.product_current_image{
+    opacity: 1;
+    z-index: 2;
+}
+.product_circle_block{
+    background: black;
+    z-index: 3;
+    margin-top:330px;
+    margin-left: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    opacity: 0.3;
+}
+.product_current_circle{
+    opacity: 0.8;
+}
+.product_slide_image_left, .product_slide_image_right{
+    cursor: pointer !important;
+    z-index: 3;
+    position: absolute;
+    display: block;
+    transition: 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(0,0,0, 0.5);
+    top: 135px;
+    border-radius: 10px;
+    width: 35px;
+    height: 35px;
+    opacity: 0.8;
+}
+.product_slide_image_left{
+    background: url(../img/leftbutton_gray.png);
+    background-size: contain;
+    left:0;
+}
+.product_slide_image_right{
+    background: url(../img/rightbutton_gray.png);
+    background-size: contain;
+    right:0;
+}
+
+ul.leaders li {
+    clear: both;
+    margin-bottom: 22px;
+}
+
+ul.leaders li span:first-child {
+  float: left;
+  padding: 0 .4em 0 0;
+  margin: 0;
+}
+ul.leaders li span + span {
+  float: right;
+  padding: 0 0 0 .4em;
+  margin: 0;
+}
+
+ul.leaders li:after {
+  content: "";
+  display: block;
+  overflow: hidden;
+  height: 1em;
+  border-bottom: 1px dotted;
+}
+.temp_img{
+    max-width: 350px;
+    /*margin-left: 50px;*/
+}
+/* end of product.html */

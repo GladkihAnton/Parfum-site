@@ -2,9 +2,7 @@
         <a href="{% url 'product' product.product.id %}">
         <div class="card text-center cardforproduct">
             {% if product.product.productimage_set.all %}
-                {% for item in product.product.productimage_set.all%}
-                <div class="card-img-top"><img class="img-card" src="/media/{{item}}"></div>
-                {% endfor %}
+                <div class="card-img-top"><img class="img-card" src="{{MEDIA_URL}}{{product.product.productimage_set.first}}"></div>
             {% else %}
                 <div class="card-img-top"><img class="img-card" src="/static/img/No_foto.png"></div>
             {% endif %}

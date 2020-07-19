@@ -2,7 +2,10 @@
 <nav class="container-fluid pt-4 mb-sm-2 top_navbar" style="border-bottom: 2px double #d3cece">
     <div class="row">
         <div class="md-1 col-lg-4 order-3 order-lg-1">
-          <input class="main_search" type="search" placeholder="Поиск...">
+            <form>
+                {{ search_form }}
+            </form>
+{#          <input class="main_search" type="search" placeholder="Поиск...">#}
         </div>
         <div class="col-12 col-lg-4 text-center order-1 order-lg-2">
               <img class=main_img src="{% static 'img/Лого.png' %}">
@@ -30,9 +33,9 @@
         МЕНЮ
     </div>
     <ul class="item_in_fixed_nav">
-        <li>ГЛАВНАЯ</li>
+        <li><a href="/">ГЛАВНАЯ</a></li>
         <li>О НАС</li>
-        <li>КАТАЛОГ</li>
+        <li><a href="/gallery">КАТАЛОГ</a></li>
         <li>НАШИ ПРЕИМУЩЕСТВА</li>
         <li>КОНТАКТЫ</li>
     </ul>

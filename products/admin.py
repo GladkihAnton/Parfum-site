@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductImage, TypeOfProduct
+from .models import Product, ProductImage, TypeOfProduct, FragranceFamilyOfProduct, MakerOfProduct
 
 
 class ProductImageInline(admin.TabularInline):
@@ -7,17 +7,32 @@ class ProductImageInline(admin.TabularInline):
     extra = 0
 
 
-class TypeOfProductAdmin (admin.ModelAdmin):
+@admin.register(TypeOfProduct)
+class TypeOfProductAdmin(admin.ModelAdmin):
     list_display = [field.name for field in TypeOfProduct._meta.fields]
 
     class Meta:
         model = TypeOfProduct
 
 
-admin.site.register(TypeOfProduct, TypeOfProductAdmin)
+@admin.register(FragranceFamilyOfProduct)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in FragranceFamilyOfProduct._meta.fields]
+
+    class Meta:
+        model = FragranceFamilyOfProduct
 
 
-class ProductAdmin (admin.ModelAdmin):
+@admin.register(MakerOfProduct)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in MakerOfProduct._meta.fields]
+
+    class Meta:
+        model = MakerOfProduct
+
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Product._meta.fields]
     inlines = [ProductImageInline]
 
@@ -25,14 +40,9 @@ class ProductAdmin (admin.ModelAdmin):
         model = Product
 
 
-admin.site.register(Product, ProductAdmin)
-
-
-class ProductImageAdmin (admin.ModelAdmin):
+@admin.register(ProductImage)
+class ProductImageAdmin(admin.ModelAdmin):
     list_display = [field.name for field in ProductImage._meta.fields]
 
     class Meta:
         model = ProductImage
-
-
-admin.site.register(ProductImage, ProductImageAdmin)
