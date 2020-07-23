@@ -492,123 +492,6 @@ ul {
     max-width: 250px;
 }
 /* конец секции карточек */
-
-/*gallery.html*/
-.filters_form{
-    background-color: rgba(227,227,227,0.53);
-    border-radius: 5px;
-}
-.prev_for_turn_back_button{
-    position: relative;
-    top:0px;
-    left: 0px;
-    display: inline;
-}
-.button_for_turn_back {
-    cursor: pointer;
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    right: 11px;
-    display: none;
-}
-.button_for_search {
-    background: url(../img/ok.png) no-repeat;
-    background-size: contain;
-    background-position-y: 6px;
-}
-.place_for_search {
-    border-radius: 6px;
-    border-color: #f0f0f0;
-}
-.place_for_search:focus{
-    outline: none;
-}
-.place_for_search::after{
-    position: absolute;
-    left:10px;
-    content: 'hel';
-}
-.button_for_turn_back:hover, .button_for_search:hover, .button_for_turn_back:active, .button_for_search:active {
-    opacity: 0.5;
-}
-.checkbox {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
-.checkbox+label {
-    display: inline-flex;
-    align-items: center;
-    user-select: none;
-}
-.checkbox+label::before {
-    content: '';
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    flex-shrink: 0;
-    flex-grow: 0;
-    border: 1px solid #adb5bd;
-    border-radius: 0.25em;
-    margin-right: 0.5em;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-}
-.checkbox:checked+label::before {
-    border-color: #0b76ef;
-    background-color: #0b76ef;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-}
-/* стили при наведении курсора на checkbox */
-.checkbox:not(:disabled):not(:checked)+label:hover::before {
-    border-color: #b3d7ff;
-}
-/* стили для активного состояния чекбокса (при нажатии на него) */
-.checkbox:not(:disabled):active+label::before {
-    background-color: #b3d7ff;
-    border-color: #b3d7ff;
-}
-/* стили для чекбокса, находящегося в фокусе */
-.checkbox:focus+label::before {
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
-.checkbox:focus:not(:checked)+label::before {
-    border-color: #80bdff;
-}
-/* стили для чекбокса, находящегося в состоянии disabled */
-.checkbox:disabled+label::before {
-    background-color: #e9ecef;
-}
-/*Меню с фильтром */
-.dropMenu {
-    display: none;
-}
-.itemsMenu {
-    background: #f0f0f0;
-    width: 100%;
-    height: 31px;
-}
-.itemsMenu:after, .itemsMenu:before {
-    position: absolute;
-    top: 17px;
-    right: 9px;
-    content: '';
-    height: 2px;
-    width: 23px;
-    opacity: 0.3;
-    background-color: rgba(148, 148, 148, 0.51);
-    transition: 0.3s;
-}
-.itemsMenu_up_down:before {
-    transform: rotate(90deg);
-}
-.itemsMenu:hover::after, .itemsMenu:hover::before {
-    opacity: 1;
-}
-/*end of gallery.html*/
 /* product.html */
 .product_block_for_images{
     position:relative;
@@ -697,3 +580,106 @@ ul.leaders li:after {
     /*margin-left: 50px;*/
 }
 /* end of product.html */
+
+/*gallery.html*/
+.gallery_filters_form{
+    background-color: rgba(227,227,227,0.53);
+    border-radius: 5px;
+}
+.gallery_search_input {
+    border-radius: 6px;
+    border-color: #f0f0f0;
+}
+.gallery_search_input:focus{
+    outline: none;
+}
+.gallery_search_input::after{
+    position: absolute;
+    left:10px;
+    content: 'hel';
+}
+/*checkboxstyle*/
+/*
+.checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+.checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+.checkbox:checked+label::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+.checkbox:not(:disabled):not(:checked)+label:hover::before {
+    border-color: #b3d7ff;
+}
+.checkbox:not(:disabled):active+label::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+.checkbox:focus+label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.checkbox:focus:not(:checked)+label::before {
+    border-color: #80bdff;
+}
+.checkbox:disabled+label::before {
+    background-color: #e9ecef;
+}
+*/
+/*Меню с фильтром */
+.gallery_items_in_filter_menu {
+    display: none;
+}
+.gallery_drop_filter_menu {
+    background: #f0f0f0;
+    width: 100%;
+    height: 31px;
+}
+.gallery_drop_filter_menu:after, .gallery_drop_filter_menu:before {
+    position: absolute;
+    top: 17px;
+    right: 9px;
+    content: '';
+    height: 2px;
+    width: 23px;
+    opacity: 0.3;
+    background-color: rgba(148, 148, 148, 0.51);
+    transition: 0.3s;
+}
+.gallery_drop_filter_menu_up_down:before {
+    transform: rotate(90deg);
+}
+.gallery_drop_filter_menu:hover::after, .gallery_drop_filter_menu:hover::before {
+    opacity: 1;
+}
+
+.gallery_items_in_scroll_filter_menu{
+    display: none;
+    height:150px; /* высота нашего блока */
+    width: 100%;
+    /*background: #fff; !* цвет фона, белый *!*/
+    border: 1px solid rgba(227,227,227,0.53); /* размер и цвет границы блока */
+    overflow-x: scroll; /* прокрутка по горизонтали */
+    overflow-y: scroll; /* прокрутка по вертикали */
+}
+/*end of gallery.html*/

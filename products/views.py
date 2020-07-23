@@ -1,19 +1,16 @@
-from django.http import HttpRequest, HttpResponse
 import csv
-from django.shortcuts import render
-
-from .models import Product, TypeOfProduct, ProductImage
-from Magazin_site import settings
 import re
 
+from django.http import HttpRequest, HttpResponse
+from django.views.generic import DetailView
 
-def product(request, product_id):
-    product = Product.objects.get(id=product_id)
-    session_key = request.session.session_key
-    if not session_key:
-        request.session.cycle_key()
-    print(request.session.session_key)
-    return render(request, 'products/product.html', locals())
+from Magazin_site import settings
+from .models import Product, ConcentrationOfProduct, ProductImage
+
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = 'products/product.html'
 
 
 def upload_csv(request: HttpRequest):
@@ -40,7 +37,7 @@ def upload_csv(request: HttpRequest):
                 if kind in row[2].lower():
                     product = Product()
                     image, created = ProductImage.objects.get_or_create()
-                    type_of_product, created = TypeOfProduct.objects.get_or_create(name=types[kind])
+                    type_of_product, created = ConcentrationOfProduct.objects.get_or_create(name=types[kind])
                     type_of_product.save(force_update=True)
                     product.type = type_of_product
                     product.name = row[2].replace(kind, '').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ')
@@ -50,4 +47,3 @@ def upload_csv(request: HttpRequest):
                     product.save()
                     break
     return HttpResponse(202)
-

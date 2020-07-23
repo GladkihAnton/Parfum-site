@@ -1,53 +1,65 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<!--<button class="dropdown-toggle" type="button" aria-haspopup="false" aria-expanded="false">kek</button>-->
-<!--&lt;!&ndash;<div class="">&ndash;&gt;-->
-<!--    <button class="butt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--        Dropdown button-->
-<!--    </button>-->
-<!--</div>-->
-<div class="container-fluid" id="gallery">
-    <div class="row">
-        <div class="col-2 col-lg-12"></div>
-        <div class="col-8 col-lg-3">
-            <div class="filters_form ml-auto mr-auto" style="max-width: 360px;">
-                <form class="text-center text-lg-left ml-2" id="formSearch" action="{% url 'gallery_search_function' %}"> {% csrf_token %}
-                    <input class="place_for_search mt-2" type="text" id="text-to-find" value="" placeholder="Search" autofocus>
-                    <div class="prev_for_turn_back_button">
-                        <span class="button_for_turn_back">&times;</span>
-                    </div>
-<!--                    <input class="button_for_turn_back" type="button" value=" " title="Отменить поиск">-->
-<!--                    <input class="button_for_search" type="submit" value=" " title="Начать поиск"><br>-->
-                </form>
-                <form class="mt-2" id="checkbox" style="border-top: 1px solid black;"   action="{% url 'gallery_checkbox' %}"> {% csrf_token %}
-                    <div class="container">
-                        <div class="row">
-                            <input type="checkbox" id="filter_list" style="display: none">
-                            <label class="itemsMenu itemsMenu_up_down col-md-12 pt-2" for="filter_list">Концентрация духов</label>
-                            <div class="dropMenu" style="z-index: 999;">
-                                    {% for type in type_of_products %}
-                                    <div class="col-md-12 ml-3 mt-2">
-                                        <input class="checkbox" type="checkbox" name="{{type}}" id="{{type}}" data-change="false" value="{{type}}" checked>
-                                        <label for="{{type}}">{{type}}</label>
-                                    </div>
-                                    {% endfor %}
-                            </div>
+    <!--<button class="dropdown-toggle" type="button" aria-haspopup="false" aria-expanded="false">kek</button>-->
+    <!--&lt;!&ndash;<div class="">&ndash;&gt;-->
+    <!--    <button class="butt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+    <!--        Dropdown button-->
+    <!--    </button>-->
+    <!--</div>-->
+    <div class="container-fluid" id="gallery">
+        <div class="row">
+            <div class="col-2 col-lg-12"></div>
+            <div class="col-8 col-lg-3">
+                <div class="gallery_filters_form ml-auto mr-auto" style="max-width: 360px;">
+                    <form class="text-lg-left mt-2" id="gallery_filter_form" method="get"
+                          style="border-top: 1px solid black;"
+                          action="{% url 'gallery_filter' %}">
+                        {{ filter_form.search }}
+                        <input type="checkbox" id="brand_list" style="display: none">
+                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
+                               for="brand_list">Бренд</label>
+                        <div class="gallery_items_in_scroll_filter_menu">
+                            {{ filter_form.checkboxes_makers }}
                         </div>
-                    </div>
-                </form>
+                        <input type="checkbox" id="concentration_list" style="display: none">
+                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
+                               for="concentration_list">Концентрация</label>
+                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
+                            {{ filter_form.checkboxes_concentrations }}
+                        </div>
+                        <input type="checkbox" id="fragrance_list" style="display: none">
+                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
+                               for="fragrance_list">Ноты аромата</label>
+                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
+                            {{ filter_form.checkboxes_fragrances }}
+                        </div>
+                        <input type="checkbox" id="sex_list" style="display: none">
+                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
+                               for="sex_list">Категория</label>
+                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
+                            {{ filter_form.checkboxes_sex }}
+                        </div>
+                        <input type="checkbox" id="cost_list" style="display: none">
+                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
+                               for="cost_list">Цена</label>
+                        <div class="gallery_items_in_filter_menu text-center pl-2 pr-2" style="z-index: 999;">
+                            {{ filter_form.cost_range }}
+                        </div>
+                        <input type="submit" id="submit_filter_form" placeholder="Submit">
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="col-12 col-lg-9">
-            <div class="container-fluid">
-                <div class="row cards">
-                    {% for product in products|slice:":12" %}
-                        {% include 'landing/gallery_product.html' %}
-                    {% endfor %}
+            <div class="col-12 col-lg-9">
+                <div class="container-fluid">
+                    <div class="row gallery_place_for_cards">
+                        {% for product in product_list|slice:":12" %}
+                            {% include 'landing/gallery_product.html' %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

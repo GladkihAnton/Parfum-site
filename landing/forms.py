@@ -1,5 +1,5 @@
-from django.forms import forms, Form
+from django.forms import Form, Field
 
 
 class SearchForm(Form):
-    name = forms.Field(required=True)
+    name = Field(required=True)

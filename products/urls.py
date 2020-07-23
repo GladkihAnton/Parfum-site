@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 
-from products import views
+from .views import ProductDetail
 
 urlpatterns = [
-    url(r'^product/(?P<product_id>\w+)/$', views.product, name='product')
+    path('<int:pk>/', ProductDetail.as_view(), name='product'),
 ]

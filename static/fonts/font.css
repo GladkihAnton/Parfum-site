@@ -33,3 +33,15 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'eskal';
+    src: url('Eskal.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'amour';
+    src: url('Mon Amour One.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

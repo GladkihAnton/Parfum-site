@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class TypeOfProduct(models.Model):
+class ConcentrationOfProduct(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
@@ -49,17 +49,14 @@ class Product(models.Model):
     fragrance_family = models.ForeignKey(FragranceFamilyOfProduct, blank=True, null=True, default=None,
                                          on_delete=models.PROTECT)
     sex = models.CharField(max_length=16, blank=True, null=True, default=None)
-    concentration = models.ForeignKey(TypeOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
+    concentration = models.ForeignKey(ConcentrationOfProduct, blank=True, null=True, default=None,
+                                      on_delete=models.PROTECT)
     cost = models.PositiveSmallIntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-    # Кастомизация админки
-
     def __str__(self):
-        return "%s" % self.name  # ("Пользователь %s %s" % (self.email, seil.name)
-
-    # Кастомизация множественного числа и единственного
+        return "%s" % self.name
 
     class Meta:
         verbose_name = "Товар"
@@ -73,9 +70,8 @@ class ProductImage(models.Model):
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
     def __str__(self):
-        return "%s" % self.image  # ("Пользователь %s %s" % (self.email, seil.name)
+        return "%s" % self.image
 
-    # Кастомизация множественного числа и единственного
     class Meta:
         verbose_name = "Фотография"
         verbose_name_plural = "Фотографии"
