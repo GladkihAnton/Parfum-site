@@ -12,11 +12,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fonts/font.css' %}">
     <title>testim</title>
   </head>
-  <body>
+  <body style="font-family: 'hypatia_sans_pro'">
     {% include 'navbar.html' %}
     {% block content %}
     {% endblock content %}
-{#    {% include 'footer.html' %}#}
+    {% include 'footer.html' %}
 
     <!-- JQUERY -->
     <script src="{% static 'js/jquery-3.4.1.js' %}"></script>

@@ -1,28 +1,25 @@
 {% load static %}
-<footer class="container-fluid mt-4">
+<footer class="container-fluid">
     <div class="row">
-       <div class="col-lg-3 text-center">
-              <img class=main_img src="{% static 'img/Лого.png' %}">
-              <h2 class="main_name_of_shop main_name_of_shop_in_footer mb-0" href="/">Элитная парфюмерия</h2>
-              <small class="footer-text">
-                ароматный бутик
-              </small>
+       <div class="col-lg-3 pl-5 pt-4 text-left footer_left_info">
+           <p>+7(911)947-64-94</p>
+           <p>Ежедневно с 11:00 до 20:00</p>
+           <input class="footer_search" type="search" placeholder="Поиск по сайту">
         </div>
         <div class="col-lg-6 text-center mt-3">
-            <p class="address_in_footer">г. Санкт-Петербург, пр. Ленинский, д. 90</p>
-            <ul class="item_in_footer mt-4">
+            <p><img  style="max-width: 200px;" src="{% static 'img/Logo_white.png' %}"></p>
+            <ul class="footer_navigation_list mt-4">
                 <li>ГЛАВНАЯ</li>
                 <li>О НАС</li>
                 <li>КАТАЛОГ</li>
-                <li>НАШИ ПРЕИМУЩЕСТВА</li>
+                <li>КОНТАКТЫ</li>
             </ul>
         </div>
-        <div class="col-lg-3 text-center">
-            <p class="always_text_in_footer">Мы всегда на связи!</p>
-            <p class="can_write_us_in_footer"><i><a style="color:black;" href="">Вы можете написать нам письмо</a></i>
-                или
-                <i><a style="color:black;" href="">позвонить по телефону</a></i></p>
-            <p class="number_in_footer">+7(911)947-64-94</p>
+        <div class="col-lg-3 text-center pt-5">
+            <ul class="footer_list_for_images">
+                <li><img src="{% static 'img/telega_footer.png' %}"></li>
+                <li><img src="{% static 'img/Inst_footer.png' %}"></li>
+            </ul>
         </div>
     </div>
 </footer>

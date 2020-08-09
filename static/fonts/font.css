@@ -16,6 +16,12 @@
     font-style: normal;
 }
 @font-face {
+    font-family: 'hypatia_sans_pro';
+    src: url('HypatiaSansPro-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'segoe';
     src: url('segoe script.ttf') format('truetype');
     font-weight: normal;
@@ -42,6 +48,12 @@
 @font-face {
     font-family: 'amour';
     src: url('Mon Amour One.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'hello_january';
+    src: url('Hello January script cyrillic Script.otf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

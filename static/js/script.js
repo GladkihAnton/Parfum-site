@@ -23,42 +23,42 @@ $('#upload_csv').on('submit', function (e) {
 
 
 //navbar
-function myFunction() {
-    if (KEY_FOR_COPY) {
-        KEY_FOR_COPY = false;
-        var ta = document.getElementById('mail'); 	//производим его выделение
-        var range = document.createRange();
-        range.selectNode(ta);
-        window.getSelection().addRange(range);
-        var copyBlock = $('.copyBlock')
-        //пытаемся скопировать текст в буфер обмена
-        try {
-            document.execCommand('copy');
-            copyBlock.css({opacity: 1});
-        } catch (err) {
-            console.log('Can`t copy, boss');
-        }
-        //очистим выделение текста, чтобы пользователь "не парился"
-        window.getSelection().removeAllRanges();
-        copyBlock.animate({opacity: 0}, 1000);
-        setTimeout(function () {
-            KEY_FOR_COPY = true
-        }, 1100);
-    }
-};
-var navbar = document.getElementById("fixed_nav");
-var height_of_nav = navbar.offsetTop;
-window.onscroll = function () {
-    fixing_function()
-};
+// function myFunction() {
+//     if (KEY_FOR_COPY) {
+//         KEY_FOR_COPY = false;
+//         var ta = document.getElementById('mail'); 	//производим его выделение
+//         var range = document.createRange();
+//         range.selectNode(ta);
+//         window.getSelection().addRange(range);
+//         var copyBlock = $('.copyBlock')
+//         //пытаемся скопировать текст в буфер обмена
+//         try {
+//             document.execCommand('copy');
+//             copyBlock.css({opacity: 1});
+//         } catch (err) {
+//             console.log('Can`t copy, boss');
+//         }
+//         //очистим выделение текста, чтобы пользователь "не парился"
+//         window.getSelection().removeAllRanges();
+//         copyBlock.animate({opacity: 0}, 1000);
+//         setTimeout(function () {
+//             KEY_FOR_COPY = true
+//         }, 1100);
+//     }
+// };
+// var navbar = document.getElementById("fixed_nav");
+// var height_of_nav = navbar.offsetTop;
+// window.onscroll = function () {
+//     fixing_function()
+// };
 
-function fixing_function() {
-    if (window.pageYOffset >= height_of_nav - 7) {
-        navbar.classList.add("fix");
-    } else {
-        navbar.classList.remove("fix");
-    }
-}
+// function fixing_function() {
+//     if (window.pageYOffset >= height_of_nav - 7) {
+//         navbar.classList.add("fix");
+//     } else {
+//         navbar.classList.remove("fix");
+//     }
+// }
 
 $(function () {
     $('.fixed_nav_low_width').click(function () {

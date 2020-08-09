@@ -1,133 +1,115 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <header class="pb-5" id="main">
-        <h2 class="text-center mt-5" id="bestseller">Винтажные коллекции</h2>
-        <div class="container-fluid m-auto p-0 d-flex justify-content-center row_vintage_card">
-            <div class="left_vintage_slide"></div>
-            <div class="row row_vintage_card">
-                <ul class="slider_vintage_card mt-1">
-                    {% for product in products_in_slider %}
-                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="right_vintage_slide"></div>
-        </div> <!--cards-->
-    </header> <!-- vintage -->
-    <section class="pt-3 pb-3" id="about">
-        <h2 class="text-center w-100">О нас</h2>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10 text-justify" style="font-size: 18pt; font-family:'gothic';">
-                    <p>
-                        Мы на рынке уже более 15 лет. Качественная парфюмерия, широкая клиентская база, ответственность за товар
-                    - приоритет для нас. Одно из самых главных преимуществ нашего магазина - винтажные ароматы,
-                        лимитированные, редкие парфюмы, которые достаточно трудно найти где-либо. </p>
-                    <p>
-                        Мы всегда в поисках эксклюзивных, уникальных ароматов. Коллекция нашего бутика постоянно обновляется.
-                    </p>
-                    <p>
-                        Также, мы совершаем заказы на интересующие вас духи. Вы можете заказать абсолютно любой парфюм, а затем
-                        забрать его в удобное для вас время. Оплата производится в магазине.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>  <!-- about text -->
-    <section class="mt-3" id="catalog">
-        <h2 class="text-center w-100">Каталог</h2>
-        <div class="container-fluid p-0 d-flex justify-content-center rowCard pb-1">
-            <div class="leftSlideCard"></div>
-            <div class="row rowCard">
-                <ul class="SliderCard mt-1">
-                    {% for product in products_in_slider %}
-                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="rightSlideCard"></div>
-        </div> <!--cards-->
-        <div class="container-fluid p-0 d-flex justify-content-center rowCard mt-3">
-            <div class="leftSlideCard"></div>
-            <div class="row rowCard">
-                <ul class="SliderCard mt-1">
-                    {% for product in products_in_slider %}
-                        <li class="mr-1 ml-1">{% include 'landing/product_card.html' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="rightSlideCard"></div>
-        </div> <!--cards-->
-    </section> <!-- catalog -->
-    <section class="pt-3 pb-3" id="advantages">
-        <h2 class="text-center mb-4">Наши преимущества</h2>
+{#    <div class="home_dark_top_left_background"></div>#}
+{#    <div class="home_light_top_right_background"></div>#}
+    <section id="home_catalog" class="pt-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mt-5 mt-md-0 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-computer-icons-euro-sign-icon-design-price-tag-5afd22634720a1.9676043415265388512913.png' %}">
-                    <h3>Скидки</h3>
-                    <p class="text-justify text_for_advantages">
-                        Для постоянных покупателей нашего магазина действует скидка 5%. на каждую покупку
-                    </p>
+                <div class="col-5">
+                    <p class="home_catalog_text">В нашем бутике имеется
+                        уникальный выбор ароматов на любой вкус</p>
+                    <button class="home_catalog_button">КАТАЛОГ</button>
                 </div>
-                <div class="col-md-4 mt-5 mt-md-0 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-shopping-bags-trolleys-paper-bag-shopping-bag-icon-5b1288788515a7.0497953715279412405451.png' %}">
-                    <h3>Разнообразный выбор продукции</h3>
-                    <p class="text-justify text_for_advantages" style="word-spacing: -2px;">
-                        В нашем бутике имеется уникальный выбор арооматов на любой вкус.
-                        Также, магазин осуществляет заказы на интересующие вас духи.
-                        Вся парфюмерия является оригинальной
-                    </p>
-                </div>
-                <div class="col-md-4 mt-5 mt-md-0 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-computer-icons-interface-location-interfaccia-5ae490ed8a7bb1.9530357615249287495672.png' %}">
-                    <h3>Близко от метро</h3>
-                    <p class="text-justify text_for_advantages">
-                        Мы находимся в 5 минутах от метро Ленинский проспект
-                    </p>
-                </div>
-                <div class="col-md-4 mt-5 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-delivery-business-computer-icons-shopping-delivery-time-icon-5ab096c4045cb1.3744169715215223720179.png' %}">
-                    <h3>Быстрая доставка</h3>
-                    <p class="text-justify text_for_advantages">
-                        После оформления заказа, товар будет доставлен в магазин в течении 3-5 дней.
-                    </p>
-                </div>
-                <div class="col-md-4 mt-5 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-credit-card-bank-debit-card-credit-card-icon-5b207694727303.4166083415288541644688.png' %}">
-                    <h3>Доступный способ оплаты</h3>
-                    <div class="text-justify text_for_advantages" style="word-spacing: -3px;">
-                        Оплата в магазине производится с помощью безналичного и наличного расчетов.
-                    </div>
-                </div>
-                <div class="col-md-4 mt-5 text-center">
-                    <img class="img_for_advantages" src="{% static 'img/kisspng-solar-calendar-symbol-computer-icons-encapsulated-calendar-icon-5ac41db8b0bae7.2492870115228021047239.png' %}">
-                    <h3>Работаем каждый день</h3>
-                    <p class="text-justify text_for_advantages">
-                        Наш бутик работает каждый день без выходных с 11:00 до 20:00
-                    </p>
+                <div class="col-7">
+                    <img class="home_catalog_img" src="{% static 'img/temp_first_img.jpg' %}">
                 </div>
             </div>
         </div>
-    </section> <!--ourAdvantages-->
-    <section class="mt-3" id="contacts">
-        <h2 class="text-center w-100 mb-4">Контакты</h2>
+        <div class="home_catalog_white_line"><img src="{% static 'img/Полоска.png' %}"></div>
+    </section>
+    <section id="home_about" class="p-5">
+        <h2 class="home_about_title">
+            О НАС
+            <span>
+                О нас
+            </span>
+        </h2>
+        <p>
+            Мы на рынке уже более 15 лет. Качественная парфюмерия, широкая клиентская база, ответственность за товар
+            - приоритет для нас. Одно из самых главных преимуществ нашего магазина - винтажные ароматы,
+            лимитированные, редкие парфюмы, которые достаточно трудно найти где-либо. </p>
+        <p>
+            Мы всегда в поисках эксклюзивных, уникальных ароматов. Коллекция нашего бутика постоянно обновляется.
+        </p>
+        <p>
+            Также, мы совершаем заказы на интересующие вас духи. Вы можете заказать абсолютно любой парфюм, а затем
+            забрать его в удобное для вас время. Оплата производится в магазине.
+        </p>
+    </section>
+    <section id="home_our_advantages">
         <div class="container-fluid">
             <div class="row">
-                <div class="ml-3">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" style="height:400px; border:none; width: 65vw" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="col-5 pl-0">
+                    <img class="w-100" src="{% static 'img/temp_second_img.jpg' %}">
                 </div>
-                <div class="text_for_contacts ml-3">
-                    <p class="mt-5 mb-4">г. Санкт-Петербург, Трамвайный проспект</p>
-                    <p class="mb-4">Метро: Ленинский проспект</p>
-                    <p class="mb-4">Время работы: Пн-вс, 11:00-20:00</p>
-                    <p class="mb-4">Телефон: +7(911)947-64-94</p>
-                    <p class="mb-4">E-mail: narva56@yandex.ru</p>
+                <div class="col-7 pt-5 pr-5">
+                    <h2 class="text-right home_our_advantages_title">
+                        НАШИ ПРЕИМУЩЕСТВА
+                        <span>
+                            Наши преимущества
+                        </span>
+                    </h2>
+                    <ul class="home_our_advantages_list">
+                        <li><img src="{% static 'img/ok-white.png' %}">
+                            СКИДКИ
+                        </li>
+                        <li><img src="{% static 'img/ok-beige.png' %}">
+                            РАЗНООБРАЗНЫЙ ВЫБОР ПАРФЮМЕРИИ
+                        </li>
+                        <li><img src="{% static 'img/ok-white.png' %}">
+                            БЛИЗКО ОТ МЕТРО
+                        </li>
+                        <li><img src="{% static 'img/ok-beige.png' %}">
+                            БЫСТРАЯ ДОСТАВКА
+                        </li>
+                        <li><img src="{% static 'img/ok-white.png' %}">
+                            ДОСТУПНЫЙ СПОСОБ ОПЛАТЫ
+                        </li>
+                        <li><img src="{% static 'img/ok-beige.png' %}">
+                            РАБОТАЕМ КАЖДЫЙ ДЕНЬ
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
+    </section>
+    <section id="home_gallery" class="p-5">
+        <h2 class="home_gallery_title">
+            КАТАЛОГ
+            <span>
+                Каталог
+            </span>
+        </h2>
+    </section>
+    <section id="home_question" class="p-5 text-center">
+        <h2 class="home_question_title">
+            ВОЗНИКЛИ ВОПРОСЫ? НАПИШИ НАМ
+            <span>
+                Возникли вопросы?      Напиши нам
+            </span>
+        </h2>
+        <form class="mt-5">
+            <input class="home_question_input_text" type="text" placeholder="Задайте ваш вопрос">
+            <input type="submit">
+        </form>
+    </section>
+    <section id="home_contacts">
+        <div class="p-5 mt-5 home_contacts_block_for_info">
+            <h2 class="text-center home_contacts_title">
+                КОНТАКТЫ
+                <span>
+                    Контакты
+                </span>
+            </h2>
+            <ul class="home_contacts_info_list">
+                <li><span>Адрес: </span><span>г. Санкт-Петербург, Трамвайный проспект</span></li>
+                <li><span>Метро: </span><span>Ленинский проспект</span></li>
+                <li><span>Режим работы: </span><span>Пн-вс, 11:00-20:00</span></li>
+                <li><span>Телефон: </span><span>+7(911)947-64-94</span></li>
+                <li><span>E-mail: </span><span>narva56@yandex.ru</span></li>
+            </ul>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1033.621809105536!2d30.267315042370917!3d59.853157019998136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeea944c37b%3A0xb18e7a13e10c27e8!2z0J7Rh9C60Lg!5e0!3m2!1sru!2sru!4v1586075688511!5m2!1sru!2sru" style="height:500px; border:none; width: 100vw" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </section>
 {% endblock content %}
