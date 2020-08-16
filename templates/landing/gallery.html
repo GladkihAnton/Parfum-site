@@ -1,65 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <!--<button class="dropdown-toggle" type="button" aria-haspopup="false" aria-expanded="false">kek</button>-->
-    <!--&lt;!&ndash;<div class="">&ndash;&gt;-->
-    <!--    <button class="butt" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-    <!--        Dropdown button-->
-    <!--    </button>-->
-    <!--</div>-->
-    <div class="container-fluid" id="gallery">
-        <div class="row">
-            <div class="col-2 col-lg-12"></div>
-            <div class="col-8 col-lg-3">
-                <div class="gallery_filters_form ml-auto mr-auto" style="max-width: 360px;">
-                    <form class="text-lg-left mt-2" id="gallery_filter_form" method="get"
-                          style="border-top: 1px solid black;"
-                          action="{% url 'gallery_filter' %}">
-                        {{ filter_form.search }}
-                        <input type="checkbox" id="brand_list" style="display: none">
-                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
-                               for="brand_list">Бренд</label>
-                        <div class="gallery_items_in_scroll_filter_menu">
-                            {{ filter_form.checkboxes_makers }}
-                        </div>
-                        <input type="checkbox" id="concentration_list" style="display: none">
-                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
-                               for="concentration_list">Концентрация</label>
-                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
-                            {{ filter_form.checkboxes_concentrations }}
-                        </div>
-                        <input type="checkbox" id="fragrance_list" style="display: none">
-                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
-                               for="fragrance_list">Ноты аромата</label>
-                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
-                            {{ filter_form.checkboxes_fragrances }}
-                        </div>
-                        <input type="checkbox" id="sex_list" style="display: none">
-                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
-                               for="sex_list">Категория</label>
-                        <div class="gallery_items_in_filter_menu" style="z-index: 999;">
-                            {{ filter_form.checkboxes_sex }}
-                        </div>
-                        <input type="checkbox" id="cost_list" style="display: none">
-                        <label class="gallery_drop_filter_menu gallery_drop_filter_menu_up_down col-md-12 pt-2"
-                               for="cost_list">Цена</label>
-                        <div class="gallery_items_in_filter_menu text-center pl-2 pr-2" style="z-index: 999;">
-                            {{ filter_form.cost_range }}
-                        </div>
-                        <input type="submit" id="submit_filter_form" placeholder="Submit">
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 col-lg-9">
+    <section id="gallery" class="pt-5 mb-4">
+        <h2 class="gallery_title">
+            КАТАЛОГ
+            <span>
+                Каталог
+            </span>
+        </h2>
+    </section>
+    <section id="gallery_filter">
+        <div class="gallery_toggle_block_for_filter">
+            <div class="gallery_catalog_white_top_line"><img src="{% static 'img/Полоска.png' %}"></div>
+            <h2 class="gallery_filter_title">
+                ФИЛЬТР
+            </h2>
+            <img class="gallery_filter_img" src="{% static 'img/filter-icon.png' %}">
+        </div>
+        <div class="gallery_block_for_filter">
+            <form class="text-lg-left mt-2" id="gallery_filter_form" method="get"
+                  action="{% url 'gallery_filter' %}">
                 <div class="container-fluid">
-                    <div class="row gallery_place_for_cards">
-                        {% for product in product_list|slice:":12" %}
-                            {% include 'landing/gallery_product.html' %}
+                    <div class="row">
+                        {% for filter in filter_form %}
+                            <div class="col-md-3">
+                                <p class="gallery_filter_title_for_list">{{ filter.help_text }}</p>
+                                <div class="gallery_items_in_scroll_filter_menu">
+                                    {{ filter }}
+                                </div>
+                            </div>
                         {% endfor %}
+                        <div class="col-md-12">
+                            <div class="mt-5 mb-3 gallery_filter_cost_block">
+                                <p class="gallery_filter_cost_block_title">Цена</p>
+                                {{ search_cost_form.cost_range }}
+                            </div>
+                            <div class="mt-2 gallery_filter_search_block">
+                                {{ search_cost_form.search }}
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-4 mb-3">
+                            <label id="gallery_filter_submit" for="gallery_filter_submit_input">Применить</label>
+                            <input type="submit" id="gallery_filter_submit_input" style="display: none;">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+        </div>
+    </section>
+    <div class="container-fluid" id="gallery">
+        <div class="row">
+            {% for product in product_list|slice:":12" %}
+                {% include 'landing/gallery_product.html' %}
+            {% endfor %}
         </div>
     </div>
-
 {% endblock %}

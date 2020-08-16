@@ -3,6 +3,10 @@ nav {
     background: linear-gradient(to right, #beaea4 65%, #d9ccc0 35%);
 }
 
+body{
+    background-color: #beada3;
+}
+
 .navbar_logo {
     max-width: 220px;
     margin-top: 1.5rem;
@@ -158,28 +162,6 @@ nav {
     opacity: 0.8;
 }
 
-#home_gallery {
-    background-color: #beada3;
-}
-
-.home_gallery_title {
-    font-family: 'hypatia_sans_pro';
-    color: #e6e0db;
-    position: relative;
-    font-size: 40pt;
-}
-
-.home_gallery_title span {
-    font-family: 'hello_january';
-    position: absolute;
-    top: 0;
-    left: 35px;
-    color: #92867a;
-    z-index: 1;
-    font-size: 48pt;
-    opacity: 0.8;
-}
-
 #home_question {
     background-color: #d8ccc0;
 }
@@ -313,13 +295,279 @@ footer {
 .footer_list_for_images li {
     display: inline;
 }
+
 .footer_list_for_images li img{
     max-width: 40px;
 }
-/*p {*/
-/*    font-size: 15pt;*/
-/*}*/
 
+#gallery {
+    background-color: #beada3;
+    text-align: center;
+}
+
+.gallery_toggle_block_for_filter {
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.gallery_catalog_white_bot_line, .gallery_catalog_white_top_line {
+    width: 100%;
+    height: 0;
+    position: relative;
+}
+
+.gallery_catalog_white_top_line {
+    top: -35px;
+}
+
+.gallery_catalog_white_bot_line {
+    top: 0;
+}
+
+.gallery_catalog_white_top_line img, .gallery_catalog_white_bot_line img {
+    width: 100%;
+}
+
+.gallery_title {
+    font-family: 'hypatia_sans_pro';
+    color: #e6e0db;
+    position: relative;
+    font-size: 40pt;
+    margin-bottom: 0;
+}
+
+.gallery_title span {
+    font-family: 'hello_january';
+    position: absolute;
+    top: 0;
+    left: 44%;
+    color: #92867a;
+    z-index: 1;
+    font-size: 48pt;
+    opacity: 0.8;
+}
+
+#gallery_filter{
+    background-color: #b09b90;
+    text-align: center;
+}
+
+.gallery_filter_title {
+    display: inline;
+    font-family: 'hypatia_sans_pro';
+    font-size: 19pt;
+    color: white;
+    opacity: 0.8;
+}
+
+.gallery_filter_img {
+    width: 44px;
+    position: relative;
+    top: -6px;
+}
+
+.gallery_block_for_filter {
+    display: none;
+    margin-bottom: 1.5rem;
+}
+
+.gallery_filter_list {
+    list-style-position: inside;
+    -moz-column-count: 4; /* Firefox */
+    -webkit-column-count: 4; /* Safari and Chrome */
+    column-count: 4;
+}
+
+.gallery_filter_title_for_list{
+    text-align: center;
+    color: white;
+    opacity: 0.8;
+    font-size: 16pt;
+}
+
+/*Меню с фильтром */
+
+.gallery_items_in_filter_menu li {
+    color: white;
+    opacity: 0.8;
+}
+
+.gallery_drop_filter_menu {
+    background: #f0f0f0;
+    width: 100%;
+    height: 31px;
+}
+
+.gallery_items_in_scroll_filter_menu {
+    height: 150px; /* высота нашего блока */
+    width: 75%;
+    font-size: 14pt;
+    overflow-y: scroll; /* прокрутка по вертикали */
+    color: white;
+}
+.gallery_items_in_scroll_filter_menu::-webkit-scrollbar-track {
+  border: 1px solid white;
+  padding: 2px 0;
+  background-color: white;
+}
+
+.gallery_items_in_scroll_filter_menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.gallery_items_in_scroll_filter_menu::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px #a3867a;
+  background-color: #a0897d;
+  border: 1px solid #a0897d;
+}
+.gallery_items_in_scroll_filter_menu li {
+    opacity: 0.8;
+}
+
+.gallery_filter_cost_block {
+    display: inline-block;
+    position: relative;
+    left: 20%;
+}
+
+.gallery_filter_cost_block_title {
+    color:white;
+    opacity: 0.8;
+    font-size: 16pt;
+}
+
+.gallery_filter_cost_range_1, .gallery_filter_cost_range_2 {
+    font-size: 14pt;
+    display:inline;
+    width: 35%;
+    border: 2px solid white;
+    background-color: #b09c90;
+    color: white;
+    opacity: 0.8;
+}
+
+.gallery_filter_cost_range_1:focus, .gallery_filter_cost_range_2:focus {
+    outline: none;
+}
+
+.gallery_filter_cost_range_1::placeholder, .gallery_filter_cost_range_2::placeholder {
+    color: white;
+    opacity: 0.8;
+}
+
+.gallery_filter_cost_range_1 {
+        margin-right: 2rem
+}
+
+.gallery_filter_search_block {
+    display: inline-block;
+    position: relative;
+    left: 35%;
+}
+
+#gallery_filter_submit {
+    cursor: pointer;
+    position: relative;
+    left: 70%;
+    border: 2px solid white;
+    background-color: #b09c90;
+    color: white;
+    opacity: 0.8;
+    width: 120px;
+    height: 30px;
+        text-align: center;
+    font-size: 14pt;
+
+}
+
+.gallery_filter_search_input {
+    border: 2px solid white;
+    background-color: #b09c90;
+    color: white;
+    opacity: 0.8;
+    font-size: 14pt;
+}
+
+.gallery_filter_search_input:focus {
+    outline: none;
+}
+
+.gallery_filter_search_input::placeholder {
+    color: #ebe1d9;
+    position: relative;
+    top:2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.gallery_place_for_card {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.gallery_card_body {
+    background-color: #beaea4;
+    border: none;
+    color: white;
+    font-family: 'hypatia_sans_pro';
+}
+
+.gallery_card_body:hover, .gallery_card_body:focus {
+    box-shadow: 0 0 3px white;
+    transition: 0.5s;
+}
+
+.gallery_card_body h1 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+    opacity: 0.6;
+    font-size: 12pt;
+}
+
+.gallery_card_body h2 {
+    opacity: 0.6;
+    font-size: 12pt;
+}
+
+.gallery_card_body .card-text {
+    font-size: 12pt;
+}
+
+
+.btn-for-product {
+    position: absolute;
+    bottom: 10px;
+    left: 74px;
+}
+
+.gallery_card_img {
+    max-width: 100%;
+}
+.gallery_card_button {
+    background-color: #beaea4;
+    border: 2px #ece3db solid;
+    color: white;
+    font-size: 14pt;
+    opacity: 0.8;
+    padding: 7px 10px 0 10px;
+}
+
+.gallery_card_button:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #c1a99b;
+    transition: 0.5s;
+}
 /*navbar last*/
 h2, h3 {
     font-family: 'antiqua';
@@ -855,44 +1103,6 @@ ul {
 .galleryCard {
     width: 50px;
 }
-
-.productCard {
-    display: contents;
-    width: 100px;
-}
-
-.cardforproduct:hover, .cardforproduct:focus {
-    box-shadow: 0 0 3px #5a6268;
-    transition: 0.5s;
-}
-
-.cardforproduct {
-    border: none;
-    width: 300px;
-}
-
-.cardforproduct h1 {
-    font-size: 16pt;
-}
-
-.cardforproduct .card-text {
-    font-size: 12pt;
-}
-
-.cardforproduct h2 {
-    font-size: 14pt;
-}
-
-.btn-for-product {
-    position: absolute;
-    bottom: 10px;
-    left: 74px;
-}
-
-.img-card {
-    max-width: 250px;
-}
-
 /* конец секции карточек */
 /* product.html */
 .product_block_for_images {
@@ -999,20 +1209,6 @@ ul.leaders li:after {
     border-radius: 5px;
 }
 
-.gallery_search_input {
-    border-radius: 6px;
-    border-color: #f0f0f0;
-}
-
-.gallery_search_input:focus {
-    outline: none;
-}
-
-.gallery_search_input::after {
-    position: absolute;
-    left: 10px;
-    content: 'hel';
-}
 
 /*checkboxstyle*/
 /*
@@ -1062,45 +1258,6 @@ ul.leaders li:after {
     background-color: #e9ecef;
 }
 */
-/*Меню с фильтром */
-.gallery_items_in_filter_menu {
-    display: none;
-}
 
-.gallery_drop_filter_menu {
-    background: #f0f0f0;
-    width: 100%;
-    height: 31px;
-}
-
-.gallery_drop_filter_menu:after, .gallery_drop_filter_menu:before {
-    position: absolute;
-    top: 17px;
-    right: 9px;
-    content: '';
-    height: 2px;
-    width: 23px;
-    opacity: 0.3;
-    background-color: rgba(148, 148, 148, 0.51);
-    transition: 0.3s;
-}
-
-.gallery_drop_filter_menu_up_down:before {
-    transform: rotate(90deg);
-}
-
-.gallery_drop_filter_menu:hover::after, .gallery_drop_filter_menu:hover::before {
-    opacity: 1;
-}
-
-.gallery_items_in_scroll_filter_menu {
-    display: none;
-    height: 150px; /* высота нашего блока */
-    width: 100%;
-    /*background: #fff; !* цвет фона, белый *!*/
-    border: 1px solid rgba(227, 227, 227, 0.53); /* размер и цвет границы блока */
-    overflow-x: scroll; /* прокрутка по горизонтали */
-    overflow-y: scroll; /* прокрутка по вертикали */
-}
 
 /*end of gallery.html*/

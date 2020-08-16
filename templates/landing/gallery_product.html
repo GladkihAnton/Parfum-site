@@ -1,20 +1,21 @@
-<div class="col-12 col-md-4 col-lg-4 col-xl-3 p-0 m-0 galleryCard">
-    <a href="{% url 'product' product.id %}">
-        <div class="card text-center cardforproduct m-auto">
+<div class="col-12 col-md-4 col-lg-3 col-xl-3 pb-1 gallery_place_for_card">
+        <div class="card text-center gallery_card_body pb-1">
             {% if product.productimage_set.all %}
                 <div class="card-img-top">
-                    <img class="img-card" src="/media/{{product.productimage_set.first}}">
+                    <img class="gallery_card_img" src="/media/{{product.productimage_set.first}}">
                 </div>
             {% else %}
                 <div class="card-img-top">
-                    <img class="img-card" src="/static/img/No_foto.png">
+                    <img class="gallery_card_img" src="/static/img/No_foto.png">
                 </div>
             {% endif %}
-            <div class="card-body">
-                <div class="card-title"><h1>{{ product.name }}</h1></div>
-                <div class="card-text">{{ product.description }}</div>
-                <div class="card-text"><h2>{{ product.cost }} р.</h2></div>
+            <div class="card-body text-center p-0 m-0">
+                <div class="card-title m-0"><h1>{{ product.name }}</h1></div>
+                <div class="card-text m-0"><h2>{{ product.cost }} рублей</h2></div>
+            </div>
+            <div class="card-body text-center">
+                <a type="button" href="{% url 'product' product.id %}" class="gallery_card_button">ПОДРОБНЕЕ</a>
             </div>
         </div>
-    </a>
 </div>
+{#<a href="{% url 'product' product.id %}">#}

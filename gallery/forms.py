@@ -7,13 +7,13 @@ class MyMultiWidget(forms.widgets.MultiWidget):
         _widgets = (
             forms.widgets.NumberInput(
                 attrs={
-                    'style': 'display:inline; width: 40%; margin-right: 2rem',
+                    'class': 'gallery_filter_cost_range_1',
                     'placeholder': 'От 500р',
                 }
             ),
             forms.widgets.NumberInput(
                 attrs={
-                    'style': 'display:inline; width: 40%',
+                    'class': 'gallery_filter_cost_range_2',
                     'placeholder': 'До 10000р'
                 }
             ),
@@ -40,15 +40,8 @@ class MyMultiValueField(forms.MultiValueField):
 
 
 class FiltersForm(forms.Form):
-    search = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={
-            'class': 'gallery_search_input',
-            'value': '',
-            'placeholder': 'Search',
-            'autofocus': 'true',
-        }
-    ))
     checkboxes_concentrations = forms.ModelMultipleChoiceField(
+        help_text='КОНЦЕНТРАЦИЯ',
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 'checked': 'true',
@@ -60,6 +53,7 @@ class FiltersForm(forms.Form):
     )
 
     checkboxes_makers = forms.ModelMultipleChoiceField(
+        help_text='БРЕНД',
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 'checked': 'true',
@@ -71,6 +65,7 @@ class FiltersForm(forms.Form):
     )
 
     checkboxes_fragrances = forms.ModelMultipleChoiceField(
+        help_text='НОТЫ АРОМАТА',
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 'checked': 'true',
@@ -86,6 +81,7 @@ class FiltersForm(forms.Form):
         ('Женский', 'Женский'),
     ]
     checkboxes_sex = forms.MultipleChoiceField(
+        help_text='ПОЛ',
         required=False,
         widget=forms.CheckboxSelectMultiple(
             attrs={
@@ -95,6 +91,17 @@ class FiltersForm(forms.Form):
         ),
         choices=SEX_CHOICES,
     )
+
+
+class SearchCostForm(forms.Form):
+    search = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'gallery_filter_search_input',
+            'value': '',
+            'placeholder': 'Поиск ароматов',
+            'autofocus': 'true',
+        }
+    ))
     cost_range = MyMultiValueField()
 
 

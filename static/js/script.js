@@ -230,6 +230,10 @@ if ($('#main').length > 0) {
 }
 //filter and checkboxs in gallery
 if ($('#gallery').length > 0) {
+    const toggle_filters_menu = $('.gallery_toggle_block_for_filter');
+    toggle_filters_menu.on('click', function () {
+        $('.gallery_block_for_filter').toggle('normal');
+    });
     const append_new_cards_to_html = function (data, place_for_card) {
         $.each(data, function (k, v) {
             place_for_card.append(

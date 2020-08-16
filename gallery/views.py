@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.generic import ListView
 
 from .business_logic import *
-from .forms import FiltersForm
+from .forms import FiltersForm, SearchCostForm
 
 
 class GalleryDisplay(ListView):
@@ -14,6 +14,7 @@ class GalleryDisplay(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = FiltersForm
+        context['search_cost_form'] = SearchCostForm
         return context
 
 
