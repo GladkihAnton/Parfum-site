@@ -17,8 +17,14 @@
 }
 @font-face {
     font-family: 'hypatia_sans_pro';
-    src: url('HypatiaSansPro-Bold.otf') format('truetype');
+    src: url('HypatiaSansPro-Light.otf') format('truetype');
     font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'hypatia_sans_pro';
+    src: url('HypatiaSansPro-Bold.otf') format('truetype');
+    font-weight: bold;
     font-style: normal;
 }
 @font-face {

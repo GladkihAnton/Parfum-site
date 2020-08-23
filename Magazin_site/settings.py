@@ -6,7 +6,7 @@ SECRET_KEY = '$++#wk@+!6uu)wutmh-y+t(tsg83t7s3)nyk_-7671d=2a50yw'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://360427142812.ngrok.io', '127.0.0.1', '111.222.333.44']
 # docker
 # SECRET_KEY = os.environ.get("SECRET_KEY")
 #

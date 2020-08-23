@@ -1,37 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="container mt-5" id="page_for_product">
-        <div class="row">
-            <div class="col-md-5">
-            {% if product.productimage_set.all.count == 0 %}
-                                <img src="{% static 'img/No_foto.png'%}" alt="" class="img-fluid w-50">
-            {% elif product.productimage_set.all.count == 1 %}
-                <img src="{% get_media_prefix %}{{product.productimage_set.first}}" alt="" class="temp_img">
-            {% else %}
-                <div class="product_block_for_images">
-                    <div class="product_slide_image_left"><img src=""></div>
-                    {% for image in product.productimage_set.all %}
-                        <img src="{% get_media_prefix %}{{image}}" alt="" class="temp_img product_image_in_block">
-                        <div class="product_circle_block"></div>
-                    {% endfor %}
-                <div class="product_slide_image_right"></div>
-                </div>
-            {% endif %}
+    <section id="product">
+        <div class="container pt-5 pb-5">
+            <div class="row">
+                <div class="col-md-5 pt-4">
+                {% if product.productimage_set.all.count == 0 %}
+                                    <img src="{% static 'img/No_foto.png'%}" alt="" class="img-fluid w-50">
+                {% elif product.productimage_set.all.count == 1 %}
+                    <img src="{% get_media_prefix %}{{product.productimage_set.first}}" alt="" class="product_image_in_block">
+                {% else %}
+                    <div class="product_block_for_images">
+                        <div class="product_slide_image_left"><img src=""></div>
+                        {% for image in product.productimage_set.all %}
+                            <img src="{% get_media_prefix %}{{image}}" alt="" class="product_image_in_block">
+                            <div class="product_circle_block"></div>
+                        {% endfor %}
+                    <div class="product_slide_image_right"></div>
+                    </div>
+                {% endif %}
 
-            </div>
-            <div class="col-md-7" style="font-family: 'gothic';">
-                <p class="mb-3 text-right" style="font-size: 17pt;">{{ product.name }}</p>
-                <h5 class="mb-3 text-right" style="font-size: 20pt;">{{ product.cost }}<img style="max-height: 16pt;margin-left: 4px;" alt="" src="{% static 'img/kisspng-currency-symbol-ruble-sign-clip-art-rubles-5b14da375e98b1.2067183115280932393875.png' %}"> </h5>
-                <ul class="leaders" style=" color: #615e63">
-                    <li><span>Производитель</span><span>{{ product.maker }}</span></li>
-                    <li><span>Страна</span><span>{{ product.country }}</span></li>
-                    <li><span>Год создания</span><span>{{ product.year_of_release }}</span></li>
-                    <li><span>Пол</span><span>{{ product.sex }}</span></li>
-                    <li><span>Семейство аромата</span><span>{{ product.fragrance_family }}</span></li>
-                    <li><span>Концентрация</span><span>{{product.concentration}}</span></li>
-                </ul>
+                </div>
+                <div class="col-md-7 text-left pt-3">
+                    <p class="product_title">{{ product.name }}
+                    </p>
+                    <p class="product_title_maker">{{ product.maker }}</p>
+                    <p class="product_cost">{{ product.cost }} рублей</p>
+                    <p class="product_volume mb-5">
+                    Доступные объемы: <br>
+                    {% for item in product.volume.all %}
+                        <span>{{ item }} мл; </span>
+                    {% endfor %}
+                    </p>
+                    <p class="product_description">Производитель: {{ product.maker }}</p>
+                    <p class="product_description">Страна: {{ product.country }}</p>
+                    <p class="product_description">Год создания: {{ product.year_of_release }}</p>
+                    <p class="product_description">Пол: {{ product.sex }}</p>
+                    <p class="product_description">Семейство ароматов: {{ product.fragrance_family }}</p>
+                    <p class="product_description">Концентрация: {{ product.concentration }}</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}
+
+{#<div class="col-md-7" style="font-family: 'gothic';">#}
+{#                <p class="mb-3 text-right" style="font-size: 17pt;">{{ product.name }}</p>#}
+{#                <h5 class="mb-3 text-right" style="font-size: 20pt;">{{ product.cost }}<img style="max-height: 16pt;margin-left: 4px;" alt="" src="{% static 'img/kisspng-currency-symbol-ruble-sign-clip-art-rubles-5b14da375e98b1.2067183115280932393875.png' %}"> </h5>#}
+{#                <ul class="leaders" style=" color: #615e63">#}
+{#                    <li><span>Производитель</span><span>{{ product.maker }}</span></li>#}
+{#                    <li><span>Страна</span><span>{{ product.country }}</span></li>#}
+{#                    <li><span>Год создания</span><span>{{ product.year_of_release }}</span></li>#}
+{#                    <li><span>Пол</span><span>{{ product.sex }}</span></li>#}
+{#                    <li><span>Семейство аромата</span><span>{{ product.fragrance_family }}</span></li>#}
+{#                    <li><span>Концентрация</span><span>{{product.concentration}}</span></li>#}
+{#                </ul>#}
+{#            </div>#}

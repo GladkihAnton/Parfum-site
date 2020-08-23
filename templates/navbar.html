@@ -1,18 +1,18 @@
 {% load static %}
 <nav class="container-fluid">
     <div class="row">
-        <div class="col-3 pl-5">
+        <div class="col-12 col-sm-3 pl-5">
             <img class="navbar_logo" src="{% static 'img/Logo_white.png' %}">
         </div>
-        <div class="col-6 mt-5">
+        <div class="col-12 col-sm-6 mt-5">
             <ul class="navbar_list_of_navigations">
                 <li><a href="/">Главная</a></li>
-                <li>О нас</li>
+                <li><a href="/#home_about">О нас</a></li>
                 <li><a href="/gallery">Каталог</a></li>
-                <li>Контакты</li>
+                <li><a href="/#home_contacts">Контакты</a></li>
             </ul>
         </div>
-        <div class="col-3 text-right pr-5">
+        <div class="col-12 col-sm-3 text-right pr-5">
             <div class="mt-3 navbar_block_for_social_imgs">
                 <img class="navbar_social_img" src="{% static 'img/Loop_navbar.png' %}">
                 <img class="navbar_social_img" src="{% static 'img/telega_navbar.png' %}">

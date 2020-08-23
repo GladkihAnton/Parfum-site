@@ -1,11 +1,19 @@
 from django.contrib import admin
 
-from .models import Product, ProductImage, ConcentrationOfProduct, FragranceFamilyOfProduct, MakerOfProduct
+from .models import Product, ProductImage, ConcentrationOfProduct, FragranceFamilyOfProduct, MakerOfProduct, VolumeOfProduct
 
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 0
+
+
+@admin.register(VolumeOfProduct)
+class VolumeOfProductAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in VolumeOfProduct._meta.fields]
+
+    class Meta:
+        model = VolumeOfProduct
 
 
 @admin.register(ConcentrationOfProduct)

@@ -4,12 +4,12 @@
 {#    <div class="home_dark_top_left_background"></div>#}
 {#    <div class="home_light_top_right_background"></div>#}
     <section id="home_catalog" class="pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-5">
+        <div class="container-fluid">
+            <div class="row pl-3">
+                <div class="col-5 pl-5 text-center">
                     <p class="home_catalog_text">В нашем бутике имеется
                         уникальный выбор ароматов на любой вкус</p>
-                    <button class="home_catalog_button">КАТАЛОГ</button>
+                    <a type="button" href="/gallery" class="home_catalog_button">КАТАЛОГ</a>
                 </div>
                 <div class="col-7">
                     <img class="home_catalog_img" src="{% static 'img/temp_first_img.jpg' %}">
@@ -41,7 +41,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-5 pl-0">
-                    <img class="w-100" src="{% static 'img/temp_second_img.jpg' %}">
+                    <img class="w-100" src="{% static 'img/IMG_1392.jpg' %}">
                 </div>
                 <div class="col-7 pt-5 pr-5">
                     <h2 class="text-right home_our_advantages_title">
@@ -74,6 +74,7 @@
             </div>
         </div>
     </section>
+    <div class="home_question_white_line"><img class="w-100" src="{% static 'img/Полоска.png' %}"></div>
     <section id="home_question" class="p-5 text-center">
         <h2 class="home_question_title">
             ВОЗНИКЛИ ВОПРОСЫ? НАПИШИ НАМ
@@ -82,12 +83,12 @@
             </span>
         </h2>
         <form class="mt-5">
-            <input class="home_question_input_text" type="text" placeholder="Задайте ваш вопрос">
+            <input class="home_question_input_text" type="text" placeholder="В данный момент не работает">
             <input type="submit">
         </form>
     </section>
     <section id="home_contacts">
-        <div class="p-5 mt-5 home_contacts_block_for_info">
+        <div class="p-4 p-xl-5 mt-5 home_contacts_block_for_info">
             <h2 class="text-center home_contacts_title">
                 КОНТАКТЫ
                 <span>

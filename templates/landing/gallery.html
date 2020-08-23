@@ -48,11 +48,14 @@
             </form>
         </div>
     </section>
-    <div class="container-fluid" id="gallery">
+    <div class="container-fluid" id="gallery_card_block">
         <div class="row">
             {% for product in product_list|slice:":12" %}
                 {% include 'landing/gallery_product.html' %}
             {% endfor %}
+        </div>
+        <div class="w-10 text-center">
+            <button class="gallery_upload_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще</button>
         </div>
     </div>
 {% endblock %}

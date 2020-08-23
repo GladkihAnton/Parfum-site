@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class VolumeOfProduct(models.Model):
+    name = models.SmallIntegerField(blank=True, null=True, default=None)
+
+    def __str__(self):
+        return "%s" % self.name
+
+    class Meta:
+        verbose_name = "Объем"
+        verbose_name_plural = "Объемы"
+
+
 class ConcentrationOfProduct(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -48,6 +59,7 @@ class Product(models.Model):
     year_of_release = models.PositiveSmallIntegerField(blank=True, null=True, default=None)
     fragrance_family = models.ForeignKey(FragranceFamilyOfProduct, blank=True, null=True, default=None,
                                          on_delete=models.PROTECT)
+    volume = models.ManyToManyField(VolumeOfProduct)
     sex = models.CharField(max_length=16, blank=True, null=True, default=None)
     concentration = models.ForeignKey(ConcentrationOfProduct, blank=True, null=True, default=None,
                                       on_delete=models.PROTECT)
