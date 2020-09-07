@@ -1,4 +1,7 @@
 /* navbar new*/
+ul li {
+    list-style: none;
+}
 nav {
     background: linear-gradient(to right, #beaea4 65%, #d9ccc0 35%);
 }
