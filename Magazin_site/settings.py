@@ -67,6 +67,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+#asdasdas
 
 AUTH_PASSWORD_VALIDATORS = [
     {
