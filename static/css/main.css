@@ -86,6 +86,12 @@ body {
     }
 }
 
+@media(max-width: 1300px) {
+        .navbar_info {
+            font-size: 11pt;
+        }
+}
+
 @media (max-width: 1024px) {
     .navbar_list_of_navigations {
         font-size: 16pt;
