@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% if request.user_agent.is_mobile %}
+        <section id="gallery" class="pt-5 mb-4">
+            <h2 class="gallery_title">
+                КАТАЛОГ
+                <span>
+                Каталог
+            </span>
+            </h2>
+        </section>
+        <section id="gallery_filter">
+            <div class="gallery_toggle_block_for_filter">
+                <div class="gallery_catalog_white_top_line"><img src="{% static 'img/Полоска.png' %}"></div>
+                <h2 class="gallery_filter_title">
+                    ФИЛЬТР
+                </h2>
+                <img class="gallery_filter_img" src="{% static 'img/filter-icon.png' %}">
+            </div>
+            <div class="gallery_mobile_block_for_filter">
+                <span class="gallery_close"></span>
+                <form class="text-lg-left mt-5" id="gallery_filter_form" method="post"
+                      action="{% url 'gallery_update_content' %}"> {% csrf_token %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="mt-5 gallery_filter_search_block mobile w-100">
+                                {{ search_cost_form.search }}
+                            </div>
+                            {% for filter in filter_form %}
+                                {% if filter.name != 'maker_search' %}
+                                    <div class="col-12 mt-4">
+                                        <p class="gallery_filter_title_for_list mobile">{{ filter.help_text }}</p>
+                                        <div class="gallery_items_in_scroll_filter_menu mobile {% if filter.name == 'checkboxes_makers' %}gallery_filter_makers{% endif %}">
+                                            {{ filter }}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="col-12 mt-4 w-100 mobile">
+                                        {{ filter }}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            <div class="col-md-12">
+                                <div class="mt-5 mb-3 gallery_filter_cost_block mobile">
+                                    <p class="gallery_filter_cost_block_title mobile">ЦЕНА</p>
+                                    {{ search_cost_form.cost_range }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4 mb-3 text-center mobile">
+                                <label id="gallery_filter_submit" for="gallery_filter_submit_input">Применить</label>
+                                <input type="submit" id="gallery_filter_submit_input" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <div class="container-fluid text-center" id="gallery_card_block">
+            <div class="row">
+                {% for product in product_list|slice:":12" %}
+                    {% include 'home/gallery_product.html' %}
+                {% endfor %}
+            </div>
+            <div class="spinner-border mt-1 mb-1" role="status"></div>
+            <div class="w-10 text-center">
+                <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще
+                </button>
+            </div>
+        </div>
+    {% else %}
+        <section id="gallery" class="pt-5 mb-4">
+            <h2 class="gallery_title">
+                КАТАЛОГ
+                <span>
+                Каталог
+            </span>
+            </h2>
+        </section>
+        <section id="gallery_filter">
+            <div class="gallery_toggle_block_for_filter">
+                <div class="gallery_catalog_white_top_line"><img src="{% static 'img/Полоска.png' %}"></div>
+                <h2 class="gallery_filter_title">
+                    ФИЛЬТР
+                </h2>
+                <img class="gallery_filter_img" src="{% static 'img/filter-icon.png' %}">
+            </div>
+            <div class="gallery_block_for_filter">
+                <form class="text-lg-left mt-2" id="gallery_filter_form" method="post"
+                      action="{% url 'gallery_update_content' %}"> {% csrf_token %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% for filter in filter_form %}
+                                <div class="col-md-3">
+                                    <p class="gallery_filter_title_for_list">{{ filter.help_text }}</p>
+                                    <div class="gallery_items_in_scroll_filter_menu">
+                                        {{ filter }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-md-12">
+                                <div class="mt-5 mb-3 gallery_filter_cost_block">
+                                    <p class="gallery_filter_cost_block_title">Цена</p>
+                                    {{ search_cost_form.cost_range }}
+                                </div>
+                                <div class="mt-2 gallery_filter_search_block">
+                                    {{ search_cost_form.search }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-4 mb-3">
+                                <label id="gallery_filter_submit" for="gallery_filter_submit_input">Применить</label>
+                                <input type="submit" id="gallery_filter_submit_input" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <div class="container-fluid" id="gallery_card_block">
+            <div class="row">
+                {% for product in product_list|slice:":12" %}
+                    {% include 'home/gallery_product.html' %}
+                {% endfor %}
+            </div>
+            <div class="w-10 text-center">
+                <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще
+                </button>
+            </div>
+        </div>
+        <form action="{% url 'upload_csv' %}" id="upload_csv" enctype="multipart/form-data"> {% csrf_token %}
+            <input type="file" name="file" id="file">
+            <button type="submit">click me</button>
+        </form>
+    {% endif %}
+{% endblock %}

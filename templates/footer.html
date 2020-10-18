@@ -1,26 +1,62 @@
 {% load static %}
-<footer class="container-fluid">
-    <div class="row">
-       <div class="col-lg-3 pl-5 pt-4 text-left footer_left_info">
-           <p>+7(911)947-64-94</p>
-           <p>Ежедневно с 11:00 до 20:00</p>
+{% if request.user_agent.is_mobile %}
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 pl-5 pt-4 text-left footer_left_info">
+                <p>Магазин:</p>
+                <ul class="footer_mobile_navigation_list">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/#home_about">О нас</a></li>
+                    <li><a href="/gallery">Каталог</a></li>
+                    <li><a href="/#home_contacts">Контакты</a></li>
+                </ul>
+                <p>ЧАСЫ РАБОТЫ:</p>
+                <p>Ежедневно с 11:00 до 20:00</p>
+            </div>
+            <div class="col-12 text-center">
+                <ul class="footer_mobile_list_for_images">
+                    <li class=""><a href="#"><img src="{% static 'img/viber-footer.png' %}"></a></li>
+                    <li class=""><a href="#"><img src="{% static 'img/whatsup-footer.png' %}"></a></li>
+                    <li class=""><a href="#"><img src="{% static 'img/telega_footer.png' %}"></a></li>
+                    <li class=""><a href="#"><img src="{% static 'img/Inst_footer.png' %}"></a></li>
+                </ul>
+            </div>
+            <div>
+                <ul class="home_contacts_info_list">
+                    <li><span>Адрес: </span><span>г. Санкт-Петербург, Трамвайный проспект (ТЦ Старая Нарва)</span></li>
+                    <li><span>Метро: </span><span>Ленинский проспект</span></li>
+                    <li><span>Режим работы: </span><span>Пн-вс, 11:00-20:00</span></li>
+                    <li><span>Телефон: </span><span>+7(911)947-64-94</span></li>
+                    <li><span>E-mail: </span><span>narva56@yandex.ru</span></li>
+                </ul>
+            </div>
+{#            <p>г. Санкт-Петербург, Трамвайный проспект (ТЦ Старая Нарва)</p>#}
         </div>
-        <div class="col-lg-6 text-center mt-3">
-            <p><img class="footer_logo" src="{% static 'img/Logo_white.png' %}"></p>
-            <ul class="footer_navigation_list mt-4">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li><a href="/#home_about">О НАС</a></li>
-                <li><a href="/gallery">КАТАЛОГ</a></li>
-                <li><a href="/#home_contacts">КОНТАКТЫ</a></li>
-            </ul>
+    </footer>
+{% else %}
+    <footer class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 pl-5 pt-4 text-left footer_left_info">
+                <p>+7(911)947-64-94</p>
+                <p>Ежедневно с 11:00 до 20:00</p>
+            </div>
+            <div class="col-lg-6 text-center mt-3">
+                <p><img class="footer_logo" src="{% static 'img/Logo_white.png' %}"></p>
+                <ul class="footer_navigation_list mt-4">
+                    <li><a href="/">ГЛАВНАЯ</a></li>
+                    <li><a href="/#home_about">О НАС</a></li>
+                    <li><a href="/gallery">КАТАЛОГ</a></li>
+                    <li><a href="/#home_contacts">КОНТАКТЫ</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 text-center pt-5">
+                <ul class="footer_list_for_images">
+                    <li class="mt-3"><a href="#"><img src="{% static 'img/viber-footer.png' %}"></a></li>
+                    <li class="mt-3"><a href="#"><img src="{% static 'img/whatsup-footer.png' %}"></a></li>
+                    <li class="mt-3"><a href="#"><img src="{% static 'img/telega_footer.png' %}"></a></li>
+                    <li class="mt-3"><a href="#"><img src="{% static 'img/Inst_footer.png' %}"></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="col-lg-3 text-center pt-5">
-            <ul class="footer_list_for_images">
-                <li class="mt-3"><a href="#"><img src="{% static 'img/viber-footer.png' %}"></a></li>
-                <li class="mt-3"><a href="#"><img src="{% static 'img/whatsup-footer.png' %}"></a></li>
-                <li class="mt-3"><a href="#"><img src="{% static 'img/telega_footer.png' %}"></a></li>
-                <li class="mt-3"><a href="#"><img src="{% static 'img/Inst_footer.png' %}"></a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+    </footer>
+{% endif %}

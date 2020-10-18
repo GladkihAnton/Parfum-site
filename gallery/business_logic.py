@@ -20,7 +20,7 @@ def create_return_dict(products: QuerySet):
 
 def queryset_of_filtered_products(data: QueryDict):
     try:
-        start = int(data.get("quantity"))-1
+        start = int(data.get("quantity"))
     except TypeError:
         start = 0
 
@@ -30,24 +30,14 @@ def queryset_of_filtered_products(data: QueryDict):
     checkboxes_sex_list = data.getlist('checkboxes_sex')
     checkboxes_fragrances_list = data.getlist('checkboxes_fragrances')
     min_cost, max_cost = data.get('cost_range_0'), data.get('cost_range_1')
-    print(search)
-    print(checkboxes_concentrations_list)
-    print(checkboxes_makers_list)
-    print(checkboxes_fragrances_list)
-    print(checkboxes_sex_list)
-    print(start)
     if min_cost == '':
         min_cost = 0
     if max_cost == '':
         max_cost = 100000
     cost_range = (min_cost, max_cost)
-    print(cost_range)
-    products_on_page = Product.objects.filter(name__icontains=search,
+    products_on_page = Product.objects.filter(fragrance_family__name__in=checkboxes_fragrances_list).filter(
+                                              sex__name__in=checkboxes_sex_list,
+                                              cost__range=cost_range, name__icontains=search,
                                               concentration__name__in=checkboxes_concentrations_list,
-                                              maker__name__in=checkboxes_makers_list,
-                                              fragrance_family__name__in=checkboxes_fragrances_list,
-                                              sex__in=checkboxes_sex_list,
-                                              cost__range=cost_range)[start:start+12]
-    print(products_on_page)
-    return_dict = create_return_dict(products_on_page)
-    return return_dict
+                                              maker__name__in=checkboxes_makers_list).distinct()[start:start+12]
+    return create_return_dict(products_on_page)

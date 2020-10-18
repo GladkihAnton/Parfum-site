@@ -1,12 +1,15 @@
 import csv
+import logging
 import re
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.views.generic import DetailView
 
 from Magazin_site import settings
-from .models import Product, ConcentrationOfProduct, ProductImage
+from .models import Product, ConcentrationOfProduct, ProductImage, MakerOfProduct, VolumeOfProduct, \
+    FragranceFamilyOfProduct, SexOfProduct
 
+logger = logging.getLogger('products')
 
 class ProductDetail(DetailView):
     model = Product
@@ -14,36 +17,44 @@ class ProductDetail(DetailView):
 
 
 def upload_csv(request: HttpRequest):
-    types = dict()
-    types['edt'] = 'Туалетная вода'
-    types['joy'] = 'Туалетная вода'
-    types['edp'] = 'Парфюмерная вода'
-    types['edc'] = 'Одеколон'
-    types['lotion'] = 'Лосьон для тела'
-    types['parfum'] = 'Духи'
-    types['deo stick'] = 'Парфюмерный дезодорант'
-    types['deo'] = 'Дезодорант-Спрей'
-    types['after shave'] = 'Лосьон после бритья'
-    types['gel'] = 'Гель для душа'
+    logger.debug('start saving')
     path_to_file = settings.MEDIA_ROOT + '/file.csv'
-    with open(path_to_file, 'wb+') as file:
-        for chunk in request.FILES['file'].chunks():
-            file.write(chunk)
-    with open(path_to_file, 'r', encoding='utf-8', errors='ignore') as file:
-        temp = csv.reader(file, delimiter=';')
-        pattern = r'(\d+).'
-        for row in temp:
-            for kind in types.keys():
-                if kind in row[2].lower():
-                    product = Product()
-                    image, created = ProductImage.objects.get_or_create()
-                    type_of_product, created = ConcentrationOfProduct.objects.get_or_create(name=types[kind])
-                    type_of_product.save(force_update=True)
-                    product.type = type_of_product
-                    product.name = row[2].replace(kind, '').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ')
-                    product.description = ''
-                    product.cost = int(re.findall(pattern, row[3])[0])
+    with open(path_to_file, 'wb+') as file1:
+        temp = request.FILES['file']
+        for chunk in temp.chunks():
+            file1.write(chunk)
+        logger.debug('finish saving')
+        with open(path_to_file) as file2:
+            opened_file = csv.reader(file2, delimiter=';', quotechar='"')
+            for index, item in enumerate(opened_file):
+                if index == 0:
+                    continue
+                logger.debug(index)
+                maker_to_add, created = MakerOfProduct.objects.get_or_create(name=item[1].strip())
+                logger.debug(maker_to_add)
 
-                    product.save()
-                    break
-    return HttpResponse(202)
+                concentration_to_add, created = ConcentrationOfProduct.objects.get_or_create(name=item[3].strip())
+                logger.debug(concentration_to_add)
+
+                volume_to_add, created = VolumeOfProduct.objects.get_or_create(name=item[5].strip().capitalize())
+                logger.debug(volume_to_add)
+                sex_to_add, created = SexOfProduct.objects.get_or_create(name=item[4].strip().capitalize())
+                logger.debug(sex_to_add)
+
+                costs_to_add = int(item[7].strip())
+                logger.debug(costs_to_add)
+
+                product = Product()
+                logger.debug('done')
+
+                product.name = item[2].strip()
+                product.maker = maker_to_add
+                product.volume = volume_to_add
+
+                product.concentration = concentration_to_add
+                product.sex = sex_to_add
+
+                product.cost = costs_to_add
+                product.save()
+
+    return JsonResponse({})

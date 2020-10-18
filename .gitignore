@@ -4,3 +4,5 @@ db.sqlite3
 staticRoot
 media
 .DS_Store
+/media/
+mediafile.csv

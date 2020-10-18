@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% if request.user_agent.is_mobile %}
+        {% include 'home/home_mobile.html' %}
+    {% else %}
+        {% include 'home/home_pc.html' %}
+    {% endif %}
+{% endblock content %}

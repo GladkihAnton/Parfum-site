@@ -1,5 +1,5 @@
 from django import forms
-from products.models import MakerOfProduct, ConcentrationOfProduct, FragranceFamilyOfProduct
+from products.models import MakerOfProduct, ConcentrationOfProduct, FragranceFamilyOfProduct, SexOfProduct
 
 
 class MyMultiWidget(forms.widgets.MultiWidget):
@@ -40,18 +40,6 @@ class MyMultiValueField(forms.MultiValueField):
 
 
 class FiltersForm(forms.Form):
-    checkboxes_concentrations = forms.ModelMultipleChoiceField(
-        help_text='КОНЦЕНТРАЦИЯ',
-        widget=forms.CheckboxSelectMultiple(
-            attrs={
-                'checked': 'true',
-                'class': 'mt-2',
-            }
-        ),
-        queryset=ConcentrationOfProduct.objects.all(),
-        to_field_name='name'
-    )
-
     checkboxes_makers = forms.ModelMultipleChoiceField(
         help_text='БРЕНД',
         widget=forms.CheckboxSelectMultiple(
@@ -61,6 +49,28 @@ class FiltersForm(forms.Form):
             }
         ),
         queryset=MakerOfProduct.objects.all(),
+        to_field_name='name'
+    )
+
+    maker_search = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'gallery_filter_maker_search',
+                'value': '',
+                'placeholder': 'Поиск производителей...',
+            }
+        ))
+
+    checkboxes_concentrations = forms.ModelMultipleChoiceField(
+        help_text='КОНЦЕНТРАЦИЯ',
+        widget=forms.CheckboxSelectMultiple(
+            attrs={
+                'checked': 'true',
+                'class': 'mt-2',
+            }
+        ),
+        queryset=ConcentrationOfProduct.objects.all(),
         to_field_name='name'
     )
 
@@ -76,20 +86,16 @@ class FiltersForm(forms.Form):
         to_field_name='name'
     )
 
-    SEX_CHOICES = [
-        ('Мужской', 'Мужской'),
-        ('Женский', 'Женский'),
-    ]
-    checkboxes_sex = forms.MultipleChoiceField(
+    checkboxes_sex = forms.ModelMultipleChoiceField(
         help_text='ПОЛ',
-        required=False,
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 'checked': 'true',
-                'class': 'mt-2'
+                'class': 'mt-2',
             }
         ),
-        choices=SEX_CHOICES,
+        queryset=SexOfProduct.objects.all(),
+        to_field_name='name'
     )
 
 
@@ -98,10 +104,8 @@ class SearchCostForm(forms.Form):
         attrs={
             'class': 'gallery_filter_search_input',
             'value': '',
-            'placeholder': 'Поиск ароматов',
+            'placeholder': 'Поиск ароматов...',
             'autofocus': 'true',
         }
     ))
     cost_range = MyMultiValueField()
-
-
