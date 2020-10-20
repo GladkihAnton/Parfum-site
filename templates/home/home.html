@@ -79,7 +79,8 @@
         </h2>
         <form class="mt-5">
             <input class="home_question_input_text" type="text" placeholder="В данный момент не работает">
-            <input type="submit">
+{#            <input type="submit">#}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Open modal for @getbootstrap</button>
         </form>
     </section>
     <section id="home_contacts">
@@ -98,5 +99,9 @@
                 <li><span>E-mail: </span><span>narva56@yandex.ru</span></li>
             </ul>
         </div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2003.741765450806!2d30.266107315761197!3d59.85342867593205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeeac072523%3A0xcb3651fbfefe6aca!2z0KLRgNCw0LzQstCw0LnQvdGL0Lkg0L_RgC4sIDE3INC60L7RgNC_0YPRgSAyLCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQsywgMTk4MjE2!5e0!3m2!1sru!2sru!4v1600004297316!5m2!1sru!2sru" frameborder="0" style="width:100vw; height:500px; border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>    </section>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2003.741765450806!2d30.266107315761197!3d59.85342867593205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963aeeac072523%3A0xcb3651fbfefe6aca!2z0KLRgNCw0LzQstCw0LnQvdGL0Lkg0L_RgC4sIDE3INC60L7RgNC_0YPRgSAyLCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQsywgMTk4MjE2!5e0!3m2!1sru!2sru!4v1600004297316!5m2!1sru!2sru" frameborder="0" style="width:100vw; height:500px; border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </section>
+    {% include 'home/modal.html' %}
+    <a type="button" href="{% url 'send_question_mail' %}" class="gallery_card_button">ПОДРОБНЕЕ</a>
+
 {% endblock content %}

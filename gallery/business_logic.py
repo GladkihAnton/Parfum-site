@@ -20,7 +20,7 @@ def create_return_dict(products: QuerySet):
 
 def queryset_of_filtered_products(data: QueryDict):
     try:
-        start = int(data.get("quantity"))-1
+        start = int(data.get("quantity"))
     except TypeError:
         start = 0
 
@@ -49,5 +49,4 @@ def queryset_of_filtered_products(data: QueryDict):
                                               sex__in=checkboxes_sex_list,
                                               cost__range=cost_range)[start:start+12]
     print(products_on_page)
-    return_dict = create_return_dict(products_on_page)
-    return return_dict
+    return create_return_dict(products_on_page)

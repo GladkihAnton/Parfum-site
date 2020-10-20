@@ -19,7 +19,7 @@
         </div>
         <div class="gallery_block_for_filter">
             <form class="text-lg-left mt-2" id="gallery_filter_form" method="get"
-                  action="{% url 'gallery_filter' %}">
+                  action="{% url 'gallery_update_content' %}">
                 <div class="container-fluid">
                     <div class="row">
                         {% for filter in filter_form %}
@@ -51,11 +51,11 @@
     <div class="container-fluid" id="gallery_card_block">
         <div class="row">
             {% for product in product_list|slice:":12" %}
-                {% include 'landing/gallery_product.html' %}
+                {% include 'home/gallery_product.html' %}
             {% endfor %}
         </div>
         <div class="w-10 text-center">
-            <button class="gallery_upload_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще</button>
+            <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще</button>
         </div>
     </div>
 {% endblock %}
