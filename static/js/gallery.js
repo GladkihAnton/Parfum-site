@@ -21,7 +21,7 @@ gallery = {
 
     downloadCards: function (quantity = 0, shouldRemove, e) {
         e.preventDefault();
-        let formData = $(this.filterForm).serializeArray();
+        let formData = this.filterForm.serializeArray();
         formData.push({'name': 'quantity', 'value': quantity});
         $.ajax({
             url: this.url,

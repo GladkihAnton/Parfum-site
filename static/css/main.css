@@ -430,6 +430,14 @@ body {
     }
 }
 
+.spinner-border {
+    display: none;
+}
+
+.home_question_sending {
+    display: inline-block;
+}
+
 #home_contacts {
     background-color: #beaea4;
     position: relative

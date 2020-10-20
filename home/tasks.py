@@ -4,11 +4,11 @@ from Magazin_site.celery_app import app
 
 
 @app.task(name="send_question_mail")
-def do_send_question_mail():
+def do_send_question_mail(mail, message):
     send_mail(
         'Диане',
-        'Отправлено через сайт',
-        'antohagladkih@gmail.com',
-        ['antoha_19988@mail.ru'],
+        message,
+        mail,
+        ['antohagladkih@gmail.com'],
         fail_silently=False,
     )
