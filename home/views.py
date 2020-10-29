@@ -17,7 +17,7 @@ def send_question_mail(request):
         try:
             validate_email(user_mail)
             user_message = request.POST.get('user_message')
-            do_send_question_mail(user_mail, user_message) #temp
+            do_send_question_mail.delay(user_mail, user_message) #temp
             print(user_message)
         except ValidationError:
             print('bad')
