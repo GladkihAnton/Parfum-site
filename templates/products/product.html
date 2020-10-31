@@ -36,7 +36,7 @@
                     <p class="product_description">Страна: {{ product.country }}</p>
                     <p class="product_description">Год создания: {{ product.year_of_release }}</p>
                     <p class="product_description">Пол: {{ product.sex }}</p>
-                    <p class="product_description">Семейство ароматов: {{ product.fragrance_family }}</p>
+                    <p class="product_description">Семейство ароматов: {% for fragrance in product.fragrance_family.all %}{{ fragrance }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
                     <p class="product_description">Концентрация: {{ product.concentration }}</p>
                 </div>
             </div>

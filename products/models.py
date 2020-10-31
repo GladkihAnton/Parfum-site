@@ -2,7 +2,7 @@ from django.db import models
 
 
 class VolumeOfProduct(models.Model):
-    name = models.SmallIntegerField(blank=True, null=True, default=None)
+    name = models.CharField(max_length=32, blank=True, null=True, default=None)
 
     def __str__(self):
         return "%s" % self.name
@@ -38,6 +38,19 @@ class FragranceFamilyOfProduct(models.Model):
         verbose_name_plural = "Семейство Ароматов"
 
 
+class SexOfProduct(models.Model):
+    name = models.CharField(max_length=32, blank=True, null=True, default=None)
+    created = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __str__(self):
+        return "%s" % self.name
+
+    class Meta:
+        verbose_name = "Для кого"
+        verbose_name_plural = "Для кого"
+
+
 class MakerOfProduct(models.Model):
     name = models.CharField(max_length=32, blank=True, null=True, default=None)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
@@ -57,10 +70,10 @@ class Product(models.Model):
     maker = models.ForeignKey(MakerOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
     country = models.CharField(max_length=32, blank=True, null=True, default=None)
     year_of_release = models.PositiveSmallIntegerField(blank=True, null=True, default=None)
-    fragrance_family = models.ForeignKey(FragranceFamilyOfProduct, blank=True, null=True, default=None,
+    fragrance_family = models.ManyToManyField(FragranceFamilyOfProduct)
+    volume = models.ForeignKey(VolumeOfProduct, blank=True, null=True, default=None,
                                          on_delete=models.PROTECT)
-    volume = models.ManyToManyField(VolumeOfProduct)
-    sex = models.CharField(max_length=16, blank=True, null=True, default=None)
+    sex = models.ForeignKey(SexOfProduct, blank=True, null=True, default=None, on_delete=models.PROTECT)
     concentration = models.ForeignKey(ConcentrationOfProduct, blank=True, null=True, default=None,
                                       on_delete=models.PROTECT)
     cost = models.PositiveSmallIntegerField(default=0)

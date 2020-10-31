@@ -1,5 +1,5 @@
 from django import forms
-from products.models import MakerOfProduct, ConcentrationOfProduct, FragranceFamilyOfProduct
+from products.models import MakerOfProduct, ConcentrationOfProduct, FragranceFamilyOfProduct, SexOfProduct
 
 
 class MyMultiWidget(forms.widgets.MultiWidget):
@@ -76,21 +76,18 @@ class FiltersForm(forms.Form):
         to_field_name='name'
     )
 
-    SEX_CHOICES = [
-        ('Мужской', 'Мужской'),
-        ('Женский', 'Женский'),
-    ]
-    checkboxes_sex = forms.MultipleChoiceField(
+    checkboxes_sex = forms.ModelMultipleChoiceField(
         help_text='ПОЛ',
-        required=False,
         widget=forms.CheckboxSelectMultiple(
             attrs={
                 'checked': 'true',
-                'class': 'mt-2'
+                'class': 'mt-2',
             }
         ),
-        choices=SEX_CHOICES,
+        queryset=SexOfProduct.objects.all(),
+        to_field_name='name'
     )
+
 
 
 class SearchCostForm(forms.Form):

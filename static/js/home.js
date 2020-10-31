@@ -47,24 +47,7 @@ $(function () {
 // var KEY_FOR_CARD_SLIDER = true;
 // var KEY_FOR_COPY = true;
 //
-// $('#upload_csv').on('submit', function (e) {
-//     e.preventDefault();
-//     var form = new FormData($(this).get(0));
-//     $.ajax({
-//         url: $(this).attr('action'),
-//         type: 'POST',
-//         data: form,
-//         cache: false,
-//         processData: false,
-//         contentType: false,
-//         success: function () {
-//             console.log('ypa');
-//         },
-//         error: function () {
-//             console.log('bad');
-//         }
-//     })
-// });
+
 // //filter and checkboxs in gallery
 
 // if ($('#product').length > 0) {

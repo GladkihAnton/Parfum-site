@@ -58,4 +58,8 @@
             <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще</button>
         </div>
     </div>
+    <form action="{% url 'upload_csv' %}" id="upload_csv"> {% csrf_token %}
+        <input type="file" name="file" id="file">
+        <button type="submit">click me</button>
+    </form>
 {% endblock %}

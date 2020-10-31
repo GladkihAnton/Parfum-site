@@ -88,7 +88,7 @@ body {
 
 @media(max-width: 1300px) {
         .navbar_info {
-            font-size: 11pt;
+            font-size: 16pt;
         }
 }
 
@@ -150,11 +150,11 @@ body {
     background-color: #beaea4;
     border: 2px #ece3db solid;
     color: white;
-    width: 13rem;
-    font-size: 15pt;
+    width: 20rem;
+    font-size: 20pt;
     margin-top: 2rem;
     outline: none;
-    padding: 4px;
+    padding: 9px;
     cursor: pointer;
     text-align: center;
 }
@@ -166,6 +166,7 @@ body {
 .home_catalog_button:hover {
     outline: none;
     background-color: #a79488;
+    border-color: #ece3db;
     transition: 0.5s;
     text-decoration: none;
     color: white;
@@ -193,6 +194,20 @@ body {
 @media (max-width: 1605px) {
     .home_catalog_text {
         font-size: 40pt;
+    }
+
+    .home_catalog_button {
+        width: 16rem;
+        font-size: 18pt;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .home_catalog_button {
+        width: 13rem;
+        font-size: 15pt;
+        padding: 4px;
     }
 }
 
@@ -376,7 +391,7 @@ body {
 }
 
 .home_question_white_line {
-    width: 100%;
+    width: 100vw;
     height: 0px;
     position: relative;
     top: -13px;
@@ -400,24 +415,42 @@ body {
     opacity: 0.8;
 }
 
-.home_question_input_text {
-    height: 40px;
-    width: 50vw;
+.home_question_button {
     background-color: #d8ccc0;
-    border: 2px solid #ffffff;
-    color: #c1aa9e
+    border: 2px #ece3db solid;
+    color: #af9286;
+    width: 20rem;
+    font-size: 20pt;
+    margin-top: 2rem;
+    outline: none;
+    padding: 4px;
+    cursor: pointer;
+    text-align: center;
 }
 
-.home_question_input_text::placeholder {
-    color: #c1aa9e;
+.home_question_button:focus {
+        outline: none;
+
 }
 
-.home_question_input_text + input[type=submit] {
-    height: 40px;
-    width: 160px;
-    color: #c1aa9e;
-    background-color: #d9ccc1;
-    border: 2px white solid;
+.home_question_button:hover {
+    outline: none;
+    background-color: #beaea4;
+    border-color: #ece3db;
+    transition: 0.5s;
+    text-decoration: none;
+    color: white;
+}
+
+.home_question_button:focus:active {
+    background-color: #beaea4;
+}
+
+@media (max-width: 1300px) {
+    .home_question_button {
+        width: 13rem;
+        font-size: 15pt;
+    }
 }
 
 @media (max-width: 1030px) {
@@ -877,7 +910,7 @@ footer {
     color: white;
     text-decoration: none;
     background-color: #c1a99b;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 .gallery_download_new_cards {
