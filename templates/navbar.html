@@ -1,5 +1,6 @@
 {% load static %}
-{% if request.user_agent.is_mobile %}
+{% load user_agents %}
+{% if request|is_mobile %}
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <input type="checkbox"  id="navbar_toggler" />

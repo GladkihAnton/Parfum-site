@@ -19,7 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'products',
-    'gallery'
+    'gallery',
+    'django_user_agents',
 ]
 
 MIDDLEWARE = [
