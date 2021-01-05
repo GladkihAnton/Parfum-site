@@ -888,6 +888,7 @@ footer {
 }
 
 .gallery_toggle_block_for_filter {
+    cursor: pointer;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
     margin-bottom: 1rem;

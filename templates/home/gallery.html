@@ -128,9 +128,5 @@
                 </button>
             </div>
         </div>
-        <form action="{% url 'upload_csv' %}" id="upload_csv" enctype="multipart/form-data"> {% csrf_token %}
-            <input type="file" name="file" id="file">
-            <button type="submit">click me</button>
-        </form>
     {% endif %}
 {% endblock %}
