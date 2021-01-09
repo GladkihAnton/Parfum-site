@@ -4,21 +4,13 @@ home = {
     modalWrapper: null,
     modalForm: null,
 
-    navbarToggler: null,
-
     init: function () {
-
-        this.navbarToggler = $('input#navbar_toggler');
         this.modalWrapper = $('#mail_modal');
         this.modalForm = $('form', this.modalWrapper);
 
         this.modalWrapper.on('hide.bs.modal', this.clearModal.bind(this));
 
         this.modalForm.on('submit', this.sendMail.bind(this));
-
-        this.navbarToggler.on('click', function() {
-            $('body').toggleClass('cant_scroll', this.navbarToggler.val());
-        }.bind(this));
     },
 
     sendMail: function (e) {

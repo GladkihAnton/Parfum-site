@@ -1,27 +1,32 @@
 from django.http import JsonResponse, HttpResponse
 from django.views.generic import ListView
 
-from .business_logic import *
-from .forms import FiltersForm, SearchCostForm
+from products.models import Product
+from .business_logic import GalleryFilter
+from .forms import FiltersForm, CostFilterForm
 
 
 class GalleryDisplay(ListView):
     model = Product
-    queryset = Product.objects.all()
     template_name = 'home/gallery.html'
+
+    def get_queryset(self):
+        maker = self.request.GET.get('maker')
+        if maker:
+            return Product.objects.filter(maker__name=maker)
+        else:
+            return Product.objects.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter_form'] = FiltersForm
-        context['search_cost_form'] = SearchCostForm
+        context['cost_filter_form'] = CostFilterForm
         return context
 
 
 class GalleryUpdateContent(ListView):
-    def get_queryset(self):
-        queryset = queryset_of_filtered_products(self.request.POST)
-        return queryset
 
     def post(self, request, *args, **kwargs):
-        return_dict = self.get_queryset()
-        return JsonResponse(return_dict)
+        filtered_products = GalleryFilter.get_filtered_products(request.POST)
+
+        return JsonResponse(filtered_products)

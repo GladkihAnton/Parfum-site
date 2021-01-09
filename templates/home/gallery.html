@@ -3,7 +3,7 @@
 {% load user_agents %}
 {% block content %}
     {% if request|is_mobile %}
-        <section id="gallery" class="pt-5 mb-4">
+        <section id="gallery" class="pt-5 mb-4 mobile">
             <h2 class="gallery_title">
                 КАТАЛОГ
                 <span>
@@ -12,7 +12,7 @@
             </h2>
         </section>
         <section id="gallery_filter">
-            <div class="gallery_toggle_block_for_filter">
+            <div class="mobile gallery_toggle_block_for_filter">
                 <div class="gallery_catalog_white_top_line"><img src="{% static 'img/Полоска.png' %}"></div>
                 <h2 class="gallery_filter_title">
                     ФИЛЬТР
@@ -25,9 +25,6 @@
                       action="{% url 'gallery_update_content' %}"> {% csrf_token %}
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="mt-5 gallery_filter_search_block mobile w-100">
-                                {{ search_cost_form.search }}
-                            </div>
                             {% for filter in filter_form %}
                                 {% if filter.name != 'maker_search' %}
                                     <div class="col-12 mt-4">
@@ -45,7 +42,7 @@
                             <div class="col-md-12">
                                 <div class="mt-5 mb-3 gallery_filter_cost_block mobile">
                                     <p class="gallery_filter_cost_block_title mobile">ЦЕНА</p>
-                                    {{ search_cost_form.cost_range }}
+                                    {{ cost_filter_form.cost_filter }}
                                 </div>
                             </div>
                             <div class="col-md-12 mt-4 mb-3 text-center mobile">
@@ -63,7 +60,7 @@
                     {% include 'home/gallery_product.html' %}
                 {% endfor %}
             </div>
-            <div class="spinner-border mt-1 mb-1" role="status"></div>
+            <div class="spinner-border text-center mt-1 mb-1" role="status"></div>
             <div class="w-10 text-center">
                 <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще
                 </button>
@@ -92,23 +89,27 @@
                     <div class="container-fluid">
                         <div class="row">
                             {% for filter in filter_form %}
-                                <div class="col-md-3">
-                                    <p class="gallery_filter_title_for_list">{{ filter.help_text }}</p>
-                                    <div class="gallery_items_in_scroll_filter_menu">
-                                        {{ filter }}
+                                {% if filter.name != 'maker_search' %}
+                                    <div class="col-md-3">
+                                        <p class="gallery_filter_title_for_list">{{ filter.help_text }}</p>
+                                        <div class="gallery_items_in_scroll_filter_menu">
+                                            {{ filter }}
+                                        </div>
+                                        {% if filter.name == 'checkboxes_makers' %}
+                                            <div class="text-center w-75">
+                                                {{ filter_form.maker_search }}
+                                            </div>
+                                        {% endif %}
                                     </div>
-                                </div>
+                                {% endif %}
                             {% endfor %}
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-center">
                                 <div class="mt-5 mb-3 gallery_filter_cost_block">
                                     <p class="gallery_filter_cost_block_title">Цена</p>
-                                    {{ search_cost_form.cost_range }}
-                                </div>
-                                <div class="mt-2 gallery_filter_search_block">
-                                    {{ search_cost_form.search }}
+                                    {{ cost_filter_form.cost_filter }}
                                 </div>
                             </div>
-                            <div class="col-md-12 mt-4 mb-3">
+                            <div class="col-md-12 mt-4 mb-3 text-center">
                                 <label id="gallery_filter_submit" for="gallery_filter_submit_input">Применить</label>
                                 <input type="submit" id="gallery_filter_submit_input" style="display: none;">
                             </div>
@@ -122,6 +123,9 @@
                 {% for product in product_list|slice:":12" %}
                     {% include 'home/gallery_product.html' %}
                 {% endfor %}
+            </div>
+            <div class="w-100 text-center">
+                <div class="spinner-border mt-1 mb-1" role="status"></div>
             </div>
             <div class="w-10 text-center">
                 <button class="gallery_download_new_cards" type="submit" data-form="#gallery_filter_form">Показать еще

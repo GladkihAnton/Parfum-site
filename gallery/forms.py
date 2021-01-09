@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import NumberInput
+
 from products.models import MakerOfProduct, ConcentrationOfProduct, FragranceFamilyOfProduct, SexOfProduct
 
 
@@ -9,12 +11,14 @@ class MyMultiWidget(forms.widgets.MultiWidget):
                 attrs={
                     'class': 'gallery_filter_cost_range_1',
                     'placeholder': 'От 500р',
-                }
+                    'value': '',
+                },
             ),
             forms.widgets.NumberInput(
                 attrs={
                     'class': 'gallery_filter_cost_range_2',
-                    'placeholder': 'До 10000р'
+                    'placeholder': 'До 10000р',
+                    'value': ''
                 }
             ),
         )
@@ -44,7 +48,6 @@ class FiltersForm(forms.Form):
         help_text='БРЕНД',
         widget=forms.CheckboxSelectMultiple(
             attrs={
-                'checked': 'true',
                 'class': 'mt-2',
             }
         ),
@@ -58,7 +61,7 @@ class FiltersForm(forms.Form):
             attrs={
                 'class': 'gallery_filter_maker_search',
                 'value': '',
-                'placeholder': 'Поиск производителей...',
+                'placeholder': 'Поиск по брендам...',
             }
         ))
 
@@ -66,7 +69,6 @@ class FiltersForm(forms.Form):
         help_text='КОНЦЕНТРАЦИЯ',
         widget=forms.CheckboxSelectMultiple(
             attrs={
-                'checked': 'true',
                 'class': 'mt-2',
             }
         ),
@@ -78,7 +80,6 @@ class FiltersForm(forms.Form):
         help_text='НОТЫ АРОМАТА',
         widget=forms.CheckboxSelectMultiple(
             attrs={
-                'checked': 'true',
                 'class': 'mt-2',
             }
         ),
@@ -90,7 +91,6 @@ class FiltersForm(forms.Form):
         help_text='ПОЛ',
         widget=forms.CheckboxSelectMultiple(
             attrs={
-                'checked': 'true',
                 'class': 'mt-2',
             }
         ),
@@ -99,13 +99,6 @@ class FiltersForm(forms.Form):
     )
 
 
-class SearchCostForm(forms.Form):
-    search = forms.CharField(required=False, widget=forms.TextInput(
-        attrs={
-            'class': 'gallery_filter_search_input',
-            'value': '',
-            'placeholder': 'Поиск ароматов...',
-            'autofocus': 'true',
-        }
-    ))
-    cost_range = MyMultiValueField()
+class CostFilterForm(forms.Form):
+
+    cost_filter = MyMultiValueField()

@@ -1,40 +1,75 @@
 gallery = {
     url: '/gallery_update_content',
-    showMoreCards: null,
-    filterForm: null,
-    quantityCards: 12,
+    cardsOnPage: 12,
     pending: false,
     makers: {},
 
+    showMoreCardsWrapper: null,
+    spinnerWrapper: null,
+    filterForm: null,
+
     init: function () {
         this.filterForm = $('#gallery_filter_form');
-        this.showMoreCards = $('.gallery_download_new_cards');
+        this.showMoreCardsWrapper = $('.gallery_download_new_cards');
+        this.spinnerWrapper = $('#gallery_card_block .spinner-border');
+
         $('.gallery_toggle_block_for_filter').on('click', function () {
             $(this).next().toggle('normal');
+            if ($(this).hasClass('mobile')) {
+                $('body').addClass('disable_scroll');
+            }
         });
 
-        this.showMoreCards.on('click', this.downloadCards.bind(this, false));
+        this.showMoreCardsWrapper.on('click', this.downloadCards.bind(this, false));
         this.filterForm.on('submit', this.downloadCards.bind(this, true));
 
-        $('.gallery_close').on('click', function (){
-            $('.gallery_mobile_block_for_filter').toggle('normal');
-        });
+        $('.gallery_close').on('click', this.closeFilter);
 
         this.fillMakers();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const makerParam = urlParams.get('maker');
+
+        if (makerParam && this.makers[makerParam.toUpperCase()]) {
+            $('input', this.makers[makerParam.toUpperCase()]).prop('checked', true);
+        }
 
         $('.gallery_filter_maker_search').on('input', this.searchByMakers.bind(this));
     },
 
+    closeFilter: function () {
+        $('.gallery_mobile_block_for_filter').hide('normal');
+        $('body').removeClass('disable_scroll');
+    },
+
     downloadCards: function (shouldRemove, e) {
         e.preventDefault();
-        $('#gallery_card_block .spinner-border').addClass('gallery_ajax_sending');
-        let windowHeight = $(window).scrollTop();
+        this.closeFilter();
 
-        let formData = this.filterForm.serializeArray();
+        this.spinnerWrapper.addClass('gallery_ajax_sending');
+
+        let windowHeight = $(window).scrollTop();
+        let cardsWrapper = $('#gallery_card_block .row');
+
+        let formData = $('#gallery_filter_form :input[value!=""]').serializeArray();
+
         if (shouldRemove) {
-            this.quantityCards = 0;
+            this.cardsOnPage = 0;
+            cardsWrapper.empty();
         }
-        formData.push({'name': 'quantity', 'value': this.quantityCards});
+
+        let min_cost = $('#gallery_filter_form input[name="cost_range_0"]').val();
+        if (min_cost) {
+            formData.push({'name': 'min_cost', 'value': min_cost})
+        }
+
+        let max_cost = $('#gallery_filter_form input[name="cost_range_1"]').val();
+        if (max_cost) {
+            formData.push({'name': 'max_cost', 'value': max_cost})
+        }
+
+        formData.push({'name': 'cardsOnPage', 'value': this.cardsOnPage});
+
         $.ajax({
             url: this.url,
             type: 'POST',
@@ -43,21 +78,25 @@ gallery = {
                 this.pending = true;
             }.bind(this),
             success: function (data) {
-                $('#gallery_card_block .spinner-border').removeClass('gallery_ajax_sending');
-                let cardsWrapper = $('#gallery_card_block .row');
-                if (shouldRemove) {
-                    cardsWrapper.empty();
-                }
-                this.addCardsToHtml(data, cardsWrapper);
-                $(window).scrollTop(windowHeight);
+                this.spinnerWrapper.removeClass('gallery_ajax_sending');
 
-                this.quantityCards += 12;
-                this.pending = false;
+                if (data['error']) {
+                    alert(this.getErrorMessage(data['error']));
+                } else {
+
+                    this.addCardsToHtml(data, cardsWrapper);
+                    if (!shouldRemove) {
+                        $(window).scrollTop(windowHeight);
+                    }
+
+                    this.cardsOnPage += 12;
+                    this.pending = false;
+                }
             }.bind(this),
             error: function(){
-                console.log('ajax error');
-                $('#gallery_card_block .spinner-border').removeClass('gallery_ajax_sending');
-            }
+                this.getErrorMessage('unknown_error')
+                this.spinnerWrapper.removeClass('gallery_ajax_sending');
+            }.bind(this)
         });
     },
 
@@ -74,7 +113,7 @@ gallery = {
             });
             let img = $('<img>', {
                 class: 'gallery_card_img',
-                src: v['image']
+                src: v['img_url']
             });
             let name = $('<h1>', {
                 class: 'card-title',
@@ -87,7 +126,7 @@ gallery = {
             let button = $('<a>', {
                 class: 'gallery_card_button',
                 type: 'button',
-                href: '/' + v['id'],
+                href: '/perfumes/' + v['id'],
                 text: 'ПОДРОБНЕЕ'
             });
             cardImg.append(img);
@@ -110,11 +149,15 @@ gallery = {
         for (var maker in this.makers) {
             var searchedMaker = $(e.currentTarget).val().toUpperCase();
             this.makers[maker].toggle(maker.startsWith(searchedMaker));
-            if (maker.startsWith(searchedMaker)) {
-                console.log(maker);
-                console.log(searchedMaker);
-            }
+        }
+    },
 
+    getErrorMessage: function (error) {
+        switch (error) {
+            case 'wrong_data':
+                return 'Incorrect data when loading product cards';
+            default:
+                return 'Undefined error when loading product cards'
         }
     }
 }
