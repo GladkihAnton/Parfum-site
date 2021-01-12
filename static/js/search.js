@@ -136,7 +136,7 @@ search = {
 
 
     prepareMakerWrapper: function (maker) {
-        let a = $('<a>', {href: '//' + window.location.hostname + ':8000' + maker.href, class: 'navbar_searched_item_link'});
+        let a = $('<a>', {href: '//' + window.location.hostname + maker.href, class: 'navbar_searched_item_link'});
 
         let name = $('<span>', {text: maker.name, class: 'navbar_searched_item_name'});
         a.append(name);
@@ -145,7 +145,7 @@ search = {
     },
 
     preparePerfumeWrapper: function (perfume) {
-        let a = $('<a>', {href: '//' + window.location.hostname + ':8000' + perfume.href, class: 'navbar_searched_item_link'});
+        let a = $('<a>', {href: '//' + window.location.hostname + perfume.href, class: 'navbar_searched_item_link'});
 
         // let img = $('<img>', {src: perfume.img, class: 'navbar_searched_product_img'})
         let sex = $('<i>', {text: perfume.sex, class: 'navbar_searched_item_sex'});

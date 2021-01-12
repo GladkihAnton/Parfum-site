@@ -16,7 +16,7 @@ main = {
 
     include: function (url) {
         var script = document.createElement('script');
-        script.src = '//' + window.location.hostname + ':8000' + url; //todo delete 8000port
+        script.src = '//' + window.location.hostname + url; //todo delete 8000port
         document.getElementsByTagName('head')[0].appendChild(script);
     }
 }
