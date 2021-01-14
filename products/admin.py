@@ -34,6 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(MakerOfProduct)
 class ProductAdmin(admin.ModelAdmin):
+    search_fields = ('name', )
     list_display = [field.name for field in MakerOfProduct._meta.fields]
 
     class Meta:
@@ -42,6 +43,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    search_fields = ('name', )
     list_display = [field.name for field in Product._meta.fields]
     inlines = [ProductImageInline]
 
