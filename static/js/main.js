@@ -14,9 +14,9 @@ main = {
         }
     },
 
-    include: function (url) {
+    include: function (path) {
         var script = document.createElement('script');
-        script.src = '//' + window.location.hostname + url; //todo delete 8000port
+        script.src = '//' + window.location.hostname + path;
         document.getElementsByTagName('head')[0].appendChild(script);
     }
 }

@@ -147,11 +147,9 @@ search = {
     preparePerfumeWrapper: function (perfume) {
         let a = $('<a>', {href: '//' + window.location.hostname + perfume.href, class: 'navbar_searched_item_link'});
 
-        // let img = $('<img>', {src: perfume.img, class: 'navbar_searched_product_img'})
         let sex = $('<i>', {text: perfume.sex, class: 'navbar_searched_item_sex'});
         let name = $('<span>', {text: perfume.name, class: 'navbar_searched_item_name'});
 
-        // a.append(img).append(sex).append(name);
         a.append(sex).append(name);
 
         return a;
